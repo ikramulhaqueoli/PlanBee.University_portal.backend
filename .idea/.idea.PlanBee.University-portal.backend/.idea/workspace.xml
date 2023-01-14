@@ -5,7 +5,16 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="" />
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Documentations/Documentations.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Domain/Entities/EntityBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Domain/Entities/UserBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Domain/Enums/Gender.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Domain/Enums/UserRoles.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Domain/PlanBee.University-portal.backend.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,18 +24,28 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2KHjmcQbrGMP5HpzoVNvDo5ypl5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Markdown"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PlanBee.University-portal.backend: IIS Express">
     <configuration name="PlanBee.University-portal.backend: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj" />
@@ -68,7 +87,16 @@
       <option name="presentableId" value="Default" />
       <updated>1673638562877</updated>
       <workItem from="1673638567850" duration="23000" />
+      <workItem from="1673675814695" duration="988000" />
     </task>
+    <task id="LOCAL-00001" summary="Add workplace.xml file">
+      <created>1673639150921</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673639150921</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -88,6 +116,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Add workplace.xml file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add workplace.xml file" />
   </component>
 </project>
