@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-PlanBee.University_portal.backend-BEFC9AFE-974B-415D-B5B5-D95A05B0AC60</UserSecretsId>
-        <RootNamespace>PlanBee.University_portal.backend</RootNamespace>
+        <RootNamespace>PlanBee.University_portal.backend.Start</RootNamespace>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
