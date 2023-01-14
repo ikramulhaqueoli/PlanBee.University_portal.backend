@@ -474,3 +474,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml
