@@ -54,7 +54,7 @@
 }</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PlanBee.University-portal.backend: IIS Express">
     <configuration name="PlanBee.University-portal.backend: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/PlanBee.University-portal.backend.Start.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Start/Start.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
       <option name="LAUNCH_PROFILE_NAME" value="PlanBee.University_portal" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -69,7 +69,7 @@
       </method>
     </configuration>
     <configuration name="PlanBee.University-portal.backend: PlanBee.University_portal" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/PlanBee.University-portal.backend.Start.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Start/Start.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
       <option name="LAUNCH_PROFILE_NAME" value="PlanBee.University_portal" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -84,7 +84,7 @@
       </method>
     </configuration>
     <configuration name="PlanBee.University-portal.backend.Start: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/PlanBee.University-portal.backend.Start.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Start/Start.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
       <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
