@@ -6,17 +6,10 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Adjust namespaces">
-      <change afterPath="$PROJECT_DIR$/Repositories/Repositories.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/UniversityDb.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/UniversityDb_config.cs" afterDir="false" />
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/UserBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Start/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Start/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Start/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,12 +24,11 @@
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRoles.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/PlanBee.University-portal.backend.Domain/Enums/Gender.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/HealthCheckController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectId" id="2KHjmcQbrGMP5HpzoVNvDo5ypl5" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -45,21 +37,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Markdown&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Markdown"
+    ],
+    "rider.external.source.directories": [
+      "/Users/ihaque/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
+      "/Users/ihaque/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache",
+      "/Users/ihaque/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PlanBee.University-portal.backend: IIS Express">
     <configuration name="PlanBee.University-portal.backend: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Start/Start.csproj" />
@@ -117,6 +114,7 @@
       <updated>1673638562877</updated>
       <workItem from="1673638567850" duration="23000" />
       <workItem from="1673675814695" duration="988000" />
+      <workItem from="1673709504345" duration="2415000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
