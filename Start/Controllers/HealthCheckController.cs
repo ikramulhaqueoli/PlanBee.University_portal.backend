@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PlanBee.University_portal.backend.Controllers;
+namespace PlanBee.University_portal.backend.Start.Controllers;
 
 [ApiController]
 //[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
