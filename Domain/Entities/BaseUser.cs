@@ -1,6 +1,6 @@
 ﻿namespace PlanBee.University_portal.backend.Domain.Entities;
 
-public abstract class UserBase : EntityBase
+public class BaseUser : EntityBase
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

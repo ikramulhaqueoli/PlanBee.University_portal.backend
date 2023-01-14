@@ -6,17 +6,18 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Adjust namespaces">
+      <change afterPath="$PROJECT_DIR$/Repositories/Repositories.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/UniversityDb.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/UniversityDb_config.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/UserBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/Controllers/HealthCheckController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/PlanBee.University-portal.backend.Start.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.Start/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Start/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +25,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/70df3e5caa697356d2da36622f77875efdb4473eafb5bfb84fe07e71a22b9499/EntityFrameworkServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a1a59674744830c52bb8ec2c75c1a5b1b21ec7b871acd25d24a346472da73b/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRoles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/PlanBee.University-portal.backend.Domain/Enums/Gender.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/HealthCheckController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -117,7 +125,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673639150921</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Rename to shortify the project names">
+      <created>1673678834621</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673678834621</updated>
+    </task>
+    <task id="LOCAL-00003" summary="workspace.xml file change">
+      <created>1673678874086</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673678874086</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adjust namespaces">
+      <created>1673678952906</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673678952906</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +169,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add workplace.xml file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add workplace.xml file" />
+    <MESSAGE value="Rename to shortify the project names" />
+    <MESSAGE value="workspace.xml file change" />
+    <MESSAGE value="Adjust namespaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjust namespaces" />
   </component>
 </project>
