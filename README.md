@@ -8,6 +8,7 @@
   * username: `sa`
   * Password: `1qaz!QAZ`
   * Database Name: `planbee-university-db`
+  * Port: `1433`
 * Download docker image:
   ```
   sudo docker pull mcr.microsoft.com/mssql/server:2022-latest
