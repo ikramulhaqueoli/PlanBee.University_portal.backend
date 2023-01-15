@@ -15,4 +15,31 @@ public class BaseUser : EntityBase
     public string? DateOfBirth { get; set; }
     public UserRoles UserRole { get; set; }
     public string? UniversityEmail { get; set; }
+    
+    public void Initiate()
+    {
+        EntityId = Guid.NewGuid();
+        CreatedOn = DateTime.UtcNow;
+    }
+    
+    public void Update()
+    {
+        UpdatedOn = DateTime.UtcNow;
+    }
+    
+    public void Activate()
+    {
+        IsActive = true;
+    }
+    
+    public void Deactivate()
+    {
+        IsActive = false;
+    }
+    
+    public void MarkAsDelete()
+    {
+        IsActive = false;
+        IsMarkedAsDeleted = true;
+    }
 }
