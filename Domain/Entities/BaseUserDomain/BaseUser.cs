@@ -1,4 +1,4 @@
-﻿namespace PlanBee.University_portal.backend.Domain.Entities;
+﻿namespace PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
 public class BaseUser : EntityBase
 {

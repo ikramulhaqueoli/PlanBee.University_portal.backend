@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
-using PlanBee.University_portal.backend.Repositories;
+using PlanBee.University_portal.backend.CommandHandlers;
+using PlanBee.University_portal.backend.Repositories.Implementations;
+using PlanBee.University_portal.backend.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddRepositories(builder.Configuration);
+builder.Services.AddServices();
+builder.Services.AddCommandHandlers();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

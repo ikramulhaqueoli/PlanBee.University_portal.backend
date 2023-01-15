@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PlanBee.University_portal.backend.Domain.Entities;
+using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
 namespace PlanBee.University_portal.backend.Repositories;
 

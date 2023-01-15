@@ -7,10 +7,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/CommandHandlers.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/ICommandDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/ICommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/ICommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/CommandDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Handlers/UserSignupCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/AbstractCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/UserSignupCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/AbstractResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/CommadResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/CommandError.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/ValidationError.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/ValidationResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommandHandlers/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Commands/AbstractCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IBaseUserReadRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IBaseUserWriteRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Enums/CommandErrorType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Exceptions/AbstractBusinessException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/IUserSignupService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Start/Controllers/User/UserController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UnitTests/UnitTest1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UnitTests/UnitTests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UnitTests/Usings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Start/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Start/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,17 +51,35 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/44628068f92148db028c11dd85e9f7eff3e74384cf0dafcf0594fc3e444caf2/IActionResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/482a7d772cb4fc48ae7942fb4d4246e8e292f27a7dbde6aef911bcbf5b0d7de/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4abe75d8f3bcb9564958f79dfee27a9dc399558610a741fa1da4cf76404860d0/ActionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61f6b2ec2dd4b92d9f398247d7587ba692e072717378276eabecd54f82b3d37/StatusCodeResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/64952d24e196c6a8c04e7363e3ee9e8aa41a11a86eee392513dbc6296aeaf1db/Configuration.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/70df3e5caa697356d2da36622f77875efdb4473eafb5bfb84fe07e71a22b9499/EntityFrameworkServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7733bdb26b2be012c4266979a95d3728e74790201f91a02df4529ee6c2f37/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7a403cba08345c96e825f152f83f7387ca90e5b98cf92f2d95fbedc8d25d24/ServiceCollectionServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/811cef5957787344f21dc47f7733c63cefc73cd2dd902c78691bfacd195a1d/ActionResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8f7091379dc079c8d4b415a45d159ba4a8d49a10163f25f7fb369a948faa9a3d/ObjectResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a1a59674744830c52bb8ec2c75c1a5b1b21ec7b871acd25d24a346472da73b/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c2299a1b2473438b122736be9d1434482d5742d2cd21dedd0d2242a229755/OkObjectResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c854e9701da0dbfde76caa7f37743082eb91e1bc26523d7ff25ff4cce123f/ConfigurationManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ec45275be855555cf8689ff79f3ca5653437d7de8dcbc1a728c8acdf41e4fa/BadRequestResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Domain/Entities/EntityBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRoles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/UniversityDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
+  </component>
   <component name="ProjectId" id="2KHjmcQbrGMP5HpzoVNvDo5ypl5" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,6 +95,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "SolutionBuilderGeneralOptionsPage",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -115,6 +167,7 @@
       <workItem from="1673638567850" duration="23000" />
       <workItem from="1673675814695" duration="988000" />
       <workItem from="1673709504345" duration="2415000" />
+      <workItem from="1673739920848" duration="18583000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -144,7 +197,42 @@
       <option name="project" value="LOCAL" />
       <updated>1673678952906</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fix Entity Framework Dot Net Migration Issue">
+      <created>1673720731006</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673720731006</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add DB credentials to readme.md file">
+      <created>1673720757494</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673720757494</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Delete unnecessary file">
+      <created>1673720815371</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673720815371</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add Initial Migration">
+      <created>1673720901237</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673720901237</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update Library version for microsoft configuration">
+      <created>1673721002424</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673721002424</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +258,11 @@
     <MESSAGE value="Rename to shortify the project names" />
     <MESSAGE value="workspace.xml file change" />
     <MESSAGE value="Adjust namespaces" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjust namespaces" />
+    <MESSAGE value="Fix Entity Framework Dot Net Migration Issue" />
+    <MESSAGE value="Add DB credentials to readme.md file" />
+    <MESSAGE value="Delete unnecessary file" />
+    <MESSAGE value="Add Initial Migration" />
+    <MESSAGE value="Update Library version for microsoft configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Library version for microsoft configuration" />
   </component>
 </project>

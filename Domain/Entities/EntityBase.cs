@@ -6,4 +6,12 @@ public abstract class EntityBase
 {
     [Key]
     public Guid EntityId { get; set; }
+
+    public bool IsMarkedAsDeleted { get; set; } = false;
+    
+    public bool IsActive { get; set; }
+
+    public DateTime CreatedOn { get; set; }
+    
+    public DateTime UpdatedOn { get; set; }
 }
