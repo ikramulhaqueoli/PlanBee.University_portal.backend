@@ -21,8 +21,7 @@ public class GetAuthTokenQueryHandler
     {
         var token = await _jwtManagerRepository.Authenticate(
             query.RegistrationId,
-            query.Password,
-            query.Email);
+            query.Password);
 
         return new QueryResponse
         {

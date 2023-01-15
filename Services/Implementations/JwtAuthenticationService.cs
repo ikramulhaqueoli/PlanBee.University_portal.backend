@@ -22,7 +22,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         _baseUserReadRepository = baseUserReadRepository;
     }
 
-    public async Task<AuthToken?> Authenticate(string registrationId, string password, string email)
+    public async Task<AuthToken?> Authenticate(string registrationId, string password)
     {
         var passwordHash = password.Md5Hash();
         var baseUser = await _baseUserReadRepository.GetByCredentialsAsync(registrationId, passwordHash);
@@ -49,7 +49,8 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         {
             new Claim(type: nameof(baseUser.ItemId), value: baseUser.ItemId.ToString()),
             new Claim(type: nameof(baseUser.Email), value: baseUser.Email!),
-            new Claim(type: nameof(baseUser.DateOfBirth), value: baseUser.DateOfBirth!),
+            new Claim(type: nameof(baseUser.UniversityEmail), value: baseUser.UniversityEmail!),
+            new Claim(type: nameof(baseUser.DateOfBirth), value: baseUser.DateOfBirth.ToString()!),
             new Claim(type: nameof(baseUser.FirstName), value: baseUser.FirstName),
             new Claim(type: nameof(baseUser.LastName), value: baseUser.LastName),
             new Claim(type: nameof(baseUser.Gender), value: baseUser.Gender.ToString()),
