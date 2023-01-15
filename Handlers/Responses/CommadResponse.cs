@@ -7,7 +7,7 @@ public class CommandResponse : AbstractResponse
 {
     public ResponseError? CommandError { get; private set; }
 
-    public override bool Success => CommandError is { };
+    public override bool Success => CommandError is null;
 
     public override HttpStatusCode StatusCode => Success
         ? HttpStatusCode.OK

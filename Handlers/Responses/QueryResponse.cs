@@ -9,7 +9,7 @@ public class QueryResponse : AbstractResponse
 
     public ResponseError? QueryError { get; private set; }
 
-    public override bool Success => QueryError is { };
+    public override bool Success => QueryError is null;
 
     public override HttpStatusCode StatusCode => Success
         ? HttpStatusCode.OK
