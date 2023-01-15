@@ -6,14 +6,23 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Add Command handler, command validator and other fundamental classes">
-      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/EntityBaseExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Libraries/Encryptor.cs" afterDir="false" />
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Implement UserSignupService">
+      <change afterPath="$PROJECT_DIR$/Domain/Exceptions/HandlerNotFoundException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/ModelBuilderExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Start/Migrations/20230115080112_InitialCreate5.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Enums/UserRoles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Enums/UserRoles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandHandlers/CommandHandlers.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CommandHandlers/CommandHandlers.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandHandlers/Implementations/CommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/CommandDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/AbstractCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/BaseCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/UserSignupCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/UserSignupCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandHandlers/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CommandHandlers/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Implementations/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Repositories.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Repositories.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Controllers/User/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/User/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Migrations/20230114182748_InitialCreate-15-01-2023.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Migrations/20230115080112_InitialCreate5.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Migrations/20230114182748_InitialCreate-15-01-2023.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +30,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/19ba5a289f2afd3f4d5e862cb3f3efee6181683a31ee31b86c2298b1f51114b/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/44628068f92148db028c11dd85e9f7eff3e74384cf0dafcf0594fc3e444caf2/IActionResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/482a7d772cb4fc48ae7942fb4d4246e8e292f27a7dbde6aef911bcbf5b0d7de/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4abe75d8f3bcb9564958f79dfee27a9dc399558610a741fa1da4cf76404860d0/ActionContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -34,10 +44,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a1a59674744830c52bb8ec2c75c1a5b1b21ec7b871acd25d24a346472da73b/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c2299a1b2473438b122736be9d1434482d5742d2cd21dedd0d2242a229755/OkObjectResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c854e9701da0dbfde76caa7f37743082eb91e1bc26523d7ff25ff4cce123f/ConfigurationManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ec45275be855555cf8689ff79f3ca5653437d7de8dcbc1a728c8acdf41e4fa/BadRequestResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Domain/Entities/EntityBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Domain/Entities/EntityBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRoles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/UniversityDbContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -137,7 +148,7 @@
       <workItem from="1673638567850" duration="23000" />
       <workItem from="1673675814695" duration="988000" />
       <workItem from="1673709504345" duration="2415000" />
-      <workItem from="1673739920848" duration="19911000" />
+      <workItem from="1673739920848" duration="26235000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -209,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673758718004</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implement UserSignupService">
+      <created>1673760368835</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673760368835</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +259,26 @@
     <MESSAGE value="Add Initial Migration" />
     <MESSAGE value="Update Library version for microsoft configuration" />
     <MESSAGE value="Add Command handler, command validator and other fundamental classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Command handler, command validator and other fundamental classes" />
+    <MESSAGE value="Implement UserSignupService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement UserSignupService" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Start/Controllers/User/UserController.cs</url>
+          <line>19</line>
+          <properties documentPath="$PROJECT_DIR$/Start/Controllers/User/UserController.cs" initialLine="19" containingFunctionPresentation="method 'Signup'">
+            <startOffsets>
+              <option value="599" />
+            </startOffsets>
+            <endOffsets>
+              <option value="600" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -3,7 +3,7 @@ using PlanBee.University_portal.backend.Domain.Commands;
 
 namespace PlanBee.University_portal.backend.CommandHandlers.Implementations.Validators;
 
-public class UserSignupCommandValidator : AbstractCommandValidator<UserSignupCommand>
+public class UserSignupCommandValidator : BaseCommandValidator<UserSignupCommand>
 {
     public override ValidationResponse Validate(UserSignupCommand command)
     {

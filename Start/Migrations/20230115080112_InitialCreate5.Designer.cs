@@ -12,8 +12,8 @@ using PlanBee.University_portal.backend.Repositories;
 namespace PlanBee.Universityportal.backend.Start.Migrations
 {
     [DbContext(typeof(UniversityDbContext))]
-    [Migration("20230114182748_InitialCreate-15-01-2023")]
-    partial class InitialCreate15012023
+    [Migration("20230115080112_InitialCreate5")]
+    partial class InitialCreate5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,11 +25,14 @@ namespace PlanBee.Universityportal.backend.Start.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PlanBee.University_portal.backend.Domain.Entities.BaseUser", b =>
+            modelBuilder.Entity("PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain.BaseUser", b =>
                 {
                     b.Property<Guid>("EntityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("nvarchar(max)");
@@ -40,8 +43,14 @@ namespace PlanBee.Universityportal.backend.Start.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMarkedAsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -61,8 +70,11 @@ namespace PlanBee.Universityportal.backend.Start.Migrations
                     b.Property<string>("UniversityEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserRole")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
                     b.HasKey("EntityId");
 

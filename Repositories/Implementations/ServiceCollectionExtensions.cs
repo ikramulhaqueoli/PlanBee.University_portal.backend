@@ -7,22 +7,18 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
+    public static void AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<UniversityDbContext>(optionsAction: options => options.UseSqlServer(
             connectionString: configuration.GetConnectionString(name: "PlanBeeUniversityDatabase"), 
             sqlServerOptionsAction: builder => builder.MigrationsAssembly("Start")));
 
         services.AddDatabaseRepositories();
-
-        return services;
     }
 
-    private static IServiceCollection AddDatabaseRepositories(this IServiceCollection services)
+    private static void AddDatabaseRepositories(this IServiceCollection services)
     {
-        services.AddTransient<IBaseUserReadRepository, BaseUserRepository>();
-        services.AddTransient<IBaseUserWriteRepository, BaseUserRepository>();
-
-        return services;
+        services.AddScoped<IBaseUserReadRepository, BaseUserRepository>();
+        services.AddScoped<IBaseUserWriteRepository, BaseUserRepository>();
     }
 }

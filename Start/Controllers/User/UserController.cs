@@ -4,6 +4,8 @@ using PlanBee.University_portal.backend.Domain.Commands;
 
 namespace PlanBee.University_portal.backend.Start.Controllers.User;
 
+[ApiController]
+[Route("[Controller]")]
 public class UserController : ControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;

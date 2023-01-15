@@ -1,53 +1,59 @@
 using Microsoft.Extensions.DependencyInjection;
 using PlanBee.University_portal.backend.CommandHandlers.Implementations;
 using PlanBee.University_portal.backend.CommandHandlers.Implementations.Validators;
+using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Domain.Exceptions;
 
 namespace PlanBee.University_portal.backend.CommandHandlers;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddCommandHandlers(this IServiceCollection services)
+    public static void AddCommandHandlers(this IServiceCollection services)
     {
-        services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+        services.AddScoped<ICommandDispatcher, CommandDispatcher>();
         services.AddHandlers();
         services.AddValidators();
-
-        return services;
     }
 
-    private static IServiceCollection AddHandlers(this IServiceCollection services)
+    private static void AddHandlers(this IServiceCollection services)
     {
-        var types = typeof(AbstractCommandValidator<>).Assembly.GetTypes()
-            .Where(type => type.IsAbstract is false).ToList();
+        var handlerTypes = typeof(BaseCommandValidator<>).Assembly.GetTypes().Where(type => 
+            type.IsAbstract is false && 
+            type.Name.EndsWith("CommandHandler")).ToList();
 
-        var commands = types.Where(type => type.Name.EndsWith("Command")).ToList();
-        var handlers = types.Where(type => type.Name.EndsWith("CommandHandler")).ToList();
+        var commandTypes = typeof(AbstractCommand).Assembly.GetTypes().Where(type => 
+            type.IsAbstract is false && 
+            type.Name.EndsWith("Command")).ToList();
         
-        foreach (var command in commands)
+        foreach (var commandType in commandTypes)
         {
-            services.AddTransient(
-                serviceType: typeof(ICommandValidator<>).MakeGenericType(command),
-                implementationType: handlers.First(h => h.Name.StartsWith(command.Name)));
+            var handler = handlerTypes.FirstOrDefault(type => type.Name.StartsWith(commandType.Name));
+            if (handler == null) throw new HandlerNotFoundException(commandType);
+            
+            services.AddScoped(
+                serviceType: typeof(ICommandHandler<>).MakeGenericType(commandType),
+                implementationType: handler);
         }
-
-        return services;
     }
-    
-    private static IServiceCollection AddValidators(this IServiceCollection services)
+
+    private static void AddValidators(this IServiceCollection services)
     {
-        var types = typeof(AbstractCommandValidator<>).Assembly.GetTypes()
-            .Where(type => type.IsAbstract is false).ToList();
+        var validatorTypes = typeof(BaseCommandValidator<>).Assembly.GetTypes().Where(type => 
+            type.IsAbstract is false && 
+            type.Name.EndsWith("CommandValidator")).ToList();
 
-        var commands = types.Where(type => type.Name.EndsWith("Command")).ToList();
-        var validators = types.Where(type => type.Name.EndsWith("CommandValidator")).ToList();
+        var commandTypes = typeof(AbstractCommand).Assembly.GetTypes().Where(type => 
+            type.IsAbstract is false && 
+            type.Name.EndsWith("Command")).ToList();
         
-        foreach (var command in commands)
+        foreach (var commandType in commandTypes)
         {
-            services.AddTransient(
-                serviceType: typeof(ICommandValidator<>).MakeGenericType(command),
-                implementationType: validators.First(v => v.Name.StartsWith(command.Name)));
+            var validator = validatorTypes.FirstOrDefault(type => type.Name.StartsWith(commandType.Name)) ??
+                            typeof(BaseCommandValidator<>).MakeGenericType(commandType);
+            
+            services.AddSingleton(
+                serviceType: typeof(ICommandValidator<>).MakeGenericType(commandType),
+                implementationType: validator);
         }
-
-        return services;
     }
 }

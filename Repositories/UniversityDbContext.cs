@@ -14,5 +14,10 @@ public class UniversityDbContext : DbContext
     {
     }
     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.AddConstraints();
+    }
+
     public DbSet<BaseUser> BaseUsers { get; set; } = null!;
 }
