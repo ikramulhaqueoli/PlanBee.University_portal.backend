@@ -45,18 +45,18 @@ public class JwtAuthenticationService : IJwtAuthenticationService
     }
 
     private ClaimsIdentity GetClaimsIdentity(BaseUser baseUser)
-        => new (new[]
+        => new (claims: new[]
         {
-            new Claim(nameof(baseUser.ItemId), baseUser.ItemId.ToString()),
-            new Claim(nameof(baseUser.Email), baseUser.Email!),
-            new Claim(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth!),
-            new Claim(nameof(baseUser.FirstName), baseUser.FirstName),
-            new Claim(nameof(baseUser.LastName), baseUser.LastName),
-            new Claim(nameof(baseUser.Gender), baseUser.Gender.ToString()),
-            new Claim(nameof(baseUser.SurName), baseUser.SurName!),
-            new Claim(nameof(baseUser.MobilePhone), baseUser.MobilePhone!),
-            new Claim(nameof(baseUser.RegistrationId), baseUser.RegistrationId),
-            new Claim(nameof(baseUser.UserRole), baseUser.UserRole.ToString()),
-            new Claim(nameof(baseUser.Activate), baseUser.IsActive.ToString()),
+            new Claim(type: nameof(baseUser.ItemId), value: baseUser.ItemId.ToString()),
+            new Claim(type: nameof(baseUser.Email), value: baseUser.Email!),
+            new Claim(type: nameof(baseUser.DateOfBirth), value: baseUser.DateOfBirth!),
+            new Claim(type: nameof(baseUser.FirstName), value: baseUser.FirstName),
+            new Claim(type: nameof(baseUser.LastName), value: baseUser.LastName),
+            new Claim(type: nameof(baseUser.Gender), value: baseUser.Gender.ToString()),
+            new Claim(type: nameof(baseUser.SurName), value: baseUser.SurName!),
+            new Claim(type: nameof(baseUser.MobilePhone), value: baseUser.MobilePhone!),
+            new Claim(type: nameof(baseUser.RegistrationId), value: baseUser.RegistrationId),
+            new Claim(type: nameof(baseUser.UserRole), value: baseUser.UserRole.ToString()),
+            new Claim(type: nameof(baseUser.Activate), value: baseUser.IsActive.ToString()),
         });
 }

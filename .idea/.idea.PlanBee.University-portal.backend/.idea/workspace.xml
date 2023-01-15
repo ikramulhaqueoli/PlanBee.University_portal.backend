@@ -6,13 +6,7 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Add JWT Token support for authentication">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IBaseUserReadRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IBaseUserReadRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/ModelBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ModelBuilderExtensions.cs" afterDir="false" />
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Add User Detailed data to Auth token">
       <change beforePath="$PROJECT_DIR$/Services/Implementations/JwtAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/JwtAuthenticationService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,6 +44,7 @@
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/Implementations/BaseUserRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/Implementations/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/Implementations/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/ModelBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/UniversityDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/UserSignupService.cs" root0="SKIP_HIGHLIGHTING" />
@@ -149,7 +144,7 @@
       <workItem from="1673675814695" duration="988000" />
       <workItem from="1673709504345" duration="2415000" />
       <workItem from="1673739920848" duration="27030000" />
-      <workItem from="1673778293235" duration="12673000" />
+      <workItem from="1673778293235" duration="12797000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -256,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673812145700</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add User Detailed data to Auth token">
+      <created>1673813075577</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673813075577</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +295,8 @@
     <MESSAGE value="Separate Activate method" />
     <MESSAGE value="Add Signup request mechanism" />
     <MESSAGE value="Add JWT Token support for authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add JWT Token support for authentication" />
+    <MESSAGE value="Add User Detailed data to Auth token" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add User Detailed data to Auth token" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
