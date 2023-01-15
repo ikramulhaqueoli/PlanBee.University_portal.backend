@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using PlanBee.University_portal.backend.Domain.Enums;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers.Responses;
 using PlanBee.University_portal.backend.Services;
@@ -23,9 +24,19 @@ public class GetAuthTokenQueryHandler
             query.RegistrationId,
             query.Password);
 
-        return new QueryResponse
+        var response = new QueryResponse();
+        switch (token)
         {
-            QueryData = new { Token = token }
-        };
+            case null:
+                response.SetQueryError(
+                    ResponseErrorType.BusinessException, 
+                    message: "Invalid Registration ID or Password");
+                break;
+            default:
+                response.QueryData = new { Token = token };
+                break;
+        }
+        
+        return response;
     }
 }
