@@ -1,14 +1,14 @@
 using Microsoft.Extensions.Logging;
-using PlanBee.University_portal.backend.CommandHandlers.Responses;
 using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Handlers.Responses;
 using PlanBee.University_portal.backend.Services;
 
-namespace PlanBee.University_portal.backend.CommandHandlers.Implementations.Handlers;
+namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHandlers;
 
 public class UserSignupCommandHandler : AbstractCommandHandler<UserSignupCommand>
 {
     private readonly IUserSignupService _userSignupService;
-    
+
     public UserSignupCommandHandler(
         ILogger<UserSignupCommandHandler> logger,
         IUserSignupService userSignupService)

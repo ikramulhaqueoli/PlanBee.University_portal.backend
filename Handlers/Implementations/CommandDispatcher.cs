@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using PlanBee.University_portal.backend.CommandHandlers.Responses;
 using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Handlers.Responses;
 
-namespace PlanBee.University_portal.backend.CommandHandlers.Implementations;
+namespace PlanBee.University_portal.backend.Handlers.Implementations;
 
 public class CommandDispatcher : ICommandDispatcher
 {
@@ -22,7 +22,6 @@ public class CommandDispatcher : ICommandDispatcher
         if (response.Success is false) return response;
 
         var handler = _service.GetService<ICommandHandler<TCommand>>();
-        await handler!.HandleAsync(command);
-        return response;
+        return await handler!.TryHandleAsync(command);
     }
 }

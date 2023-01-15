@@ -1,6 +1,6 @@
 namespace PlanBee.University_portal.backend.Domain.Enums;
 
-public enum CommandErrorType
+public enum ResponseErrorType
 {
     BusinessException,
     SystemException

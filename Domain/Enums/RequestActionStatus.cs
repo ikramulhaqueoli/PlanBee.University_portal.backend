@@ -5,5 +5,5 @@ public enum RequestActionStatus
     None,
     Waiting,
     Approved,
-    Rejected,
+    Rejected
 }

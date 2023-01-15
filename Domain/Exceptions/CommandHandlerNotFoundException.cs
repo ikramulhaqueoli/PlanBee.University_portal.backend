@@ -1,10 +1,8 @@
-using PlanBee.University_portal.backend.Domain.Commands;
-
 namespace PlanBee.University_portal.backend.Domain.Exceptions;
 
-public class HandlerNotFoundException : AbstractBusinessException
+public class CommandHandlerNotFoundException : AbstractBusinessException
 {
-    public HandlerNotFoundException(Type commandType)
+    public CommandHandlerNotFoundException(Type commandType)
     {
         Message = $"No suitable handler found for command: {commandType.FullName}";
     }

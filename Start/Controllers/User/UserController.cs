@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using PlanBee.University_portal.backend.CommandHandlers;
 using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Handlers;
 
 namespace PlanBee.University_portal.backend.Start.Controllers.User;
 
@@ -15,13 +15,13 @@ public class UserController : ControllerBase
         _commandDispatcher = commandDispatcher;
     }
 
-    [HttpPost(template: "signup")]
+    [HttpPost("signup")]
     public async Task<IActionResult> Signup(UserSignupCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
-        
+
         return response.Success
-            ? Ok(response) 
+            ? Ok(response)
             : BadRequest(response);
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
@@ -11,6 +12,13 @@ public class BaseUserRepository :
     public BaseUserRepository(UniversityDbContext universityDbContext)
     {
         _universityDbContext = universityDbContext;
+    }
+
+    public async Task<bool> IsCredentialsValidAsync(string registrationId, string passwordHash)
+    {
+        return await _universityDbContext.BaseUsers.AnyAsync(user =>
+            user.RegistrationId == registrationId &&
+            user.PasswordHash == passwordHash);
     }
 
     public async Task SaveAsync(BaseUser user)

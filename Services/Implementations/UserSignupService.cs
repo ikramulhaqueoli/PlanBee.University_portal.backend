@@ -25,7 +25,7 @@ public class UserSignupService : IUserSignupService
             CreatorUserRole = null,
             ActionStatus = RequestActionStatus.None
         };
-        
+
         await _registrationRequestWriteRepository.SaveAsync(request);
     }
 }

@@ -1,4 +1,4 @@
-namespace PlanBee.University_portal.backend.CommandHandlers.Responses;
+namespace PlanBee.University_portal.backend.Handlers.Responses;
 
 public class ValidationError
 {
@@ -9,6 +9,6 @@ public class ValidationError
     }
 
     public string PropertyName { get; }
-    
+
     public string Message { get; }
 }

@@ -14,13 +14,13 @@ public class HealthCheckController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(template: "healthcheck")]
+    [HttpGet("healthcheck")]
     public ActionResult<string> Get()
     {
         return Ok("Healthy");
     }
-    
-    [HttpGet(template: "healthcheck/authorize")]
+
+    [HttpGet("healthcheck/authorize")]
     [Authorize]
     public ActionResult<string> Authorize()
     {

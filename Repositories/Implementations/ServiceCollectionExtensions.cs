@@ -9,9 +9,9 @@ public static class ServiceCollectionExtensions
 {
     public static void AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<UniversityDbContext>(optionsAction: options => options.UseSqlServer(
-            connectionString: configuration.GetConnectionString(name: "PlanBeeUniversityDatabase"), 
-            sqlServerOptionsAction: builder => builder.MigrationsAssembly("Start")));
+        services.AddDbContext<UniversityDbContext>(options => options.UseSqlServer(
+            configuration.GetConnectionString("PlanBeeUniversityDatabase"),
+            builder => builder.MigrationsAssembly("Start")));
 
         services.AddDatabaseRepositories();
     }
@@ -20,7 +20,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IBaseUserReadRepository, BaseUserRepository>();
         services.AddScoped<IBaseUserWriteRepository, BaseUserRepository>();
-        
+
         services.AddScoped<IRegistrationRequestWriteRepository, RegistrationRequestRepository>();
     }
 }
