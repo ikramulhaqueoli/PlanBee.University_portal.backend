@@ -2,5 +2,5 @@ namespace PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
 public interface IBaseUserReadRepository
 {
-    Task<bool> IsCredentialsValidAsync(string registrationId, string passwordHash);
+    Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash);
 }

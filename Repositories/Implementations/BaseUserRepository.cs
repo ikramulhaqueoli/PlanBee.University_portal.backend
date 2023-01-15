@@ -14,9 +14,9 @@ public class BaseUserRepository :
         _universityDbContext = universityDbContext;
     }
 
-    public async Task<bool> IsCredentialsValidAsync(string registrationId, string passwordHash)
+    public async Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
     {
-        return await _universityDbContext.BaseUsers.AnyAsync(user =>
+        return await _universityDbContext.BaseUsers.FirstOrDefaultAsync(user =>
             user.RegistrationId == registrationId &&
             user.PasswordHash == passwordHash);
     }

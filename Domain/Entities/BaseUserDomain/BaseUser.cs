@@ -8,8 +8,8 @@ public class BaseUser : EntityBase
     public string LastName { get; set; } = null!;
     public string RegistrationId { get; set; } = null!;
 
-    public string? NickName { get; set; }
-    public string? Phone { get; set; }
+    public string? SurName { get; set; }
+    public string? MobilePhone { get; set; }
     public string? Email { get; set; }
     public Gender Gender { get; set; }
     public string? PasswordHash { get; set; }

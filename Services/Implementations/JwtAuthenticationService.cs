@@ -25,8 +25,8 @@ public class JwtAuthenticationService : IJwtAuthenticationService
     public async Task<AuthToken?> Authenticate(string registrationId, string password, string email)
     {
         var passwordHash = password.Md5Hash();
-        var isCredentialsValid = await _baseUserReadRepository.IsCredentialsValidAsync(registrationId, passwordHash);
-        if (isCredentialsValid is false) return null;
+        var baseUser = await _baseUserReadRepository.GetByCredentialsAsync(registrationId, passwordHash);
+        if (baseUser == null) return null;
 
         // Else we generate JSON Web Token
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -34,10 +34,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         var timeOut = int.Parse(_configuration["JWT:ExpireTimeout"]!);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Email, email)
-            }),
+            Subject = GetClaimsIdentity(baseUser),
             Expires = DateTime.UtcNow.AddMinutes(timeOut),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
                 SecurityAlgorithms.HmacSha256Signature)
@@ -46,4 +43,20 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return new AuthToken { Token = tokenHandler.WriteToken(token) };
     }
+
+    private ClaimsIdentity GetClaimsIdentity(BaseUser baseUser)
+        => new (new[]
+        {
+            new Claim(nameof(baseUser.ItemId), baseUser.ItemId.ToString()),
+            new Claim(nameof(baseUser.Email), baseUser.Email!),
+            new Claim(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth!),
+            new Claim(nameof(baseUser.FirstName), baseUser.FirstName),
+            new Claim(nameof(baseUser.LastName), baseUser.LastName),
+            new Claim(nameof(baseUser.Gender), baseUser.Gender.ToString()),
+            new Claim(nameof(baseUser.SurName), baseUser.SurName!),
+            new Claim(nameof(baseUser.MobilePhone), baseUser.MobilePhone!),
+            new Claim(nameof(baseUser.RegistrationId), baseUser.RegistrationId),
+            new Claim(nameof(baseUser.UserRole), baseUser.UserRole.ToString()),
+            new Claim(nameof(baseUser.Activate), baseUser.IsActive.ToString()),
+        });
 }
