@@ -6,14 +6,14 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Add User Detailed data to Auth token">
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Minimize Authentication endpoint data">
+      <change afterPath="$PROJECT_DIR$/Start/Migrations/20230115201923_InitialCreate1.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Start/Migrations/20230115201923_InitialCreate1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Start/Migrations/UniversityDbContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Queries/GetAuthTokenQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Queries/GetAuthTokenQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/IJwtAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/IJwtAuthenticationService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services/Implementations/JwtAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/JwtAuthenticationService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +52,11 @@
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/Implementations/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/ModelBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/UniversityDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/IJwtAuthenticationService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/JwtAuthenticationService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/UserSignupService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/HealthCheckController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -150,7 +153,7 @@
       <workItem from="1673675814695" duration="988000" />
       <workItem from="1673709504345" duration="2415000" />
       <workItem from="1673739920848" duration="27030000" />
-      <workItem from="1673778293235" duration="13211000" />
+      <workItem from="1673778293235" duration="13895000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -271,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673813147978</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Minimize Authentication endpoint data">
+      <created>1673813767710</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1673813767711</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +319,8 @@
     <MESSAGE value="Add Signup request mechanism" />
     <MESSAGE value="Add JWT Token support for authentication" />
     <MESSAGE value="Add User Detailed data to Auth token" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add User Detailed data to Auth token" />
+    <MESSAGE value="Minimize Authentication endpoint data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minimize Authentication endpoint data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
