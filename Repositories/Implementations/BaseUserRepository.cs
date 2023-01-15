@@ -2,8 +2,8 @@ using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
 
-public class BaseUserRepository : 
-    IBaseUserReadRepository, 
+public class BaseUserRepository :
+    IBaseUserReadRepository,
     IBaseUserWriteRepository
 {
     private readonly UniversityDbContext _universityDbContext;

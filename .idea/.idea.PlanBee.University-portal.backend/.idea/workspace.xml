@@ -6,10 +6,21 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Fix database issue and DI issue">
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IRegistrationRequestWriteRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Entities/RegistrationRequestDomain/RegistrationRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Enums/RequestActionStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/Implementations/RegistrationRequestRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/EntityBaseExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Implementations/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Start/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,27 +44,17 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c854e9701da0dbfde76caa7f37743082eb91e1bc26523d7ff25ff4cce123f/ConfigurationManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ec45275be855555cf8689ff79f3ca5653437d7de8dcbc1a728c8acdf41e4fa/BadRequestResult.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/CommandHandlers/Implementations/CommandDispatcher.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/CommandHandlers/Implementations/Validators/UserSignupCommandValidator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/CommandHandlers/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Domain/Entities/EntityBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRoles.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/Implementations/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/UniversityDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Repositories/UniversityDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/User/UserController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2KHjmcQbrGMP5HpzoVNvDo5ypl5" />
   <component name="ProjectLevelVcsManager">
@@ -63,27 +64,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.smartKeys_rider",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.smartKeys_rider&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Markdown"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Markdown&quot;
     ],
-    "rider.external.source.directories": [
-      "/Users/ihaque/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
-      "/Users/ihaque/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache",
-      "/Users/ihaque/.local/share/Symbols/src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/ihaque/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/ihaque/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/ihaque/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PlanBee.University-portal.backend: IIS Express">
     <configuration name="PlanBee.University-portal.backend: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Start/Start.csproj" />
@@ -142,7 +143,8 @@
       <workItem from="1673638567850" duration="23000" />
       <workItem from="1673675814695" duration="988000" />
       <workItem from="1673709504345" duration="2415000" />
-      <workItem from="1673739920848" duration="26982000" />
+      <workItem from="1673739920848" duration="27030000" />
+      <workItem from="1673778293235" duration="4086000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -228,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673771559529</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Separate Activate method">
+      <created>1673772251452</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673772251452</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +271,8 @@
     <MESSAGE value="Add Command handler, command validator and other fundamental classes" />
     <MESSAGE value="Implement UserSignupService" />
     <MESSAGE value="Fix database issue and DI issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix database issue and DI issue" />
+    <MESSAGE value="Separate Activate method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Separate Activate method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -285,10 +295,10 @@
           <line>17</line>
           <properties documentPath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" initialLine="18" containingFunctionPresentation="method 'SaveAsync'">
             <startOffsets>
-              <option value="505" />
+              <option value="503" />
             </startOffsets>
             <endOffsets>
-              <option value="546" />
+              <option value="544" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />

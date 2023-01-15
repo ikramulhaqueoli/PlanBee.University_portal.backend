@@ -18,7 +18,7 @@ public class BaseUser : EntityBase
     
     public void Initiate()
     {
-        EntityId = Guid.NewGuid();
+        ItemId = Guid.NewGuid();
         CreatedOn = DateTime.UtcNow;
     }
     

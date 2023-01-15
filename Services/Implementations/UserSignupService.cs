@@ -1,39 +1,31 @@
+using Newtonsoft.Json;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Enums;
-using PlanBee.University_portal.backend.Domain.Libraries;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;
 
 public class UserSignupService : IUserSignupService
 {
-    private readonly IBaseUserWriteRepository _baseUserWriteRepository;
+    private readonly IRegistrationRequestWriteRepository _registrationRequestWriteRepository;
 
-    public UserSignupService(IBaseUserWriteRepository baseUserWriteRepository)
+    public UserSignupService(IRegistrationRequestWriteRepository registrationRequestWriteRepository)
     {
-        _baseUserWriteRepository = baseUserWriteRepository;
+        _registrationRequestWriteRepository = registrationRequestWriteRepository;
     }
 
     public async Task SignupAsync(UserSignupCommand command)
     {
-        var passwordHash = command.Password.Md5Hash();
-        var user = new BaseUser
+        var request = new RegistrationRequest
         {
-            FirstName = command.FirstName,
-            LastName = command.LastName,
-            NickName = command.NickName,
-            Phone = command.Phone,
-            Email = command.Email,
-            Gender = Enum.Parse<Gender>(command.Gender ?? Gender.Unspecified.ToString()),
-            RegistrationId = command.RegistrationId,
-            PasswordHash = passwordHash,
-            DateOfBirth = command.DateOfBirth,
-            UserRole = Enum.Parse<UserRoles>(command.UserRole ?? UserRoles.Unknown.ToString()),
-            UniversityEmail = command.UniversityEmail,
+            EntityType = nameof(BaseUser),
+            ModelDataJson = JsonConvert.SerializeObject(command),
+            CreatorUserId = null,
+            CreatorUserRole = null,
+            ActionStatus = RequestActionStatus.None
         };
         
-        user.Initiate();
-        
-        await _baseUserWriteRepository.SaveAsync(user);
+        await _registrationRequestWriteRepository.SaveAsync(request);
     }
 }

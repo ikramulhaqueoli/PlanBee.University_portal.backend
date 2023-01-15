@@ -5,7 +5,7 @@ namespace PlanBee.University_portal.backend.Domain.Entities;
 public abstract class EntityBase
 {
     [Key]
-    public Guid EntityId { get; set; }
+    public Guid ItemId { get; set; }
 
     public bool IsMarkedAsDeleted { get; set; } = false;
     

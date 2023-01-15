@@ -20,5 +20,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IBaseUserReadRepository, BaseUserRepository>();
         services.AddScoped<IBaseUserWriteRepository, BaseUserRepository>();
+        
+        services.AddScoped<IRegistrationRequestWriteRepository, RegistrationRequestRepository>();
     }
 }
