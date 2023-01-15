@@ -6,44 +6,14 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/CommandHandlers.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/ICommandDispatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/ICommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/ICommandValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/CommandDispatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Handlers/UserSignupCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/AbstractCommandValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Implementations/Validators/UserSignupCommandValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/AbstractResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/CommadResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/CommandError.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/ValidationError.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/Responses/ValidationResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommandHandlers/ServiceCollectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Commands/AbstractCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IBaseUserReadRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/IBaseUserWriteRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Enums/CommandErrorType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Exceptions/AbstractBusinessException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/IUserSignupService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Start/Controllers/User/UserController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UnitTests/UnitTest1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UnitTests/UnitTests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UnitTests/Usings.cs" afterDir="false" />
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Add Command handler, command validator and other fundamental classes">
+      <change afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/EntityBaseExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Libraries/Encryptor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/EntityBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlanBee.University-portal.backend.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UniversityDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Start/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Enums/UserRoles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Enums/UserRoles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +137,7 @@
       <workItem from="1673638567850" duration="23000" />
       <workItem from="1673675814695" duration="988000" />
       <workItem from="1673709504345" duration="2415000" />
-      <workItem from="1673739920848" duration="18583000" />
+      <workItem from="1673739920848" duration="19911000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -232,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673721002424</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add Command handler, command validator and other fundamental classes">
+      <created>1673758718004</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673758718004</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +240,7 @@
     <MESSAGE value="Delete unnecessary file" />
     <MESSAGE value="Add Initial Migration" />
     <MESSAGE value="Update Library version for microsoft configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Library version for microsoft configuration" />
+    <MESSAGE value="Add Command handler, command validator and other fundamental classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Command handler, command validator and other fundamental classes" />
   </component>
 </project>

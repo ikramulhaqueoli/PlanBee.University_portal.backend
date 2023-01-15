@@ -22,11 +22,14 @@ namespace PlanBee.Universityportal.backend.Start.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PlanBee.University_portal.backend.Domain.Entities.BaseUser", b =>
+            modelBuilder.Entity("PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain.BaseUser", b =>
                 {
                     b.Property<Guid>("EntityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("nvarchar(max)");
@@ -37,8 +40,14 @@ namespace PlanBee.Universityportal.backend.Start.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMarkedAsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -58,8 +67,11 @@ namespace PlanBee.Universityportal.backend.Start.Migrations
                     b.Property<string>("UniversityEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserRole")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
                     b.HasKey("EntityId");
 

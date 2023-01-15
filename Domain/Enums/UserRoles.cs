@@ -11,4 +11,5 @@ public enum UserRoles
     Student = 60,
     GeneralEmployee = 70,
     Clerk = 100,
+    Unknown = 1000,
 }
