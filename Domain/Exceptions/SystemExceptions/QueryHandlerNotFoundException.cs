@@ -1,6 +1,6 @@
-namespace PlanBee.University_portal.backend.Domain.Exceptions;
+namespace PlanBee.University_portal.backend.Domain.Exceptions.SystemExceptions;
 
-public class QueryHandlerNotFoundException : AbstractBusinessException
+public class QueryHandlerNotFoundException : AbstractSystemException
 {
     public QueryHandlerNotFoundException(Type queryType)
     {

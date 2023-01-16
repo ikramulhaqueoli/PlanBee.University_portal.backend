@@ -1,6 +1,6 @@
-namespace PlanBee.University_portal.backend.Domain.Exceptions;
+namespace PlanBee.University_portal.backend.Domain.Exceptions.SystemExceptions;
 
-public class CommandHandlerNotFoundException : AbstractBusinessException
+public class CommandHandlerNotFoundException : AbstractSystemException
 {
     public CommandHandlerNotFoundException(Type commandType)
     {

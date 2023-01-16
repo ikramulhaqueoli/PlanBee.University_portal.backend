@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 using PlanBee.University_portal.backend.Domain.Enums;
-using PlanBee.University_portal.backend.Domain.Exceptions;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers.Responses;
 

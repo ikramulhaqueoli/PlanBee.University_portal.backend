@@ -29,14 +29,14 @@ public class GetAuthTokenQueryHandler
         {
             case null:
                 response.SetQueryError(
-                    ResponseErrorType.BusinessException, 
-                    message: "Invalid Registration ID or Password");
+                    ResponseErrorType.BusinessException,
+                    "Invalid Registration ID or Password");
                 break;
             default:
                 response.QueryData = new { Token = token };
                 break;
         }
-        
+
         return response;
     }
 }
