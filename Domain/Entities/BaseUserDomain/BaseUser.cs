@@ -14,13 +14,14 @@ public class BaseUser : EntityBase
     public Gender Gender { get; set; }
     public string? PasswordHash { get; set; }
     public DateTime? DateOfBirth { get; set; }
-    public UserRoles UserRole { get; set; }
+    public UserRole[]? UserRoles { get; set; }
     public string? UniversityEmail { get; set; }
 
     public void Initiate()
     {
         ItemId = Guid.NewGuid();
         CreatedOn = DateTime.UtcNow;
+        UserRoles ??= new[] { UserRole.Anonymous };
     }
 
     public void Update()
@@ -42,5 +43,13 @@ public class BaseUser : EntityBase
     {
         IsActive = false;
         IsMarkedAsDeleted = true;
+    }
+
+    public void AddRole(params UserRole[] roles)
+    {
+        UserRoles ??= Array.Empty<UserRole>();
+        var existingRoles = UserRoles.ToList();
+        existingRoles.AddRange(roles);
+        UserRoles = existingRoles.Distinct().ToArray();
     }
 }

@@ -1,6 +1,8 @@
+using System.ComponentModel;
+
 namespace PlanBee.University_portal.backend.Domain.Enums;
 
-public enum UserRoles
+public enum UserRole
 {
     SuperAdmin = 0,
     Moderator = 10,
@@ -11,5 +13,5 @@ public enum UserRoles
     Student = 60,
     GeneralEmployee = 70,
     Clerk = 100,
-    Unknown = 1000
+    Anonymous = 1000
 }

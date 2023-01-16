@@ -46,20 +46,27 @@ public class JwtAuthenticationService : IJwtAuthenticationService
 
     private ClaimsIdentity GetClaimsIdentity(BaseUser baseUser)
     {
-        return new(new[]
+        var claims = new List<Claim>
         {
-            new Claim(nameof(baseUser.ItemId), baseUser.ItemId.ToString()),
-            new Claim(nameof(baseUser.Email), baseUser.Email ?? string.Empty),
-            new Claim(nameof(baseUser.UniversityEmail), baseUser.UniversityEmail ?? string.Empty),
-            new Claim(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth?.ToString() ?? string.Empty),
-            new Claim(nameof(baseUser.FirstName), baseUser.FirstName),
-            new Claim(nameof(baseUser.LastName), baseUser.LastName),
-            new Claim(nameof(baseUser.Gender), baseUser.Gender.ToString()),
-            new Claim(nameof(baseUser.SurName), baseUser.SurName ?? string.Empty),
-            new Claim(nameof(baseUser.MobilePhone), baseUser.MobilePhone ?? string.Empty),
-            new Claim(nameof(baseUser.RegistrationId), baseUser.RegistrationId),
-            new Claim(nameof(baseUser.UserRole), baseUser.UserRole.ToString()),
-            new Claim(nameof(baseUser.Activate), baseUser.IsActive.ToString())
-        });
+            new(nameof(baseUser.ItemId), baseUser.ItemId.ToString()),
+            new(nameof(baseUser.Email), baseUser.Email ?? string.Empty),
+            new(nameof(baseUser.UniversityEmail), baseUser.UniversityEmail ?? string.Empty),
+            new(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth?.ToString() ?? string.Empty),
+            new(nameof(baseUser.FirstName), baseUser.FirstName),
+            new(nameof(baseUser.LastName), baseUser.LastName),
+            new(nameof(baseUser.Gender), baseUser.Gender.ToString()),
+            new(nameof(baseUser.SurName), baseUser.SurName ?? string.Empty),
+            new(nameof(baseUser.MobilePhone), baseUser.MobilePhone ?? string.Empty),
+            new(nameof(baseUser.RegistrationId), baseUser.RegistrationId),
+            new(nameof(baseUser.Activate), baseUser.IsActive.ToString()),
+        };
+        
+        var roleClaims = baseUser.UserRoles?
+            .Select(role => new Claim(ClaimTypes.Role, role.ToString())).ToList()
+                         ?? new List<Claim>();
+        
+        claims.AddRange(roleClaims);
+        
+        return new ClaimsIdentity(claims);
     }
 }

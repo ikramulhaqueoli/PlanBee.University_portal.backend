@@ -7,14 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Domain/Exceptions/SystemExceptions/AbstractSystemException.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Exceptions/AbstractBusinessException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Exceptions/BusinessExceptions/AbstractBusinessException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Exceptions/CommandHandlerNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Exceptions/SystemExceptions/CommandHandlerNotFoundException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Exceptions/QueryHandlerNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Exceptions/SystemExceptions/QueryHandlerNotFoundException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Enums/UserRoles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Enums/UserRole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Implementations/JwtAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/JwtAuthenticationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/HealthCheckController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +37,15 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c2299a1b2473438b122736be9d1434482d5742d2cd21dedd0d2242a229755/OkObjectResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c854e9701da0dbfde76caa7f37743082eb91e1bc26523d7ff25ff4cce123f/ConfigurationManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dcedbc87754f258c5cbaf81957c25226a51ba1fd897ccb6a3d357ace4202/AuthorizeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ec45275be855555cf8689ff79f3ca5653437d7de8dcbc1a728c8acdf41e4fa/BadRequestResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRoles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRole.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/JwtAuthenticationService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/HealthCheckController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -143,7 +144,8 @@
       <workItem from="1673739920848" duration="27030000" />
       <workItem from="1673778293235" duration="14041000" />
       <workItem from="1673814425107" duration="507000" />
-      <workItem from="1673845554197" duration="174000" />
+      <workItem from="1673845554197" duration="389000" />
+      <workItem from="1673871678771" duration="2595000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -292,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673814908023</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Change business exception to system exception when handlers not found">
+      <created>1673845929276</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1673845929276</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +343,8 @@
     <MESSAGE value="Fix null exception for token generation property access from user" />
     <MESSAGE value="Add detailed error message in query response" />
     <MESSAGE value="Fix bug in command and query responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bug in command and query responses" />
+    <MESSAGE value="Change business exception to system exception when handlers not found" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change business exception to system exception when handlers not found" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -354,13 +364,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs</url>
-          <line>20</line>
+          <line>19</line>
           <properties documentPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" initialLine="19" containingFunctionPresentation="method 'TryHandleAsync'">
             <startOffsets>
-              <option value="738" />
+              <option value="679" />
             </startOffsets>
             <endOffsets>
-              <option value="739" />
+              <option value="680" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />
