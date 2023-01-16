@@ -18,7 +18,8 @@ public class BaseUserRepository :
     {
         return await _universityDbContext.BaseUsers.FirstOrDefaultAsync(user =>
             user.RegistrationId == registrationId &&
-            user.PasswordHash == passwordHash);
+            user.PasswordHash == passwordHash &&
+            user.IsMarkedAsDeleted == false);
     }
 
     public async Task SaveAsync(BaseUser user)
