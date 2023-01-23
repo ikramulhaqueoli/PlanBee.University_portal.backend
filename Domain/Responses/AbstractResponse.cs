@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace PlanBee.University_portal.backend.Handlers.Responses;
+namespace PlanBee.University_portal.backend.Domain.Responses;
 
 public abstract class AbstractResponse
 {

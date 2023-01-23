@@ -1,4 +1,4 @@
-namespace PlanBee.University_portal.backend.Handlers.Responses;
+namespace PlanBee.University_portal.backend.Domain.Responses;
 
 public class ValidationError
 {

@@ -58,15 +58,15 @@ public class JwtAuthenticationService : IJwtAuthenticationService
             new(nameof(baseUser.SurName), baseUser.SurName ?? string.Empty),
             new(nameof(baseUser.MobilePhone), baseUser.MobilePhone ?? string.Empty),
             new(nameof(baseUser.RegistrationId), baseUser.RegistrationId),
-            new(nameof(baseUser.Activate), baseUser.IsActive.ToString()),
+            new(nameof(baseUser.Activate), baseUser.IsActive.ToString())
         };
-        
+
         var roleClaims = baseUser.UserRoles?
-            .Select(role => new Claim(ClaimTypes.Role, role.ToString())).ToList()
+                             .Select(role => new Claim(ClaimTypes.Role, role.ToString())).ToList()
                          ?? new List<Claim>();
-        
+
         claims.AddRange(roleClaims);
-        
+
         return new ClaimsIdentity(claims);
     }
 }

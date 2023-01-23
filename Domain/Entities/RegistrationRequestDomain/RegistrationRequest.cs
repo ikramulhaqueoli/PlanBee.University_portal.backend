@@ -4,13 +4,13 @@ namespace PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestD
 
 public class RegistrationRequest : EntityBase
 {
-    public string EntityType { get; set; }
+    public string EntityType { get; set; } = null!;
 
-    public string ModelDataJson { get; set; }
+    public string ModelDataJson { get; set; } = null!;
 
-    public string CreatorUserId { get; set; }
+    public string CreatorUserId { get; set; } = null!;
 
-    public string CreatorUserRole { get; set; }
+    public string CreatorUserRole { get; set; } = null!;
 
     public RequestActionStatus ActionStatus { get; set; }
 

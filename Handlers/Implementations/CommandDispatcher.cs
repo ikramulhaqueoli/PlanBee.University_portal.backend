@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using PlanBee.University_portal.backend.Domain.Commands;
-using PlanBee.University_portal.backend.Handlers.Responses;
+using PlanBee.University_portal.backend.Domain.Responses;
 
 namespace PlanBee.University_portal.backend.Handlers.Implementations;
 

@@ -6,9 +6,37 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Add Role Based Authorization support">
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Domain/Commands/CreateWorkplaceCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Start/Controllers/WorkplaceController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Untitled-1.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementations/BaseUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/RegistrationRequestDomain/RegistrationRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/RegistrationRequestDomain/RegistrationRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Handlers.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Handlers.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/ICommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ICommandDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/ICommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ICommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/ICommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ICommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/IQueryDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/IQueryDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/IQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/IQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/IQueryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/IQueryValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/UserSignupCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/UserSignupCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseQueryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseQueryValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/GetAuthTokenQueryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/GetAuthTokenQueryValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/UserSignupCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/UserSignupCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Responses/AbstractResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/AbstractResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Responses/CommadResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/CommadResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Responses/QueryResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/QueryResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Responses/ResponseError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/ResponseError.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Responses/ValidationError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/ValidationError.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Responses/ValidationResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/ValidationResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,13 +65,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dcedbc87754f258c5cbaf81957c25226a51ba1fd897ccb6a3d357ace4202/AuthorizeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ec45275be855555cf8689ff79f3ca5653437d7de8dcbc1a728c8acdf41e4fa/BadRequestResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Domain/Entities/BaseUserDomain/BaseUser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRole.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Services/Implementations/JwtAuthenticationService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/HealthCheckController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Start/Controllers/HealthCheckController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -143,7 +169,10 @@
       <workItem from="1673778293235" duration="14041000" />
       <workItem from="1673814425107" duration="507000" />
       <workItem from="1673845554197" duration="389000" />
-      <workItem from="1673871678771" duration="3050000" />
+      <workItem from="1673871678771" duration="3100000" />
+      <workItem from="1674470522573" duration="43000" />
+      <workItem from="1674470719380" duration="438000" />
+      <workItem from="1674474619546" duration="1776000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -306,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673874344606</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Refactror">
+      <created>1673875851749</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1673875851749</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +386,8 @@
     <MESSAGE value="Fix bug in command and query responses" />
     <MESSAGE value="Change business exception to system exception when handlers not found" />
     <MESSAGE value="Add Role Based Authorization support" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Role Based Authorization support" />
+    <MESSAGE value="Refactror" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactror" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -373,10 +410,10 @@
           <line>19</line>
           <properties documentPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" initialLine="19" containingFunctionPresentation="method 'TryHandleAsync'">
             <startOffsets>
-              <option value="679" />
+              <option value="677" />
             </startOffsets>
             <endOffsets>
-              <option value="680" />
+              <option value="678" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />

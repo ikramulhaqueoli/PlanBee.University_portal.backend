@@ -1,7 +1,7 @@
 using System.Net;
 using PlanBee.University_portal.backend.Domain.Enums;
 
-namespace PlanBee.University_portal.backend.Handlers.Responses;
+namespace PlanBee.University_portal.backend.Domain.Responses;
 
 public class CommandResponse : AbstractResponse
 {

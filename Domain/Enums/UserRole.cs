@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace PlanBee.University_portal.backend.Domain.Enums;
 
 public enum UserRole
