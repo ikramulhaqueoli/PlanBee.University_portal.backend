@@ -6,16 +6,16 @@ using PlanBee.University_portal.backend.Domain.Enums;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;
 
-public class UserSignupService : IUserSignupService
+public class EmployeeSignupService : IEmployeeSignupService
 {
     private readonly IRegistrationRequestWriteRepository _registrationRequestWriteRepository;
 
-    public UserSignupService(IRegistrationRequestWriteRepository registrationRequestWriteRepository)
+    public EmployeeSignupService(IRegistrationRequestWriteRepository registrationRequestWriteRepository)
     {
         _registrationRequestWriteRepository = registrationRequestWriteRepository;
     }
 
-    public async Task SignupAsync(UserSignupCommand command)
+    public async Task SignupAsync(EmployeeSignupCommand command)
     {
         var request = new RegistrationRequest
         {

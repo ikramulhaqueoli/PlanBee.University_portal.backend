@@ -2,21 +2,21 @@ using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Handlers;
 
-namespace PlanBee.University_portal.backend.Start.Controllers.User;
+namespace PlanBee.University_portal.backend.Start.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-public class UserController : ControllerBase
+public class EmployeeController : ControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;
 
-    public UserController(ICommandDispatcher commandDispatcher)
+    public EmployeeController(ICommandDispatcher commandDispatcher)
     {
         _commandDispatcher = commandDispatcher;
     }
 
-    [HttpPost("signup")]
-    public async Task<IActionResult> Signup(UserSignupCommand command)
+    [HttpPost(template: "Create")]
+    public async Task<IActionResult> Create(EmployeeSignupCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 

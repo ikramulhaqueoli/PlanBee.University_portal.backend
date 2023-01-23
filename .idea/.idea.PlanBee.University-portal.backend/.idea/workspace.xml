@@ -6,36 +6,22 @@
     <projectFile profileName="PlanBee.University_portal">PlanBee.University-portal.backend/PlanBee.University-portal.backend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Domain/Commands/CreateWorkplaceCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Start/Controllers/WorkplaceController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Untitled-1.json" afterDir="false" />
+    <list default="true" id="6b081eec-c17f-43be-81e5-e4fd951cfe84" name="Changes" comment="Refactor">
+      <change afterPath="$PROJECT_DIR$/Domain/Commands/CreateDesignationCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Constants/WorkplaceConstants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Start/Controllers/EmployeeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlanBee.University-portal.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Domain.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/RegistrationRequestDomain/RegistrationRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/RegistrationRequestDomain/RegistrationRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Commands/CreateWorkplaceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Commands/CreateWorkplaceCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Commands/UserSignupCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Commands/EmployeeSignupCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Handlers/Handlers.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Handlers.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/ICommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ICommandDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/ICommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ICommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/ICommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/ICommandValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/IQueryDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/IQueryDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/IQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/IQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/IQueryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/IQueryValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/UserSignupCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/UserSignupCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/AbstractQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseCommandValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseQueryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/BaseQueryValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/GetAuthTokenQueryValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/GetAuthTokenQueryValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/UserSignupCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/UserSignupCommandValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Responses/AbstractResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/AbstractResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Responses/CommadResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/CommadResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Responses/QueryResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/QueryResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Responses/ResponseError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/ResponseError.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Responses/ValidationError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/ValidationError.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Handlers/Responses/ValidationResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Responses/ValidationResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/UserSignupCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/CommandHandlers/EmployeeSignupCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Handlers/Implementations/Validators/UserSignupCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Handlers/Implementations/Validators/EmployeeSignupCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/IUserSignupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/IEmployeeSignupService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Implementations/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Implementations/UserSignupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/EmployeeSignupService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Controllers/User/UserController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Start/Controllers/WorkplaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Controllers/WorkplaceController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Start/Start.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Start/Start.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,6 +54,8 @@
     <setting file="file://$PROJECT_DIR$/Domain/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/Gender.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Enums/UserRole.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Handlers/Implementations/CommandHandlers/AbstractCommandHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Handlers/Implementations/CommandHandlers/UserSignupCommandHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/ihaque/Oli's Invensions/PlanBee.University_portal.backend/Handlers/Implementations/QueryHandlers/GetAuthTokenQueryHandler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -172,7 +160,7 @@
       <workItem from="1673871678771" duration="3100000" />
       <workItem from="1674470522573" duration="43000" />
       <workItem from="1674470719380" duration="438000" />
-      <workItem from="1674474619546" duration="1776000" />
+      <workItem from="1674474619546" duration="3636000" />
     </task>
     <task id="LOCAL-00001" summary="Add workplace.xml file">
       <created>1673639150921</created>
@@ -342,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673875851749</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Refactor">
+      <created>1674476472461</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1674476472461</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +382,8 @@
     <MESSAGE value="Change business exception to system exception when handlers not found" />
     <MESSAGE value="Add Role Based Authorization support" />
     <MESSAGE value="Refactror" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactror" />
+    <MESSAGE value="Refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -24,4 +24,14 @@ public class WorkplaceController : ControllerBase
             ? Ok(response)
             : BadRequest(response);
     }
+    
+    [HttpPost("AddDesignation")]
+    public async Task<IActionResult> Create(CreateDesignationCommand command)
+    {
+        var response = await _commandDispatcher.DispatchAsync(command);
+
+        return response.Success
+            ? Ok(response)
+            : BadRequest(response);
+    }
 }

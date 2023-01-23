@@ -10,7 +10,7 @@ public static class ServiceCollectionExtensions
 {
     public static void AddServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTransient<IUserSignupService, UserSignupService>();
+        services.AddTransient<IEmployeeSignupService, EmployeeSignupService>();
         services.ConfigureAuthentication(configuration);
     }
 

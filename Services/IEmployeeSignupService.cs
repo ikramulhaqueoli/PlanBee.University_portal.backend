@@ -2,7 +2,7 @@ using PlanBee.University_portal.backend.Domain.Commands;
 
 namespace PlanBee.University_portal.backend.Services;
 
-public interface IUserSignupService
+public interface IEmployeeSignupService
 {
-    Task SignupAsync(UserSignupCommand command);
+    Task SignupAsync(EmployeeSignupCommand command);
 }

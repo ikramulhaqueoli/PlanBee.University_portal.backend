@@ -1,3 +1,5 @@
+using PlanBee.University_portal.backend.Domain.Constants;
+
 namespace PlanBee.University_portal.backend.Domain.Commands;
 
 public class CreateWorkplaceCommand : AbstractCommand
@@ -8,5 +10,5 @@ public class CreateWorkplaceCommand : AbstractCommand
 
     public string WorkplaceCode { get; set; } = null!;
 
-    public IEnumerable<string> SectionNames { get; set; } = new[] { "Main" };
+    public IEnumerable<string> SectionNames { get; set; } = new[] { WorkplaceConstants.MainSectionName };
 }

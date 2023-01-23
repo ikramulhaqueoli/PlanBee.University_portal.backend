@@ -3,9 +3,9 @@ using PlanBee.University_portal.backend.Domain.Responses;
 
 namespace PlanBee.University_portal.backend.Handlers.Implementations.Validators;
 
-public class UserSignupCommandValidator : BaseCommandValidator<UserSignupCommand>
+public class EmployeeSignupCommandValidator : BaseCommandValidator<EmployeeSignupCommand>
 {
-    public override ValidationResponse Validate(UserSignupCommand command)
+    public override ValidationResponse Validate(EmployeeSignupCommand command)
     {
         var response = base.Validate(command);
         return response;
