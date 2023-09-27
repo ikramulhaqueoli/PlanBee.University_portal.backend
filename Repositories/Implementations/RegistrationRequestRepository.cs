@@ -8,9 +8,9 @@ public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
 {
     private readonly IMongoCollection<RegistrationRequest> _registrationRequestCollection;
 
-    public RegistrationRequestRepository(IMongoCollection<RegistrationRequest> registrationRequestCollection)
+    public RegistrationRequestRepository(IMongoDbCollectionProvider mongoDbCollectionProvider)
     {
-        _registrationRequestCollection = registrationRequestCollection;
+        _registrationRequestCollection = mongoDbCollectionProvider.getCollection<RegistrationRequest>();
     }
 
     public Task SaveAsync(RegistrationRequest request)

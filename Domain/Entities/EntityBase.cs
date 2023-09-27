@@ -6,7 +6,7 @@ namespace PlanBee.University_portal.backend.Domain.Entities;
 public abstract class EntityBase
 {
     [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
+    [BsonRepresentation(BsonType.String)]
     public string ItemId { get; set; } = null!;
 
     public bool IsMarkedAsDeleted { get; set; } = false;

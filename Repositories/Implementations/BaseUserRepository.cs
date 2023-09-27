@@ -9,14 +9,13 @@ public class BaseUserRepository :
 {
     private readonly IMongoCollection<BaseUser> _baseUserCollection;
 
-    public BaseUserRepository(IMongoCollection<BaseUser> baseUserCollection)
+    public BaseUserRepository(IMongoDbCollectionProvider mongoDbCollectionProvider)
     {
-        _baseUserCollection = baseUserCollection;
+        _baseUserCollection = mongoDbCollectionProvider.getCollection<BaseUser>();
     }
 
     public Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
     {
-        IMongoDbCollectionProvider collectionProvider;
         return Task.FromResult<BaseUser?>(
             _baseUserCollection.Find(user => 
                 user.RegistrationId == registrationId &&
