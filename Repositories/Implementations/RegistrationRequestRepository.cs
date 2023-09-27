@@ -1,3 +1,4 @@
+using MongoDB.Driver;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 
@@ -5,16 +6,15 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations;
 
 public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
 {
-    private readonly UniversityDbContext _universityDbContext;
+    private readonly IMongoCollection<RegistrationRequest> _registrationRequestCollection;
 
-    public RegistrationRequestRepository(UniversityDbContext universityDbContext)
+    public RegistrationRequestRepository(IMongoCollection<RegistrationRequest> registrationRequestCollection)
     {
-        _universityDbContext = universityDbContext;
+        _registrationRequestCollection = registrationRequestCollection;
     }
 
-    public async Task SaveAsync(RegistrationRequest request)
+    public Task SaveAsync(RegistrationRequest request)
     {
-        _universityDbContext.RegistrationRequests.Add(request);
-        await _universityDbContext.SaveChangesAsync();
+        return _registrationRequestCollection.InsertOneAsync(request);
     }
 }

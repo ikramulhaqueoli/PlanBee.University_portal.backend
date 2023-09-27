@@ -19,7 +19,7 @@ public class BaseUser : EntityBase
 
     public void Initiate()
     {
-        ItemId = Guid.NewGuid();
+        ItemId = Guid.NewGuid().ToString();
         CreatedOn = DateTime.UtcNow;
         UserRoles ??= new[] { UserRole.Anonymous };
     }

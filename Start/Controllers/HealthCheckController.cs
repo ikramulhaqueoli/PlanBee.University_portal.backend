@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace PlanBee.University_portal.backend.Start.Controllers;
 
 [ApiController]
-//[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class HealthCheckController : ControllerBase
 {
     [HttpGet("healthcheck")]

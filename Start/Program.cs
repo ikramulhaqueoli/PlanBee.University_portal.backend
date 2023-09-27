@@ -1,5 +1,6 @@
+using Microsoft.Extensions.Configuration;
 using PlanBee.University_portal.backend.Handlers;
-using PlanBee.University_portal.backend.Repositories.Implementations;
+using PlanBee.University_portal.backend.Repositories;
 using PlanBee.University_portal.backend.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);

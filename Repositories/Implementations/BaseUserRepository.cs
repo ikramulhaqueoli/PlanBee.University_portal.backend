@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
@@ -7,24 +7,27 @@ public class BaseUserRepository :
     IBaseUserReadRepository,
     IBaseUserWriteRepository
 {
-    private readonly UniversityDbContext _universityDbContext;
+    private readonly IMongoCollection<BaseUser> _baseUserCollection;
 
-    public BaseUserRepository(UniversityDbContext universityDbContext)
+    public BaseUserRepository(IMongoCollection<BaseUser> baseUserCollection)
     {
-        _universityDbContext = universityDbContext;
+        _baseUserCollection = baseUserCollection;
     }
 
-    public async Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
+    public Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
     {
-        return await _universityDbContext.BaseUsers.FirstOrDefaultAsync(user =>
-            user.RegistrationId == registrationId &&
-            user.PasswordHash == passwordHash &&
-            user.IsMarkedAsDeleted == false);
+        IMongoDbCollectionProvider collectionProvider;
+        return Task.FromResult<BaseUser?>(
+            _baseUserCollection.Find(user => 
+                user.RegistrationId == registrationId &&
+                user.PasswordHash == passwordHash && 
+                !user.IsMarkedAsDeleted)
+            .FirstOrDefault()
+            );
     }
 
-    public async Task SaveAsync(BaseUser user)
+    public Task SaveAsync(BaseUser user)
     {
-        _universityDbContext.BaseUsers.Add(user);
-        await _universityDbContext.SaveChangesAsync();
+        return _baseUserCollection.InsertOneAsync(user);
     }
 }
