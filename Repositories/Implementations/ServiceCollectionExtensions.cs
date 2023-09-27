@@ -15,9 +15,9 @@ public static class ServiceCollectionExtensions
 
     private static void AddDatabaseRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-        var section = configuration["JWT"];
-        var mongoClient = new MongoClient("mongodb://localhost:27017");
-        var mongoDatabase = mongoClient.GetDatabase("softbee_db");
+        var section = configuration.GetSection("SoftBeeDatabase");
+        var mongoClient = new MongoClient(section["ConnectionString"]?.ToString());
+        var mongoDatabase = mongoClient.GetDatabase(section["DatabaseName"]?.ToString());
 
         services.AddSingleton(typeof(IMongoDatabase), mongoDatabase);
         services.AddTransient<IMongoDbCollectionProvider, MongoDbCollectionProvider>();
