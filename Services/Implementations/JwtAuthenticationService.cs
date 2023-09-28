@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
-using PlanBee.University_portal.backend.Domain.Libraries;
+using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Services.Models;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;

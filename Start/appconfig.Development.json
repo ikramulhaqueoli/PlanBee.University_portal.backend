@@ -5,7 +5,7 @@
       "Microsoft.AspNetCore": "Warning"
     }
   },
-  "SoftBeeDatabase": {
+  "MongoDatabase": {
     "ConnectionString": "mongodb://localhost:27017",
     "DatabaseName": "softbee_db"
   }

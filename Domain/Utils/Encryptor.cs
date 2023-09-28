@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PlanBee.University_portal.backend.Domain.Libraries;
+namespace PlanBee.University_portal.backend.Domain.Utils;
 
 public static class Encryptor
 {
