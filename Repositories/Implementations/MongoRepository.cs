@@ -15,7 +15,7 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
 
         public Task<T> GetFirstOrDefaultAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
         {
-            var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), true);
+            var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), false);
             var finalFilter = excludeMarkedAsDeleted 
                 ? filter & filterExcludeMarkedAsDeleted
                 : filter;
