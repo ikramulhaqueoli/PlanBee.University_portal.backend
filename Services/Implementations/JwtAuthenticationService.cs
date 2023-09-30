@@ -12,13 +12,10 @@ namespace PlanBee.University_portal.backend.Services.Implementations;
 public class JwtAuthenticationService : IJwtAuthenticationService
 {
     private readonly IBaseUserReadRepository _baseUserReadRepository;
-    private readonly IConfiguration _configuration;
 
     public JwtAuthenticationService(
-        IConfiguration configuration,
         IBaseUserReadRepository baseUserReadRepository)
     {
-        _configuration = configuration;
         _baseUserReadRepository = baseUserReadRepository;
     }
 
@@ -30,8 +27,9 @@ public class JwtAuthenticationService : IJwtAuthenticationService
 
         // Else we generate JSON Web Token
         var tokenHandler = new JwtSecurityTokenHandler();
-        var tokenKey = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]!);
-        var timeOut = int.Parse(_configuration["JWT:ExpireTimeout"]!);
+
+        var tokenKey = Encoding.UTF8.GetBytes(AppConfigUtil.Config.Jwt.Key!);
+        var timeOut = AppConfigUtil.Config.Jwt.ExpireTimeout;
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = GetClaimsIdentity(baseUser),
