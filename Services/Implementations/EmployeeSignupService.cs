@@ -28,8 +28,8 @@ public class EmployeeSignupService : IEmployeeSignupService
         var employeeJson = registrationRequest.ModelDataJson ?? throw new InvalidOperationException($"{nameof(RegistrationRequest.ModelDataJson)} should not be null.");
         var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(employeeJson)!;
 
-        var baseUserIdGuid = Guid.NewGuid();
-        await CreateSaveBaseUserAsync(baseUserIdGuid);
+        var baseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
+        await CreateSaveBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
         await CreateSaveEmployeeAsync(baseUserIdGuid, employeeSignupCommand);
     }
 
@@ -48,16 +48,40 @@ public class EmployeeSignupService : IEmployeeSignupService
         await _registrationRequestWriteRepository.SaveAsync(request);
     }
 
-    private Task CreateSaveBaseUserAsync(Guid baseUserIdGuid)
+    private Task CreateSaveBaseUserAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
     {
         var baseUser = new BaseUser
         {
-            UserType = UserType.Employee
+            FirstName = employeeSignupCommand.FirstName,
+            LastName = employeeSignupCommand.LastName,
+            FatherName = employeeSignupCommand.FatherName,
+            MotherName = employeeSignupCommand.MotherName,
+            MobilePhone = employeeSignupCommand.MobilePhone,
+            DateOfBirth = employeeSignupCommand.DateOfBirth,
+            RegistrationId = employeeSignupCommand.EmployeeRegistrationId,
+            NationalId = employeeSignupCommand.NationalId,
+            PassportNo = employeeSignupCommand.PassportNo,
+            SurName = employeeSignupCommand.SurName,
+            PermanentAddress = employeeSignupCommand.PermanentAddress,
+            PresentAddress = employeeSignupCommand.PresentAddress,
+            AlternatePhone = employeeSignupCommand.AlternatePhone,
+            PersonalEmail = employeeSignupCommand.PersonalEmail,
+            UniversityEmail = employeeSignupCommand.UniversityEmail,
+            Gender = MapGender(employeeSignupCommand.Gender),
+            IsActive = true, // Assuming the user is active when created
+            UserType = UserType.Employee,
         };
         baseUser.InitiateUserWithEntityBase(baseUserIdGuid);
         baseUser.AddRole(UserRole.GeneralEmployee, UserRole.Anonymous);
 
         return _baseUserWriteRepository.SaveAsync(baseUser);
+    }
+
+    private static Gender MapGender(string gender)
+    {
+        if (string.Equals(gender, "Male", StringComparison.OrdinalIgnoreCase)) return Gender.Male;
+        else if (string.Equals(gender, "Female", StringComparison.OrdinalIgnoreCase)) return Gender.Female;
+        else return Gender.Other;
     }
 
     private Task CreateSaveEmployeeAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
