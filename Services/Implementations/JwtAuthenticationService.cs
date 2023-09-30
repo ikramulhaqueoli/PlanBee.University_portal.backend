@@ -51,7 +51,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
             new(nameof(baseUser.ItemId), baseUser.ItemId.ToString()),
             new(nameof(baseUser.Email), baseUser.Email ?? string.Empty),
             new(nameof(baseUser.UniversityEmail), baseUser.UniversityEmail ?? string.Empty),
-            new(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth?.ToString() ?? string.Empty),
+            new(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth.ToString() ?? string.Empty),
             new(nameof(baseUser.FirstName), baseUser.FirstName),
             new(nameof(baseUser.LastName), baseUser.LastName),
             new(nameof(baseUser.Gender), baseUser.Gender.ToString()),
