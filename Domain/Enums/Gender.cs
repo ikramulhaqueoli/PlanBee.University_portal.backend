@@ -1,9 +1,11 @@
+using System.Runtime.Serialization;
+
 namespace PlanBee.University_portal.backend.Domain.Enums;
 
 public enum Gender
 {
-    Unspecified = 0,
-    Male = 1,
-    Female = 2,
-    Other = 3
+    [EnumMember(Value = "unspecified")] Unspecified = 0,
+    [EnumMember(Value = "male")] Male = 1,
+    [EnumMember(Value = "female")] Female = 2,
+    [EnumMember(Value = "other")] Other = 3
 }

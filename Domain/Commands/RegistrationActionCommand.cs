@@ -6,7 +6,7 @@ namespace PlanBee.University_portal.backend.Domain.Commands
     {
         public string RegistrationRequestId { get; set; } = null!;
 
-        public RequestActionStatus ActionStatus { get; set; }
+        public RegistrationActionStatus ActionStatus { get; set; }
 
         public string ActionComment { get; set; } = string.Empty;
     }

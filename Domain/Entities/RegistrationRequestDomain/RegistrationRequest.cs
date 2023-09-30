@@ -1,6 +1,5 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Enums;
 
 namespace PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
@@ -17,14 +16,14 @@ public class RegistrationRequest : EntityBase
     public string CreatorUserRole { get; set; } = null!;
 
     [BsonRepresentation(BsonType.String)]
-    public RequestActionStatus ActionStatus { get; set; }
+    public RegistrationActionStatus ActionStatus { get; set; }
 
     public List<ReviewLog> ReviewLogs { get; set; } = new List<ReviewLog>();
 
     public void Approve(string actionComment, string reviewerUserId)
     {
         AddReviewLog(actionComment, reviewerUserId);
-        ActionStatus = RequestActionStatus.Approved;
+        ActionStatus = RegistrationActionStatus.Approved;
     }
 
     private void AddReviewLog(string actionComment, string reviewerUserId)

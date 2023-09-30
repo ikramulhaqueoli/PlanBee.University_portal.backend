@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using PlanBee.University_portal.backend.Domain.Commands;
-using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Enums;
 using PlanBee.University_portal.backend.Domain.Responses;
@@ -30,19 +29,19 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
         public override async Task<CommandResponse> HandleAsync(RegistrationActionCommand command)
         {
             var registrationRequest = await _registrationRequestReadRepository.GetAsync(command.RegistrationRequestId);
-            if (command.ActionStatus == RequestActionStatus.Approved)
+            if (command.ActionStatus == RegistrationActionStatus.Approved)
             {
                 if (registrationRequest.UserType == UserType.Employee)
                 {
                     await _employeeSignupService.ApproveSignupRequest(registrationRequest);
                 }
             }
-            else if (command.ActionStatus == RequestActionStatus.Waiting)
+            else if (command.ActionStatus == RegistrationActionStatus.Pending)
             {
 
             }
 
-            else if (command.ActionStatus == RequestActionStatus.Rejected)
+            else if (command.ActionStatus == RegistrationActionStatus.Rejected)
             {
 
             }
