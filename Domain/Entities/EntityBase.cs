@@ -11,9 +11,13 @@ public abstract class EntityBase
 
     public bool IsMarkedAsDeleted { get; set; } = false;
 
-    public bool IsActive { get; set; }
-
     public DateTime CreatedOn { get; set; }
 
-    public DateTime UpdatedOn { get; set; }
+    public DateTime LastModifiedOn { get; set; }
+
+    public void InitiateEntityBase(Guid? customItemId = null)
+    {
+        ItemId = (customItemId ?? Guid.NewGuid()).ToString();
+        CreatedOn = DateTime.UtcNow;
+    }
 }

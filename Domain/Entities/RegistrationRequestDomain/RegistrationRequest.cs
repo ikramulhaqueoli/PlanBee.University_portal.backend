@@ -1,10 +1,11 @@
+using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Enums;
 
 namespace PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 
 public class RegistrationRequest : EntityBase
 {
-    public string EntityType { get; set; } = null!;
+    public UserType UserType { get; set; }
 
     public string ModelDataJson { get; set; } = null!;
 
@@ -14,5 +15,24 @@ public class RegistrationRequest : EntityBase
 
     public RequestActionStatus ActionStatus { get; set; }
 
-    public string ActionComment { get; set; } = string.Empty;
+    public List<ReviewLog> ReviewLogs { get; set; } = new List<ReviewLog>();
+
+    public void Approve(string actionComment, string reviewerUserId)
+    {
+        AddReviewLog(actionComment, reviewerUserId);
+        ActionStatus = RequestActionStatus.Approved;
+    }
+
+    private void AddReviewLog(string actionComment, string reviewerUserId)
+    {
+        var reviewLog = new ReviewLog
+        {
+            ActionComment = actionComment,
+            LastReviewedAt = DateTime.Now,
+            ReviewerUserId = reviewerUserId,
+        };
+
+        ReviewLogs ??= new List<ReviewLog>();
+        ReviewLogs.Add(reviewLog);
+    }
 }

@@ -8,7 +8,7 @@ public class CreateWorkplaceCommand : AbstractCommand
 
     public string WorkplaceTitle { get; set; } = null!;
 
-    public string WorkplaceCode { get; set; } = null!;
+    public string WorkplaceId { get; set; } = null!;
 
     public IEnumerable<string> SectionNames { get; set; } = new[] { WorkplaceConstants.MainSectionName };
 }

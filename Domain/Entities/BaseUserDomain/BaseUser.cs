@@ -6,27 +6,36 @@ public class BaseUser : EntityBase
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
+    public string FatherName { get; set; } = null!;
+    public string MotherName { get; set; } = null!;
+    public string MobilePhone { get; set; } = null!;
+    public DateTime DateOfBirth { get; set; }
     public string RegistrationId { get; set; } = null!;
-
+    public string? NationalId { get; set; }
+    public string? PassportNo { get; set; }
     public string? SurName { get; set; }
-    public string? MobilePhone { get; set; }
     public string? Email { get; set; }
     public Gender Gender { get; set; }
     public string? PasswordHash { get; set; }
-    public DateTime? DateOfBirth { get; set; }
     public UserRole[]? UserRoles { get; set; }
+    public string PermanentAddress { get; set; } = null!;
+    public string PresentAddress { get; set; } = null!;
+    public string AlternatePhone { get; set; } = null!;
+    public string PersonalEmail { get; set; } = null!;
     public string? UniversityEmail { get; set; }
+    public bool IsActive { get; set; }
+    public UserType UserType { get; set; }
 
-    public void Initiate()
+
+    public void InitiateUserWithEntityBase(Guid? customUserId = null)
     {
-        ItemId = Guid.NewGuid().ToString();
-        CreatedOn = DateTime.UtcNow;
+        InitiateEntityBase(customUserId);
         UserRoles ??= new[] { UserRole.Anonymous };
     }
 
-    public void Update()
+    public void Modify()
     {
-        UpdatedOn = DateTime.UtcNow;
+        LastModifiedOn = DateTime.UtcNow;
     }
 
     public void Activate()

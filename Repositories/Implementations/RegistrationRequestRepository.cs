@@ -1,20 +1,32 @@
 using MongoDB.Driver;
-using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
 
-public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
+public class RegistrationRequestRepository : IRegistrationRequestWriteRepository, IRegistrationRequestReadRepository
 {
-    private readonly IMongoCollection<RegistrationRequest> _registrationRequestCollection;
+    private readonly IMongoReadRepository _mongoReadRepository;
+    private readonly IMongoWriteRepository _mongoWriteRepository;
 
-    public RegistrationRequestRepository(IMongoDbCollectionProvider mongoDbCollectionProvider)
+    public RegistrationRequestRepository(IMongoReadRepository mongoReadRepository, IMongoWriteRepository mongoWriteRepository)
     {
-        _registrationRequestCollection = mongoDbCollectionProvider.getCollection<RegistrationRequest>();
+        _mongoReadRepository = mongoReadRepository;
+        _mongoWriteRepository = mongoWriteRepository;
+    }
+
+    public Task<RegistrationRequest> GetAsync(string registrationRequestId)
+    {
+        var filter = Builders<RegistrationRequest>.Filter.Eq(nameof(RegistrationRequest.ItemId), registrationRequestId);
+        return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
     }
 
     public Task SaveAsync(RegistrationRequest request)
     {
-        return _registrationRequestCollection.InsertOneAsync(request);
+        return _mongoWriteRepository.SaveAsync(request);
+    }
+
+    public Task UpdateAsync(RegistrationRequest request)
+    {
+        return _mongoWriteRepository.UpdateAsync(request);
     }
 }
