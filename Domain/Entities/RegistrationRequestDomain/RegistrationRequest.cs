@@ -1,3 +1,5 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Enums;
 
@@ -5,6 +7,7 @@ namespace PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestD
 
 public class RegistrationRequest : EntityBase
 {
+    [BsonRepresentation(BsonType.String)]
     public UserType UserType { get; set; }
 
     public string ModelDataJson { get; set; } = null!;
@@ -13,6 +16,7 @@ public class RegistrationRequest : EntityBase
 
     public string CreatorUserRole { get; set; } = null!;
 
+    [BsonRepresentation(BsonType.String)]
     public RequestActionStatus ActionStatus { get; set; }
 
     public List<ReviewLog> ReviewLogs { get; set; } = new List<ReviewLog>();

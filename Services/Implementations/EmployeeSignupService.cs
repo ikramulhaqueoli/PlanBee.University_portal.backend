@@ -39,11 +39,12 @@ public class EmployeeSignupService : IEmployeeSignupService
         {
             UserType = UserType.Employee,
             ModelDataJson = JsonConvert.SerializeObject(command),
-            CreatorUserId = null,
-            CreatorUserRole = null,
+            CreatorUserId = "dummy_creator_user_id",
+            CreatorUserRole = "dummy_creator_user_role",
             ActionStatus = RequestActionStatus.None
         };
 
+        request.InitiateEntityBase();
         await _registrationRequestWriteRepository.SaveAsync(request);
     }
 
