@@ -1,4 +1,5 @@
-﻿using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
+﻿using MongoDB.Driver;
+using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations
 {
@@ -11,6 +12,12 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
         {
             _mongoReadRepository = mongoReadRepository;
             _mongoWriteRepository = mongoWriteRepository;
+        }
+
+        public Task<List<Employee>> GetAllAsync()
+        {
+            var filter = Builders<Employee>.Filter.Empty;
+            return _mongoReadRepository.GetAsync(filter);
         }
 
         public Task<Employee> GetAsync(string itemId)

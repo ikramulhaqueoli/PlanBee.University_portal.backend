@@ -7,26 +7,27 @@ public class BaseUserRepository :
     IBaseUserReadRepository,
     IBaseUserWriteRepository
 {
-    private readonly IMongoCollection<BaseUser> _baseUserCollection;
+    private readonly IMongoReadRepository _mongoReadRepository;
+    private readonly IMongoWriteRepository _mongoWriteRepository;
 
-    public BaseUserRepository(IMongoDbCollectionProvider mongoDbCollectionProvider)
+    public BaseUserRepository(IMongoReadRepository mongoReadRepository, IMongoWriteRepository mongoWriteRepository)
     {
-        _baseUserCollection = mongoDbCollectionProvider.getCollection<BaseUser>();
+        _mongoReadRepository = mongoReadRepository;
+        _mongoWriteRepository = mongoWriteRepository;
     }
 
-    public Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
+    public async Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
     {
-        return Task.FromResult<BaseUser?>(
-            _baseUserCollection.Find(user => 
-                user.RegistrationId == registrationId &&
-                user.PasswordHash == passwordHash && 
-                !user.IsMarkedAsDeleted)
-            .FirstOrDefault()
-            );
+        var filter = Builders<BaseUser>.Filter.Where(user =>
+            user.RegistrationId == registrationId &&
+            user.PasswordHash == passwordHash
+        );
+
+        return await _mongoReadRepository.GetFirstOrDefaultAsync(filter);
     }
 
     public Task SaveAsync(BaseUser user)
     {
-        return _baseUserCollection.InsertOneAsync(user);
+        return _mongoWriteRepository.SaveAsync(user);
     }
 }

@@ -3,5 +3,7 @@
     public interface IEmployeeReadRepository
     {
         public Task<Employee> GetAsync(string itemId);
+
+        public Task<List<Employee>> GetAllAsync();
     }
 }
