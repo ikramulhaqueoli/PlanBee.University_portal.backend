@@ -16,10 +16,10 @@ public class BaseUserRepository :
         _mongoWriteRepository = mongoWriteRepository;
     }
 
-    public async Task<BaseUser?> GetByCredentialsAsync(string registrationId, string passwordHash)
+    public async Task<BaseUser?> GetByCredentialsAsync(string universityId, string passwordHash)
     {
         var filter = Builders<BaseUser>.Filter.Where(user =>
-            user.RegistrationId == registrationId &&
+            user.UniversityId == universityId &&
             user.PasswordHash == passwordHash
         );
 

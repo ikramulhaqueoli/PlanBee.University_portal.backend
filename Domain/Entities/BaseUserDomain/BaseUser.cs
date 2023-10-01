@@ -10,7 +10,7 @@ public class BaseUser : EntityBase
     public string MotherName { get; set; } = null!;
     public string MobilePhone { get; set; } = null!;
     public DateTime DateOfBirth { get; set; }
-    public string RegistrationId { get; set; } = null!;
+    public string UniversityId { get; set; } = null!;
     public string? NationalId { get; set; }
     public string? PassportNo { get; set; }
     public string? SurName { get; set; }

@@ -58,7 +58,7 @@ public class EmployeeSignupService : IEmployeeSignupService
             MotherName = employeeSignupCommand.MotherName,
             MobilePhone = employeeSignupCommand.MobilePhone,
             DateOfBirth = employeeSignupCommand.DateOfBirth,
-            RegistrationId = employeeSignupCommand.EmployeeRegistrationId,
+            UniversityId = employeeSignupCommand.UniversityId,
             NationalId = employeeSignupCommand.NationalId,
             PassportNo = employeeSignupCommand.PassportNo,
             SurName = employeeSignupCommand.SurName,

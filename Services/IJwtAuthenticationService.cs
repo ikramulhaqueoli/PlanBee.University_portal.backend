@@ -4,5 +4,5 @@ namespace PlanBee.University_portal.backend.Services;
 
 public interface IJwtAuthenticationService
 {
-    Task<AuthToken?> Authenticate(string registrationId, string password);
+    Task<AuthToken?> Authenticate(string universityId, string password);
 }

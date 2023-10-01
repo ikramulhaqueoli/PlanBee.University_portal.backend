@@ -21,7 +21,7 @@ public class GetAuthTokenQueryHandler
     public override async Task<QueryResponse> HandleAsync(GetAuthTokenQuery query)
     {
         var token = await _jwtManagerRepository.Authenticate(
-            query.RegistrationId,
+            query.UniversityId,
             query.Password);
 
         var response = new QueryResponse();

@@ -23,7 +23,7 @@ public class EmployeeSignupCommand : AbstractCommand
     public string? UniversityEmail { get; set; }
     public string WorkplaceId { get; set; } = null!;
     public string DesignationId { get; set; } = null!;
-    public string EmployeeRegistrationId { get; set; } = null!;
+    public string UniversityId { get; set; } = null!;
     public List<EducationalQualification> EducationalQualifications { get; set; } = new List<EducationalQualification>();
     public List<WordExperience> WordExperiences { get; set; } = new List<WordExperience>();
 }

@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Utils;
@@ -19,10 +18,10 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         _baseUserReadRepository = baseUserReadRepository;
     }
 
-    public async Task<AuthToken?> Authenticate(string registrationId, string password)
+    public async Task<AuthToken?> Authenticate(string universityId, string password)
     {
         var passwordHash = password.Md5Hash();
-        var baseUser = await _baseUserReadRepository.GetByCredentialsAsync(registrationId, passwordHash);
+        var baseUser = await _baseUserReadRepository.GetByCredentialsAsync(universityId, passwordHash);
         if (baseUser == null) return null;
 
         // Else we generate JSON Web Token
@@ -55,7 +54,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
             new(nameof(baseUser.Gender), baseUser.Gender.ToString()),
             new(nameof(baseUser.SurName), baseUser.SurName ?? string.Empty),
             new(nameof(baseUser.MobilePhone), baseUser.MobilePhone ?? string.Empty),
-            new(nameof(baseUser.RegistrationId), baseUser.RegistrationId),
+            new(nameof(baseUser.UniversityId), baseUser.UniversityId),
             new(nameof(baseUser.Activate), baseUser.IsActive.ToString())
         };
 
