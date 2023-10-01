@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PlanBee.University_portal.backend.Start.Attributes;
 
 namespace PlanBee.University_portal.backend.Start.Controllers;
 
@@ -12,8 +12,8 @@ public class HealthCheckController : ControllerBase
         return Ok("Healthy");
     }
 
+    [Anonymous]
     [HttpGet("healthcheck/anonymous")]
-    [Authorize(Roles = "Anonymous")]
     public ActionResult<string> Authorize()
     {
         return Ok("Authorized");

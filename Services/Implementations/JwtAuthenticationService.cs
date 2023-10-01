@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Enums;
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Services.Models;
 
@@ -18,14 +19,11 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         _baseUserReadRepository = baseUserReadRepository;
     }
 
-    public async Task<AuthToken?> Authenticate(string universityId, string password)
+    public async Task<AuthToken?> GetAuthTokenAsync(string universityId, string password)
     {
         var passwordHash = password.Md5Hash();
         var baseUser = await _baseUserReadRepository.GetByCredentialsAsync(universityId, passwordHash);
         if (baseUser == null) return null;
-
-        // Else we generate JSON Web Token
-        var tokenHandler = new JwtSecurityTokenHandler();
 
         var tokenKey = Encoding.UTF8.GetBytes(AppConfigUtil.Config.Jwt.Key!);
         var timeOut = AppConfigUtil.Config.Jwt.ExpireTimeout;
@@ -33,13 +31,18 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         {
             Subject = GetClaimsIdentity(baseUser),
             Expires = DateTime.UtcNow.AddMinutes(timeOut),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
+            SigningCredentials = new SigningCredentials(
+                new SymmetricSecurityKey(tokenKey),
                 SecurityAlgorithms.HmacSha256Signature)
         };
 
+        // Else we generate JSON Web Token
+        var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return new AuthToken { Token = tokenHandler.WriteToken(token) };
     }
+
+    
 
     private ClaimsIdentity GetClaimsIdentity(BaseUser baseUser)
     {
@@ -59,8 +62,8 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         };
 
         var roleClaims = baseUser.UserRoles?
-                             .Select(role => new Claim(ClaimTypes.Role, role.ToString())).ToList()
-                         ?? new List<Claim>();
+            .Select(role => new Claim(ClaimTypes.Role, role.ToString()))
+            .ToList() ?? new List<Claim>();
 
         claims.AddRange(roleClaims);
 
