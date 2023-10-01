@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers;
+using PlanBee.University_portal.backend.Start.Attributes;
 
 namespace PlanBee.University_portal.backend.Start.Controllers;
 
@@ -18,6 +19,7 @@ public class EmployeeController : ControllerBase
         _queryDispatcher = queryDispatcher;
     }
 
+    [SuperAdmin]
     [HttpPost(template: "Create")]
     public async Task<IActionResult> Create([FromBody] EmployeeSignupCommand command)
     {
@@ -28,6 +30,7 @@ public class EmployeeController : ControllerBase
             : BadRequest(response);
     }
 
+    [SuperAdmin]
     [HttpGet(template: "All")]
     public async Task<IActionResult> All([FromQuery] GetAllEmployeeQuery query)
     {

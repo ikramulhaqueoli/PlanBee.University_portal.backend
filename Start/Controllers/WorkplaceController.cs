@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Handlers;
+using PlanBee.University_portal.backend.Start.Attributes;
 
 namespace PlanBee.University_portal.backend.Start.Controllers;
 
@@ -15,6 +16,7 @@ public class WorkplaceController : ControllerBase
         _commandDispatcher = commandDispatcher;
     }
 
+    [SuperAdmin]
     [HttpPost("Create")]
     public async Task<IActionResult> Create(CreateWorkplaceCommand command)
     {
@@ -24,7 +26,8 @@ public class WorkplaceController : ControllerBase
             ? Ok(response)
             : BadRequest(response);
     }
-    
+
+    [SuperAdmin]
     [HttpPost("AddDesignation")]
     public async Task<IActionResult> Create(CreateDesignationCommand command)
     {

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Handlers;
+using PlanBee.University_portal.backend.Start.Attributes;
 
 namespace PlanBee.University_portal.backend.Start.Controllers;
 
@@ -15,6 +16,7 @@ public class RegistrationActionController : ControllerBase
         _commandDispatcher = commandDispatcher;
     }
 
+    [SuperAdmin]
     [HttpPost(template: "Approve")]
     public async Task<IActionResult> Approve(RegistrationActionCommand command)
     {
