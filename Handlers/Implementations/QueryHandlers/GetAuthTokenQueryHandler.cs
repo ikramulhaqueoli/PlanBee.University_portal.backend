@@ -30,7 +30,7 @@ public class GetAuthTokenQueryHandler
             case null:
                 response.SetQueryError(
                     ResponseErrorType.BusinessException,
-                    "Invalid Registration ID or Password");
+                    "Invalid University ID or Password");
                 break;
             default:
                 response.QueryData = new { Token = token };
