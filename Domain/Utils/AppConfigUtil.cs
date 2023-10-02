@@ -21,10 +21,10 @@ namespace PlanBee.University_portal.backend.Domain.Utils
 
         private static AppConfig GetConfig()
         {
-            var commonConfigPath = $"{Directory.GetCurrentDirectory()}\\{CONFIG_NAME}.json";
+            var commonConfigPath = $"{Directory.GetCurrentDirectory()}//{CONFIG_NAME}.json";
             
             var environmentName = Environment.GetEnvironmentVariable(ENV_VARIABLE_NAME);
-            var environmentConfigPath = $"{Directory.GetCurrentDirectory()}\\{CONFIG_NAME}.{environmentName}.json";
+            var environmentConfigPath = $"{Directory.GetCurrentDirectory()}//{CONFIG_NAME}.{environmentName}.json";
             
             var commonConfigJson = File.ReadAllText(commonConfigPath);
             var environmentConfigJson = File.ReadAllText(environmentConfigPath);
