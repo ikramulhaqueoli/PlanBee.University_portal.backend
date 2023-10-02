@@ -15,17 +15,20 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
         public async Task SaveToDbAsync()
         {
-            var seedDataPath = $"{Directory.GetCurrentDirectory()}//{SEED_DATA_STR}";
-            foreach (var file in Directory.GetFiles(seedDataPath, "*.json"))
+            var seedDataParentPath = $"{Directory.GetCurrentDirectory()}//{SEED_DATA_STR}";
+            var childDirectories = Directory.GetDirectories(seedDataParentPath);
+
+            foreach (var childDirectory in childDirectories)
             {
-                var entityName = Path.GetFileNameWithoutExtension(file).Split("_")[0];
-                var collectionName = $"{entityName}s";
+                foreach (var file in Directory.GetFiles(childDirectory, "*.json"))
+                {
+                    var collectionName = Path.GetFileName(childDirectory);
+                    var collection = _mongoDatabase.GetCollection<BsonDocument>(collectionName);
 
-                var collection = _mongoDatabase.GetCollection<BsonDocument>(collectionName);
-
-                var bsonDocument = BsonDocument.Parse(File.ReadAllText(file));
-                var filter = Builders<BsonDocument>.Filter.Eq("_id", bsonDocument["_id"]);
-                await collection.ReplaceOneAsync(filter, bsonDocument, new ReplaceOptions { IsUpsert = true });
+                    var bsonDocument = BsonDocument.Parse(File.ReadAllText(file));
+                    var filter = Builders<BsonDocument>.Filter.Eq("_id", bsonDocument["_id"]);
+                    await collection.ReplaceOneAsync(filter, bsonDocument, new ReplaceOptions { IsUpsert = true });
+                }
             }
         }
     }
