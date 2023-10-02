@@ -6,7 +6,7 @@
     }
   },
   "MongoDatabase": {
-    "ConnectionString": "mongodb://localhost:27017",
+    "ConnectionString": "mongodb://mongodb-container:27017",
     "DatabaseName": "softbee_db"
   }
 }
