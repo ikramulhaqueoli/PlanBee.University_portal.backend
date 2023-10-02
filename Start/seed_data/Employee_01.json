@@ -1,0 +1,26 @@
+{
+  "_id": "13b4cc6b-fc81-4f2d-85db-3bb658d92c8a",
+  "IsMarkedAsDeleted": false,
+  "CreatedOn": "ISODate(\"2023-09-30T20:38:35.381+0000\")",
+  "LastModifiedOn": "ISODate(\"0001-01-01T00:00:00.000+0000\")",
+  "JoiningDate": "ISODate(\"2023-09-30T20:37:36.321+0000\")",
+  "WorkplaceId": "string",
+  "DesignationId": "string",
+  "BaseUserId": "82465e35-94e3-4be7-81a4-47a675062f48",
+  "EducationalQualifications": [
+    {
+      "Degree": "string",
+      "Institute": "string",
+      "Department": "string",
+      "Result": "string",
+      "ResultOutOf": "string"
+    }
+  ],
+  "WordExperiences": [
+    {
+      "InstituteName": "string",
+      "StartDate": "ISODate(\"2023-09-30T20:37:36.321+0000\")",
+      "EndDate": "ISODate(\"2023-09-30T20:37:36.321+0000\")"
+    }
+  ]
+}

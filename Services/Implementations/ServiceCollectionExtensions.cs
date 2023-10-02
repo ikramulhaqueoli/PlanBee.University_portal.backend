@@ -10,6 +10,7 @@ public static class ServiceCollectionExtensions
 {
     public static void AddServices(this IServiceCollection services, AppConfig appConfig)
     {
+        services.AddTransient<ISeedDataService, SeedDataService>();
         services.AddTransient<IEmployeeSignupService, EmployeeSignupService>();
         services.ConfigureAuthentication(appConfig);
     }

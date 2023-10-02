@@ -1,6 +1,7 @@
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Handlers;
 using PlanBee.University_portal.backend.Repositories.Implementations;
+using PlanBee.University_portal.backend.Services;
 using PlanBee.University_portal.backend.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+
+app.Services.GetRequiredService<ISeedDataService>().SaveToDbAsync().Wait();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
