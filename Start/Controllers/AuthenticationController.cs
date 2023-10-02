@@ -15,7 +15,7 @@ public class AuthenticationController : ControllerBase
         _queryDispatcher = queryDispatcher;
     }
 
-    [HttpGet("token")]
+    [HttpPost("token")]
     public async Task<IActionResult> GetAuthToken([FromBody] GetAuthTokenQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
