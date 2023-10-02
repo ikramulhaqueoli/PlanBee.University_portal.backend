@@ -1,15 +1,17 @@
+using System.Runtime.Serialization;
+
 namespace PlanBee.University_portal.backend.Domain.Enums;
 
 public enum UserRole
 {
-    SuperAdmin = 0,
-    Moderator = 10,
-    ViceChancellor = 20,
-    Dean = 30,
-    DepartmentHead = 40,
-    FacultyMember = 50,
-    Student = 60,
-    GeneralEmployee = 70,
-    Clerk = 100,
-    Anonymous = 1000
+    [EnumMember(Value = "SuperAdmin")] SuperAdmin = 0,
+    [EnumMember(Value = "Moderator")] Moderator = 10,
+    [EnumMember(Value = "ViceChancellor")] ViceChancellor = 20,
+    [EnumMember(Value = "Dean")] Dean = 30,
+    [EnumMember(Value = "DepartmentHead")] DepartmentHead = 40,
+    [EnumMember(Value = "FacultyMember")] FacultyMember = 50,
+    [EnumMember(Value = "Student")] Student = 60,
+    [EnumMember(Value = "GeneralEmployee")] GeneralEmployee = 70,
+    [EnumMember(Value = "Clerk")] Clerk = 100,
+    [EnumMember(Value = "Anonymous")] Anonymous = 1000
 }
