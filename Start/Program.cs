@@ -20,13 +20,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.Services.GetRequiredService<ISeedDataService>().SaveToDbAsync().Wait();
-
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.Services.GetRequiredService<ISeedDataService>()
+       .SaveToDbAsync().Wait();
 }
 
 app.UseHttpsRedirection();
