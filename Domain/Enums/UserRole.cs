@@ -4,14 +4,14 @@ namespace PlanBee.University_portal.backend.Domain.Enums;
 
 public enum UserRole
 {
-    [EnumMember(Value = "SuperAdmin")] SuperAdmin = 0,
-    [EnumMember(Value = "Moderator")] Moderator = 10,
-    [EnumMember(Value = "ViceChancellor")] ViceChancellor = 20,
-    [EnumMember(Value = "Dean")] Dean = 30,
-    [EnumMember(Value = "DepartmentHead")] DepartmentHead = 40,
-    [EnumMember(Value = "FacultyMember")] FacultyMember = 50,
-    [EnumMember(Value = "Student")] Student = 60,
-    [EnumMember(Value = "GeneralEmployee")] GeneralEmployee = 70,
-    [EnumMember(Value = "Clerk")] Clerk = 100,
-    [EnumMember(Value = "Anonymous")] Anonymous = 1000
+    [EnumMember(Value = "super_admin")] SuperAdmin = 0,
+    [EnumMember(Value = "moderator")] Moderator = 10,
+    [EnumMember(Value = "vice_chancellor")] ViceChancellor = 20,
+    [EnumMember(Value = "dean")] Dean = 30,
+    [EnumMember(Value = "department_head")] DepartmentHead = 40,
+    [EnumMember(Value = "faculty_member")] FacultyMember = 50,
+    [EnumMember(Value = "student")] Student = 60,
+    [EnumMember(Value = "general_employee")] GeneralEmployee = 70,
+    [EnumMember(Value = "clerk")] Clerk = 100,
+    [EnumMember(Value = "anonymous")] Anonymous = 1000
 }

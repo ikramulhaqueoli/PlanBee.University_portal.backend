@@ -13,12 +13,12 @@
 	"PassportNo": "A03000000",
 	"SurName": "Seed",
 	"Email": null,
-	"Gender": "NumberInt(3)",
+	"Gender": "male",
 	"PasswordHash": "e6e061838856bf47e1de730719fb2609",
 	"UserRoles": [
-		"GeneralEmployee",
-		"Anonymous",
-		"SuperAdmin"
+		"general_employee",
+		"anonymous",
+		"super_admin"
 	],
 	"PermanentAddress": "Address Permanent",
 	"PresentAddress": "Address Present",
@@ -26,6 +26,6 @@
 	"PersonalEmail": "softbee.corporation@gmail.com",
 	"UniversityEmail": "softbee@university.edu",
 	"IsActive": true,
-	"UserType": "NumberInt(1)",
+	"UserType": "employee",
 	"UniversityId": "superadmin"
 }
