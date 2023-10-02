@@ -14,7 +14,7 @@
 	"SurName": "Seed",
 	"Email": null,
 	"Gender": "NumberInt(3)",
-	"PasswordHash": "c4c7a6965792c12c5395f10b1885c795",
+	"PasswordHash": "9a69e50114a30c4c5c1d455a2cfb87d1",
 	"UserRoles": [
 		"GeneralEmployee",
 		"Anonymous",
@@ -27,5 +27,5 @@
 	"UniversityEmail": "softbee@university.edu",
 	"IsActive": true,
 	"UserType": "NumberInt(1)",
-	"UniversityId": "11-11111-1"
+	"UniversityId": "SHFWSKERALA"
 }
