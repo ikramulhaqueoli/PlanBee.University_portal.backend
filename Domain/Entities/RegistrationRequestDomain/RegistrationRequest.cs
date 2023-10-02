@@ -1,6 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using PlanBee.University_portal.backend.Domain.Enums;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 
 namespace PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 

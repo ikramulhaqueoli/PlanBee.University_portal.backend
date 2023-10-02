@@ -3,7 +3,7 @@ using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
-using PlanBee.University_portal.backend.Domain.Enums;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;
 

@@ -1,4 +1,4 @@
-using PlanBee.University_portal.backend.Domain.Enums;
+using PlanBee.University_portal.backend.Domain.Enums.System;
 
 namespace PlanBee.University_portal.backend.Domain.Responses;
 

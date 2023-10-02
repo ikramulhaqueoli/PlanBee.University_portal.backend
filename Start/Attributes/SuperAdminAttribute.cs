@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using PlanBee.University_portal.backend.Domain.Enums;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 using PlanBee.University_portal.backend.Domain.Utils;
 
 namespace PlanBee.University_portal.backend.Start.Attributes

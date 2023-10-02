@@ -1,4 +1,4 @@
-namespace PlanBee.University_portal.backend.Domain.Enums;
+namespace PlanBee.University_portal.backend.Domain.Enums.System;
 
 public enum ResponseErrorType
 {

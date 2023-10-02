@@ -16,9 +16,9 @@
 	"Gender": "male",
 	"PasswordHash": "e6e061838856bf47e1de730719fb2609",
 	"UserRoles": [
-		"general_employee",
+		"generalemployee",
 		"anonymous",
-		"super_admin"
+		"superadmin"
 	],
 	"PermanentAddress": "Address Permanent",
 	"PresentAddress": "Address Present",

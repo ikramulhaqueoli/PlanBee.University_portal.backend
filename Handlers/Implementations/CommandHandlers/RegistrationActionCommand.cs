@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
-using PlanBee.University_portal.backend.Domain.Enums;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 using PlanBee.University_portal.backend.Domain.Responses;
 using PlanBee.University_portal.backend.Services;
 

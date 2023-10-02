@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace PlanBee.University_portal.backend.Domain.Enums
+namespace PlanBee.University_portal.backend.Domain.Enums.Business
 {
     public enum UserType
     {
