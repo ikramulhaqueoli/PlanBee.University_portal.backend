@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
-using PlanBee.University_portal.backend.Domain.Enums;
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Services.Models;
 
