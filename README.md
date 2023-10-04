@@ -24,11 +24,14 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
+# 3. Enable docker to start on OS Startup:
+sudo systemctl enable docker
+
 # 3. Download and run mongo-db in mongo-container (docker)
-docker run -d --name mongo-container -p 10120:27017 mongo
+docker run -d --name mongo-container --restart always -p 10120:27017 mongo
 
 # 4. Download and run softbee-university-backend in softbee-container (docker)
-docker run -d --name softbee-container --link mongo-container -p 10110:80 ikramulhaqueoli/university-backend:latest
+docker run -d --name softbee-container --link mongo-container --restart always -p 10110:80 ikramulhaqueoli/university-backend:latest
 ```
 ## Ping backend healthcheck endpoint: 
 ```curl
@@ -37,4 +40,11 @@ http://<server_public_ip>:10110/healthcheck
 Example:
 ```curl
 http://20.135.12.12:10110/healthcheck
+```
+## Some useful commands for docker engine:
+```console
+# Start Docker Daemon
+sudo systemctl start docker
+# Check Docker Run Status
+sudo systemctl status docker
 ```
