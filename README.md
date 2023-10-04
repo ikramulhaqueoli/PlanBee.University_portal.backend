@@ -24,6 +24,9 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
+# 3. Install Docker Engine:
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 # 3. Enable docker to start on OS Startup:
 sudo systemctl enable docker
 
