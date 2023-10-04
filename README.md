@@ -32,9 +32,9 @@ docker run -d --name softbee-container --link mongo-container -p 10110:80 ikramu
 ```
 ## Ping backend healthcheck endpoint: 
 ```curl
-http://<server_public_ip>:10110/healthcheck`
+http://<server_public_ip>:10110/healthcheck
 ```
 Example:
 ```curl
-http://20.135.12.12:10110/healthcheck`
+http://20.135.12.12:10110/healthcheck
 ```
