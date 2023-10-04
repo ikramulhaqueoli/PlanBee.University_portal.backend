@@ -4,7 +4,7 @@
 * Open terminal in Project Solution Root folder (i.e. PlanBee.University_portal.backend)
 * Now, run the following command to build the docker image.
 ```console
-	docker build -t ikramulhaqueoli/university-backend:latest -f Dockerfile .
+docker build -t ikramulhaqueoli/university-backend:latest -f Dockerfile .
 ```
 ## Setting up server and Run Project (Considering docker isn't installed in server):
 * Dependency 1: MongoDB
