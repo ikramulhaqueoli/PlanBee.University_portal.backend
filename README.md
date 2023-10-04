@@ -9,7 +9,7 @@ docker build -t ikramulhaqueoli/university-backend:latest -f Dockerfile .
 ## Setting up server and Run Project (Considering docker isn't installed in server):
 * Dependency 1: MongoDB
 ```console
-# 1. Add Docker's official GPG key:
+# 1. Add Docker official GPG key:
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install ca-certificates curl gnupg
