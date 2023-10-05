@@ -20,4 +20,9 @@ public abstract class EntityBase
         ItemId = (customItemId ?? Guid.NewGuid()).ToString();
         CreatedOn = DateTime.UtcNow;
     }
+
+    public void Modify()
+    {
+        LastModifiedOn = DateTime.UtcNow;
+    }
 }

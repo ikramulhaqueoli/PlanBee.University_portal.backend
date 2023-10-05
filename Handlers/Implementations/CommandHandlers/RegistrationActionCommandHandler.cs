@@ -9,7 +9,6 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
 {
     public class RegistrationActionCommandHandler : AbstractCommandHandler<RegistrationActionCommand>
     {
-        private readonly ILogger<RegistrationActionCommandHandler> _logger;
         private readonly IRegistrationRequestReadRepository _registrationRequestReadRepository;
         private readonly IRegistrationRequestWriteRepository _registrationRequestWriteRepository;
         private readonly IEmployeeSignupService _employeeSignupService;
@@ -20,7 +19,6 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
             IEmployeeSignupService employeeSignupService,
             IRegistrationRequestReadRepository registrationRequestReadRepository) : base(logger)
         {
-            _logger = logger;
             _registrationRequestWriteRepository = registrationRequestWriteRepository;
             _employeeSignupService = employeeSignupService;
             _registrationRequestReadRepository = registrationRequestReadRepository;

@@ -1,9 +1,9 @@
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
+using PlanBee.University_portal.backend.Domain.Entities.UniTemplateDomain;
 using PlanBee.University_portal.backend.Domain.Models;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
@@ -35,5 +35,7 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<IRegistrationRequestReadRepository, RegistrationRequestRepository>();
         services.AddTransient<IRegistrationRequestWriteRepository, RegistrationRequestRepository>();
+
+        services.AddTransient<IUniTemplateReadRepository, UniTemplateRepository>();
     }
 }

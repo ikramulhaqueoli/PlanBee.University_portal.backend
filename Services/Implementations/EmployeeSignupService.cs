@@ -12,15 +12,18 @@ public class EmployeeSignupService : IEmployeeSignupService
     private readonly IRegistrationRequestWriteRepository _registrationRequestWriteRepository;
     private readonly IBaseUserWriteRepository _baseUserWriteRepository;
     private readonly IEmployeeWriteRepository _employeeWriteRepository;
+    private readonly IUniversityEmailService _universityEmailService;
 
     public EmployeeSignupService(
         IRegistrationRequestWriteRepository registrationRequestWriteRepository,
         IBaseUserWriteRepository baseUserWriteRepository,
-        IEmployeeWriteRepository employeeWriteRepository)
+        IEmployeeWriteRepository employeeWriteRepository,
+        IUniversityEmailService universityEmailService)
     {
         _registrationRequestWriteRepository = registrationRequestWriteRepository;
         _baseUserWriteRepository = baseUserWriteRepository;
         _employeeWriteRepository = employeeWriteRepository;
+        _universityEmailService = universityEmailService;
     }
 
     public async Task ApproveSignupRequest(RegistrationRequest registrationRequest)
@@ -29,8 +32,10 @@ public class EmployeeSignupService : IEmployeeSignupService
         var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(employeeJson)!;
 
         var baseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
-        await CreateSaveBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
+        await SaveNewBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
         await CreateSaveEmployeeAsync(baseUserIdGuid, employeeSignupCommand);
+
+        await _universityEmailService.SendSignupVefificationAsync(baseUserIdGuid.ToString());
     }
 
     public async Task SignupAsync(EmployeeSignupCommand command)
@@ -48,7 +53,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         await _registrationRequestWriteRepository.SaveAsync(request);
     }
 
-    private Task CreateSaveBaseUserAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
+    private Task SaveNewBaseUserAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
     {
         var baseUser = new BaseUser
         {
@@ -68,7 +73,7 @@ public class EmployeeSignupService : IEmployeeSignupService
             PersonalEmail = employeeSignupCommand.PersonalEmail,
             UniversityEmail = employeeSignupCommand.UniversityEmail,
             Gender = MapGender(employeeSignupCommand.Gender),
-            IsActive = true, // Assuming the user is active when created
+            AccountStatus = AccountStatus.Deactive,
             UserType = UserType.Employee,
         };
         baseUser.InitiateUserWithEntityBase(baseUserIdGuid);

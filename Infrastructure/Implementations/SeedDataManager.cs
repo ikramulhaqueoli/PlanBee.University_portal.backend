@@ -1,14 +1,14 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace PlanBee.University_portal.backend.Services.Implementations
+namespace PlanBee.University_portal.backend.Infrastructure.Implementations
 {
-    public class SeedDataService : ISeedDataService
+    public class SeedDataManager : ISeedDataManager
     {
         private const string SEED_DATA_STR = "seed_data";
         private readonly IMongoDatabase _mongoDatabase;
 
-        public SeedDataService(IMongoDatabase mongoDatabase)
+        public SeedDataManager(IMongoDatabase mongoDatabase)
         {
             _mongoDatabase = mongoDatabase;
         }

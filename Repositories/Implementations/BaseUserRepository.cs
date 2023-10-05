@@ -10,10 +10,18 @@ public class BaseUserRepository :
     private readonly IMongoReadRepository _mongoReadRepository;
     private readonly IMongoWriteRepository _mongoWriteRepository;
 
-    public BaseUserRepository(IMongoReadRepository mongoReadRepository, IMongoWriteRepository mongoWriteRepository)
+    public BaseUserRepository(
+        IMongoReadRepository mongoReadRepository,
+        IMongoWriteRepository mongoWriteRepository)
     {
         _mongoReadRepository = mongoReadRepository;
         _mongoWriteRepository = mongoWriteRepository;
+    }
+
+    public Task<BaseUser?> GetAsync(string baseUserId)
+    {
+        var filter = Builders<BaseUser>.Filter.Eq(nameof(BaseUser.ItemId), baseUserId);
+        return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
     }
 
     public async Task<BaseUser?> GetByCredentialsAsync(string universityId, string passwordHash)
@@ -29,5 +37,10 @@ public class BaseUserRepository :
     public Task SaveAsync(BaseUser user)
     {
         return _mongoWriteRepository.SaveAsync(user);
+    }
+
+    public Task UpdateAsync(BaseUser user)
+    {
+        return _mongoWriteRepository.UpdateAsync(user);
     }
 }

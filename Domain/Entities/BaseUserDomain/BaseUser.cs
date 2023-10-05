@@ -14,7 +14,7 @@ public class BaseUser : EntityBase
     public string? NationalId { get; set; }
     public string? PassportNo { get; set; }
     public string? SurName { get; set; }
-    public string? Email { get; set; }
+    public string Email { get; set; } = null!;
     public Gender Gender { get; set; }
     public string? PasswordHash { get; set; }
     public UserRole[]? UserRoles { get; set; }
@@ -23,8 +23,10 @@ public class BaseUser : EntityBase
     public string AlternatePhone { get; set; } = null!;
     public string PersonalEmail { get; set; } = null!;
     public string? UniversityEmail { get; set; }
-    public bool IsActive { get; set; }
+    public AccountStatus AccountStatus { get; set; }
     public UserType UserType { get; set; }
+
+    public string DisplayName => $"{FirstName} {LastName}";
 
 
     public void InitiateUserWithEntityBase(Guid? customUserId = null)
@@ -33,24 +35,24 @@ public class BaseUser : EntityBase
         UserRoles ??= new[] { UserRole.Anonymous };
     }
 
-    public void Modify()
+    public void SetAsVerificationSent()
     {
-        LastModifiedOn = DateTime.UtcNow;
+        AccountStatus = AccountStatus.VerificationSent;
     }
 
-    public void Activate()
+    public void SetAsVerificationSendFail()
     {
-        IsActive = true;
+        AccountStatus = AccountStatus.VerificationSendFail;
     }
 
-    public void Deactivate()
+    public void SetAsDeactivate()
     {
-        IsActive = false;
+        AccountStatus = AccountStatus.Deactive;
     }
 
     public void MarkAsDelete()
     {
-        IsActive = false;
+        AccountStatus = AccountStatus.Deactive;
         IsMarkedAsDeleted = true;
     }
 

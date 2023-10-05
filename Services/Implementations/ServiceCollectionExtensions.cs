@@ -1,8 +1,8 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Models;
+using System.Text;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;
 
@@ -10,17 +10,16 @@ public static class ServiceCollectionExtensions
 {
     public static void AddServices(this IServiceCollection services, AppConfig appConfig)
     {
-        services.AddTransient<ISeedDataService, SeedDataService>();
         services.AddTransient<IEmployeeSignupService, EmployeeSignupService>();
+        services.AddTransient<IUniversityEmailService, UniversityEmailService>();
 
-        services.AddTransient<IEmailSender, GmailEmailSender>();
-
+        services.AddTransient<IJwtAuthenticationService, JwtAuthenticationService>();
         services.ConfigureAuthentication(appConfig);
     }
 
     private static void ConfigureAuthentication(
-        this IServiceCollection services,
-        AppConfig appConfig)
+            this IServiceCollection services,
+            AppConfig appConfig)
     {
         services.AddAuthentication(x =>
         {

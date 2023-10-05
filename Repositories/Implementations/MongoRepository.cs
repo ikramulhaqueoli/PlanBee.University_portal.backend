@@ -43,6 +43,8 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
 
+            item.Modify();
+
             var filter = Builders<T>.Filter.Eq(nameof(EntityBase.ItemId), item.ItemId);
 
             var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);

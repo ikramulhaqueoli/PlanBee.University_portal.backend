@@ -6,6 +6,8 @@
         public Logging Logging { get; set; } = null!;
 
         public MongoDatabase MongoDatabase { get; set; } = null!;
+        
+        public Institute Institute { get; set; } = null!;
 
         public Jwt Jwt { get; set; } = null!;
 
@@ -40,5 +42,25 @@
         public string ConnectionString { get; set; } = null!;
 
         public string DatabaseName { get; set; } = null!;
+    }
+
+    public class Institute
+    {
+        public string Title { get; set; } = null!;
+
+        public SmtpEmail SmtpEmail { get; set; } = null!;
+
+        public string OfficialEmail { get; set; } = null!;
+
+        public string HelpEmail { get; set; } = null!;
+
+        public string HelpPhone { get; set; } = null!;
+    }
+
+    public class SmtpEmail
+    {
+        public string Email { get; set; } = null!;
+
+        public string AppPassword { get; set; } = null!;
     }
 }

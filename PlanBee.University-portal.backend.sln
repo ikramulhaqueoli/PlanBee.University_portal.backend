@@ -1,16 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Start", "Start\Start.csproj", "{022D54BF-0F3C-45DE-91F0-CD4458F08A18}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Start", "Start\Start.csproj", "{022D54BF-0F3C-45DE-91F0-CD4458F08A18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CFE58C0E-F89E-4099-8D0E-4B048B1EBCC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CFE58C0E-F89E-4099-8D0E-4B048B1EBCC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{B34FD222-E01E-4275-8A08-3560E0500AF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{B34FD222-E01E-4275-8A08-3560E0500AF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{059118C5-4B8A-4AE9-9399-4C721FA0073A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{059118C5-4B8A-4AE9-9399-4C721FA0073A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handlers", "Handlers\Handlers.csproj", "{54A23924-FBE4-406C-BBE4-4432939F2E7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Handlers", "Handlers\Handlers.csproj", "{54A23924-FBE4-406C-BBE4-4432939F2E7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{93DEE66E-0189-4CE2-8E7D-26FA0F83DDEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{93DEE66E-0189-4CE2-8E7D-26FA0F83DDEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{7F4B7C29-4273-4ACA-8188-4BF2469A9D6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +47,15 @@ Global
 		{93DEE66E-0189-4CE2-8E7D-26FA0F83DDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93DEE66E-0189-4CE2-8E7D-26FA0F83DDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93DEE66E-0189-4CE2-8E7D-26FA0F83DDEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4B7C29-4273-4ACA-8188-4BF2469A9D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4B7C29-4273-4ACA-8188-4BF2469A9D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4B7C29-4273-4ACA-8188-4BF2469A9D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4B7C29-4273-4ACA-8188-4BF2469A9D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53F59519-3326-4B03-9C54-B1ADC2E4D32F}
 	EndGlobalSection
 EndGlobal

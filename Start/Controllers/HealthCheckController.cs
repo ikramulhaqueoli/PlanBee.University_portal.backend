@@ -22,11 +22,6 @@ public class HealthCheckController : ControllerBase
     [HttpGet("test")]
     public async Task<ActionResult<string>> Test()
     {
-        /*var userWriteRepository = Activator.CreateInstance<IBaseUserWriteRepository>();
-
-        var baseUser = new BaseUser();
-        baseUser.Initiate();
-        await userWriteRepository.SaveAsync(baseUser);*/
         return Ok("test success");
     }
 }
