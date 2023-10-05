@@ -46,7 +46,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         var claims = new List<Claim>
         {
             new(BusinessConstants.USER_ID_KEY, baseUser.ItemId.ToString()),
-            new(nameof(baseUser.Email), baseUser.Email ?? string.Empty),
+            new(nameof(baseUser.PersonalEmail), baseUser.PersonalEmail ?? string.Empty),
             new(nameof(baseUser.UniversityEmail), baseUser.UniversityEmail ?? string.Empty),
             new(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth.ToString() ?? string.Empty),
             new(nameof(baseUser.FirstName), baseUser.FirstName),
