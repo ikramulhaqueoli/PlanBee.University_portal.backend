@@ -53,7 +53,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
             var success = await _emailSender.SendEmailAsync(
                 baseUser.DisplayName,
-                baseUser.Email,
+                baseUser.PersonalEmail,
                 subject,
                 body);
 

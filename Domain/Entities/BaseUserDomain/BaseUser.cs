@@ -1,6 +1,5 @@
 ﻿using PlanBee.University_portal.backend.Domain.Enums.Business;
 using PlanBee.University_portal.backend.Domain.Utils;
-using System.Security.Cryptography;
 
 namespace PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
@@ -16,7 +15,6 @@ public class BaseUser : EntityBase
     public string? NationalId { get; set; }
     public string? PassportNo { get; set; }
     public string? SurName { get; set; }
-    public string Email { get; set; } = null!;
     public Gender Gender { get; set; }
     public string? PasswordHash { get; set; }
     public UserRole[]? UserRoles { get; set; }

@@ -12,7 +12,6 @@
 	"NationalId": "5555555555",
 	"PassportNo": "A03000000",
 	"SurName": "Seed",
-	"Email": null,
 	"Gender": "male",
 	"PasswordHash": "e6e061838856bf47e1de730719fb2609",
 	"UserRoles": [
