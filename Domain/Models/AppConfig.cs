@@ -9,6 +9,8 @@
         
         public Institute Institute { get; set; } = null!;
 
+        public Domain Domain { get; set; } = null!;
+
         public Jwt Jwt { get; set; } = null!;
 
         public string AllowedHosts { get; set; } = null!;
@@ -55,6 +57,13 @@
         public string HelpEmail { get; set; } = null!;
 
         public string HelpPhone { get; set; } = null!;
+    }
+
+    public class Domain
+    {
+        public string Protocol { get; set; } = null!;
+
+        public string Url { get; set; } = null!;
     }
 
     public class SmtpEmail

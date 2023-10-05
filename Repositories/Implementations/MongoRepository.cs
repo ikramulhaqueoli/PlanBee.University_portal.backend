@@ -13,6 +13,11 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             _mongoDbCollectionProvider = mongoDbCollectionProvider;
         }
 
+        public Task DeleteAsync<T>(FilterDefinition<T> filter) where T : EntityBase
+        {
+            return _mongoDbCollectionProvider.getCollection<T>().DeleteManyAsync(filter);
+        }
+
         public async Task<List<T>> GetAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
         {
             var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), false);
@@ -23,13 +28,13 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             return results.ToList();
         }
 
-        public Task<T> GetFirstOrDefaultAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
+        public async Task<T?> GetFirstOrDefaultAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
         {
             var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), false);
             var finalFilter = excludeMarkedAsDeleted 
                 ? filter & filterExcludeMarkedAsDeleted
                 : filter;
-            return _mongoDbCollectionProvider.getCollection<T>().Find(finalFilter).FirstOrDefaultAsync();
+            return await _mongoDbCollectionProvider.getCollection<T>().Find(finalFilter).FirstOrDefaultAsync();
         }
 
         public Task SaveAsync<T>(T item) where T : EntityBase

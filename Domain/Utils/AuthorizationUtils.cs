@@ -51,7 +51,7 @@ namespace PlanBee.University_portal.backend.Domain.Utils
                 var handler = new JwtSecurityTokenHandler();
                 var token = handler.ReadJwtToken(jwtToken);
 
-                var claim = token.Claims.FirstOrDefault(c => c.Type == TokenConstants.USER_ID_KEY);
+                var claim = token.Claims.FirstOrDefault(c => c.Type == BusinessConstants.USER_ID_KEY);
 
                 if (claim != null)
                 {
@@ -63,7 +63,7 @@ namespace PlanBee.University_portal.backend.Domain.Utils
                 throw new InvalidBearerTokenException($"Token could not be parsed. Reason: {ex.Message}");
             }
 
-            throw new InvalidBearerTokenException($"{TokenConstants.USER_ID_KEY} not found in token");
+            throw new InvalidBearerTokenException($"{BusinessConstants.USER_ID_KEY} not found in token");
         }
     }
 }

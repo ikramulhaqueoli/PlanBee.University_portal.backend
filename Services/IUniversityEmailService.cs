@@ -2,6 +2,6 @@
 {
     public interface IUniversityEmailService
     {
-        Task SendSignupVefificationAsync(string baseUserId);
+        Task SendSignupVerificationAsync(string baseUserId);
     }
 }

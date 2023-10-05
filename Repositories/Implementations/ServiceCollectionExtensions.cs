@@ -4,6 +4,7 @@ using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UniTemplateDomain;
+using PlanBee.University_portal.backend.Domain.Entities.UserVerificationDomain;
 using PlanBee.University_portal.backend.Domain.Models;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
@@ -37,5 +38,8 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IRegistrationRequestWriteRepository, RegistrationRequestRepository>();
 
         services.AddTransient<IUniTemplateReadRepository, UniTemplateRepository>();
+
+        services.AddTransient<IUserVerificationReadRepository, UserVerificationRepository>();
+        services.AddTransient<IUserVerificationWriteRepository, UserVerificationRepository>();
     }
 }

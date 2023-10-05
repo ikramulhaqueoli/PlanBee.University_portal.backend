@@ -1,4 +1,6 @@
 ﻿using PlanBee.University_portal.backend.Domain.Enums.Business;
+using PlanBee.University_portal.backend.Domain.Utils;
+using System.Security.Cryptography;
 
 namespace PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 
@@ -48,6 +50,16 @@ public class BaseUser : EntityBase
     public void SetAsDeactivate()
     {
         AccountStatus = AccountStatus.Deactive;
+    }
+
+    public void SetAsVerified()
+    {
+        AccountStatus = AccountStatus.Verified;
+    }
+
+    public void SetPasswordAsHash(string password)
+    {
+        PasswordHash = password.Md5Hash();
     }
 
     public void MarkAsDelete()

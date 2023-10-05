@@ -35,7 +35,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         await SaveNewBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
         await CreateSaveEmployeeAsync(baseUserIdGuid, employeeSignupCommand);
 
-        await _universityEmailService.SendSignupVefificationAsync(baseUserIdGuid.ToString());
+        await _universityEmailService.SendSignupVerificationAsync(baseUserIdGuid.ToString());
     }
 
     public async Task SignupAsync(EmployeeSignupCommand command)

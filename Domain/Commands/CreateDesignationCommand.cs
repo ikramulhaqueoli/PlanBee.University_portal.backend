@@ -6,7 +6,7 @@ public class CreateDesignationCommand : AbstractCommand
 {
     public string WorkplaceCode { get; set; } = null!;
 
-    public string SectionName { get; set; } = WorkplaceConstants.MAIN_SECTION;
+    public string SectionName { get; set; } = BusinessConstants.MAIN_SECTION;
 
     public string DesignationName { get; set; } = null!;
 }

@@ -12,6 +12,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<IEmployeeSignupService, EmployeeSignupService>();
         services.AddTransient<IUniversityEmailService, UniversityEmailService>();
+        services.AddTransient<IUserVerificationService, UserVerificationService>();
 
         services.AddTransient<IJwtAuthenticationService, JwtAuthenticationService>();
         services.ConfigureAuthentication(appConfig);

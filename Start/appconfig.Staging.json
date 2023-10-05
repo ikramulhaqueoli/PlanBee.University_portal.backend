@@ -8,5 +8,9 @@
   "MongoDatabase": {
     "ConnectionString": "mongodb://mongo-container:27017",
     "DatabaseName": "softbee_db"
+  },
+  "Domain": {
+    "Protocol": "http",
+    "Url": "www.example.com"
   }
 }
