@@ -25,7 +25,7 @@
 	"AlternatePhone": "01900000000",
 	"PersonalEmail": "softbee.corporation@gmail.com",
 	"UniversityEmail": "softbee@university.edu",
-	"IsActive": true,
+	"AccountStatus": "verified",
 	"UserType": "employee",
 	"UniversityId": "superadmin"
 }
