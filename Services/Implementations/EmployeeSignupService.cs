@@ -93,7 +93,7 @@ public class EmployeeSignupService : IEmployeeSignupService
             DesignationId = employeeSignupCommand.DesignationId,
             BaseUserId = baseUserIdGuid.ToString(),
             EducationalQualifications = employeeSignupCommand.EducationalQualifications,
-            WordExperiences = employeeSignupCommand.WordExperiences
+            WorkExperiences = employeeSignupCommand.WorkExperiences
         };
         employee.InitiateEntityBase();
 

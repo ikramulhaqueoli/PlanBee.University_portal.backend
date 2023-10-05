@@ -25,5 +25,5 @@ public class EmployeeSignupCommand : AbstractCommand
     public string DesignationId { get; set; } = null!;
     public string UniversityId { get; set; } = null!;
     public List<EducationalQualification> EducationalQualifications { get; set; } = new List<EducationalQualification>();
-    public List<WordExperience> WordExperiences { get; set; } = new List<WordExperience>();
+    public List<WorkExperience> WorkExperiences { get; set; } = new List<WorkExperience>();
 }
