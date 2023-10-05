@@ -12,6 +12,9 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ISeedDataService, SeedDataService>();
         services.AddTransient<IEmployeeSignupService, EmployeeSignupService>();
+
+        services.AddTransient<IEmailSender, GmailEmailSender>();
+
         services.ConfigureAuthentication(appConfig);
     }
 
