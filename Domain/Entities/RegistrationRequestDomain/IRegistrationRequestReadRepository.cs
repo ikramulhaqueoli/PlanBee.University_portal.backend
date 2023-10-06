@@ -2,7 +2,7 @@ namespace PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestD
 
 public interface IRegistrationRequestReadRepository
 {
-    Task<RegistrationRequest?> GetAsync(string registrationRequestId);
+    Task<RegistrationRequest?> GetPendingAsync(string registrationRequestId);
 
     Task<List<RegistrationRequest>> GetAllAsync();
 }

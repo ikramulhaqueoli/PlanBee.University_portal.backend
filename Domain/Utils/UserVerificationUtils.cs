@@ -5,6 +5,6 @@
         public static string GetVerificationLink(string verificationCode) => 
             $"{AppConfigUtil.Config.Domain.Protocol}:///{AppConfigUtil.Config.Domain.Url}?verification={verificationCode}";
 
-        public static string GetCodeFromItemId(string itemId) => itemId.Remove('-');
+        public static string GetCodeFromItemId(string itemId) => itemId.Replace("-", "");
     }
 }

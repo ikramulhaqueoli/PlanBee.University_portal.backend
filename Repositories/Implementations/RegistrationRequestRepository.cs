@@ -1,5 +1,6 @@
 using MongoDB.Driver;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
 
@@ -22,9 +23,10 @@ public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
         return _mongoReadRepository.GetAsync(filter);
     }
 
-    public Task<RegistrationRequest?> GetAsync(string registrationRequestId)
+    public Task<RegistrationRequest?> GetPendingAsync(string registrationRequestId)
     {
-        var filter = Builders<RegistrationRequest>.Filter.Eq(nameof(RegistrationRequest.ItemId), registrationRequestId);
+        var filter = Builders<RegistrationRequest>.Filter.Eq(nameof(RegistrationRequest.ItemId), registrationRequestId) &
+                     Builders<RegistrationRequest>.Filter.Eq(nameof(RegistrationRequest.ActionStatus), RegistrationActionStatus.Pending);
         return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
     }
 

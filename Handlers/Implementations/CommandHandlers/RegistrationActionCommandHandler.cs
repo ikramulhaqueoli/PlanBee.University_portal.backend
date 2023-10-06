@@ -2,6 +2,7 @@
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Responses;
 using PlanBee.University_portal.backend.Services;
 
@@ -26,12 +27,19 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
 
         public override async Task<CommandResponse> HandleAsync(RegistrationActionCommand command)
         {
-            var registrationRequest = await _registrationRequestReadRepository.GetAsync(command.RegistrationRequestId);
+            var registrationRequest = await _registrationRequestReadRepository.GetPendingAsync(command.RegistrationRequestId);
+            if (registrationRequest == null)
+            {
+                throw new ItemNotFoundException($"RegistrationRequest with Id {command.RegistrationRequestId} not found in the database.");
+            }
+
             if (command.ActionStatus == RegistrationActionStatus.Approved)
             {
                 if (registrationRequest.UserType == UserType.Employee)
                 {
                     await _employeeSignupService.ApproveSignupRequest(registrationRequest);
+                    registrationRequest.ActionStatus = RegistrationActionStatus.Approved;
+                    await _registrationRequestWriteRepository.UpdateAsync(registrationRequest);
                 }
             }
             else if (command.ActionStatus == RegistrationActionStatus.Pending)
