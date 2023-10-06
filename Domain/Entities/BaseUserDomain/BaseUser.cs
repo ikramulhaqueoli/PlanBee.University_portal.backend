@@ -20,7 +20,7 @@ public class BaseUser : EntityBase
     public UserRole[]? UserRoles { get; set; }
     public string PermanentAddress { get; set; } = null!;
     public string PresentAddress { get; set; } = null!;
-    public string AlternatePhone { get; set; } = null!;
+    public string? AlternatePhone { get; set; }
     public string PersonalEmail { get; set; } = null!;
     public string? UniversityEmail { get; set; }
     public AccountStatus AccountStatus { get; set; }
@@ -66,11 +66,11 @@ public class BaseUser : EntityBase
         IsMarkedAsDeleted = true;
     }
 
-    public void AddRole(params UserRole[] roles)
+    public void AddRole(params UserRole[]? roles)
     {
         UserRoles ??= Array.Empty<UserRole>();
         var existingRoles = UserRoles.ToList();
-        existingRoles.AddRange(roles);
+        if (roles != null) existingRoles.AddRange(roles);
         UserRoles = existingRoles.Distinct().ToArray();
     }
 }

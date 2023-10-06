@@ -8,13 +8,21 @@ public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
     private readonly IMongoReadRepository _mongoReadRepository;
     private readonly IMongoWriteRepository _mongoWriteRepository;
 
-    public RegistrationRequestRepository(IMongoReadRepository mongoReadRepository, IMongoWriteRepository mongoWriteRepository)
+    public RegistrationRequestRepository(
+        IMongoReadRepository mongoReadRepository,
+        IMongoWriteRepository mongoWriteRepository)
     {
         _mongoReadRepository = mongoReadRepository;
         _mongoWriteRepository = mongoWriteRepository;
     }
 
-    public Task<RegistrationRequest> GetAsync(string registrationRequestId)
+    public Task<List<RegistrationRequest>> GetAllAsync()
+    {
+        var filter = Builders<RegistrationRequest>.Filter.Empty;
+        return _mongoReadRepository.GetAsync(filter);
+    }
+
+    public Task<RegistrationRequest?> GetAsync(string registrationRequestId)
     {
         var filter = Builders<RegistrationRequest>.Filter.Eq(nameof(RegistrationRequest.ItemId), registrationRequestId);
         return _mongoReadRepository.GetFirstOrDefaultAsync(filter);

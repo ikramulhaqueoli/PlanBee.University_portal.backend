@@ -76,8 +76,10 @@ public class EmployeeSignupService : IEmployeeSignupService
             AccountStatus = AccountStatus.Deactive,
             UserType = UserType.Employee,
         };
+
         baseUser.InitiateUserWithEntityBase(baseUserIdGuid);
         baseUser.AddRole(UserRole.GeneralEmployee, UserRole.Anonymous);
+        baseUser.AddRole(employeeSignupCommand.AdditionalUserRoles);
 
         return _baseUserWriteRepository.SaveAsync(baseUser);
     }
