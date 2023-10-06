@@ -29,8 +29,8 @@ namespace PlanBee.University_portal.backend.Infrastructure.Implementations
             try
             {
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress(config.Institute.Title, config.Institute.OfficialEmail));
-                message.To.Add(new MailboxAddress(toName, config.Institute.SmtpEmail.Email));
+                message.From.Add(new MailboxAddress(config.Institute.Title, config.Institute.SmtpEmail.Email));
+                message.To.Add(new MailboxAddress(toName, toEmail));
                 message.Subject = subject;
                 message.Body = new BodyBuilder
                 {

@@ -70,10 +70,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             await _userVerificationWriteRepository.DeleteAllAsync(baseUserId, verificationType);
 
             var verification = new UserVerification();
-            verification.InitiateEntityBase();
-            verification.VerificationType = verificationType;
-            verification.VerificationMedia = UserVerificationMedia.Email;
-            verification.SetValidityByDays(BusinessConstants.VERIFI_CODE_VALIDITY_DAYS);
+            verification.Initiate(verificationType, baseUserId);
 
             await _userVerificationWriteRepository.SaveAsync(verification);
             return verification.VerificationCode;
@@ -82,7 +79,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
         private Dictionary<string, string> GetSignupVerificationPlaceHolders(
             BaseUser baseUser,
             string verificationLink)
-            => new Dictionary<string, string>
+            => new()
             {
                 {"receiverDisplayName", baseUser.DisplayName},
                 {"verificationLink", verificationLink},

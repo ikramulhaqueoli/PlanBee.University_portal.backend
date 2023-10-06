@@ -7,17 +7,14 @@ namespace PlanBee.University_portal.backend.Services.Implementations
     public class UserVerificationService : IUserVerificationService
     {
         private readonly IUserVerificationReadRepository _userVerificationReadRepository;
-        private readonly IUserVerificationWriteRepository _userVerificationWriteRepository;
         private readonly IBaseUserReadRepository _baseUserReadRepository;
         private readonly IBaseUserWriteRepository _baseUserWriteRepository;
 
         public UserVerificationService(
-            IUserVerificationWriteRepository userVerificationWriteRepository,
             IUserVerificationReadRepository userVerificationReadRepository,
             IBaseUserReadRepository baseUserReadRepository,
             IBaseUserWriteRepository baseUserWriteRepository)
         {
-            _userVerificationWriteRepository = userVerificationWriteRepository;
             _userVerificationReadRepository = userVerificationReadRepository;
             _baseUserReadRepository = baseUserReadRepository;
             _baseUserWriteRepository = baseUserWriteRepository;

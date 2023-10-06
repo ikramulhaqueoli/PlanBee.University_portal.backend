@@ -6,11 +6,17 @@
             this UniTemplate template,
             Dictionary<string, string> placeHolderValuePairs)
         {
+            var resolvedBody = template.Body;
+            var resolvedSubject = template.Subject;
+
             foreach (var placeHolderKV in placeHolderValuePairs)
             {
-                template.Body.Replace($"{{{placeHolderKV.Key}}}", placeHolderKV.Value);
-                template.Subject?.Replace($"{{{placeHolderKV.Key}}}", placeHolderKV.Value);
+                resolvedBody = resolvedBody.Replace("{{" + placeHolderKV.Key + "}}", placeHolderKV.Value);
+                resolvedSubject = resolvedSubject?.Replace("{{" + placeHolderKV.Key + "}}", placeHolderKV.Value);
             }
+
+            template.Subject = resolvedSubject;
+            template.Body = resolvedBody;
         }
     }
 }
