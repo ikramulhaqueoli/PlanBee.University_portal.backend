@@ -2,6 +2,7 @@
 using MimeKit;
 using MailKit.Net.Smtp;
 using PlanBee.University_portal.backend.Domain.Utils;
+using Microsoft.Extensions.Logging;
 
 namespace PlanBee.University_portal.backend.Infrastructure.Implementations
 {
@@ -9,6 +10,13 @@ namespace PlanBee.University_portal.backend.Infrastructure.Implementations
     {
         private const string GMAIL_SMTP = "smtp.gmail.com";
         private const int SMTP_PORT = 587;
+
+        private readonly ILogger<GmailEmailSender> _logger;
+
+        public GmailEmailSender(ILogger<GmailEmailSender> logger)
+        {
+            _logger = logger;
+        }
 
         public async Task<bool> SendEmailAsync(
             string toName,
@@ -43,6 +51,7 @@ namespace PlanBee.University_portal.backend.Infrastructure.Implementations
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Mail Sending failed. Reason: {ex.Message}");
                 return false;
             }
         }
