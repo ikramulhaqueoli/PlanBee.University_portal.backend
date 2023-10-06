@@ -30,7 +30,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
             var registrationRequest = await _registrationRequestReadRepository.GetPendingAsync(command.RegistrationRequestId);
             if (registrationRequest == null)
             {
-                throw new ItemNotFoundException($"RegistrationRequest with Id {command.RegistrationRequestId} not found in the database.");
+                throw new ItemNotFoundException($"RegistrationRequest with Id {command.RegistrationRequestId} is not Pending in the database.");
             }
 
             if (command.ActionStatus == RegistrationActionStatus.Approved)
