@@ -10,7 +10,7 @@
     "DatabaseName": "softbee_db"
   },
   "Domain": {
-    "Protocol": "http",
-    "Url": "www.example.com"
+    "Protocol": "https",
+    "Url": "rmstu-portal.netlify.app"
   }
 }
