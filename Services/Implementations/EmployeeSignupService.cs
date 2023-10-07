@@ -28,7 +28,7 @@ public class EmployeeSignupService : IEmployeeSignupService
 
     public async Task ApproveSignupRequest(RegistrationRequest registrationRequest)
     {
-        var employeeSignupCommand = registrationRequest.CommandModel as EmployeeSignupCommand ?? throw new InvalidDataException("RegistrationRequest.CommandModel could not be casted to EmployeeSignupCommand");
+        var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(registrationRequest.CommandJson)!;
 
         var baseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
         await SaveNewBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
@@ -42,7 +42,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         var request = new RegistrationRequest
         {
             UserType = UserType.Employee,
-            CommandModel = command,
+            CommandJson = JsonConvert.SerializeObject(command),
             CreatorUserId = "dummy_creator_user_id",
             CreatorUserRole = "dummy_creator_user_role",
             ActionStatus = RegistrationActionStatus.Pending

@@ -6,5 +6,6 @@ namespace PlanBee.University_portal.backend.Domain.Enums.Business
     {
         [EnumMember(Value = "unknown")] Unknown,
         [EnumMember(Value = "employee")] Employee,
+        [EnumMember(Value = "student")] Student,
     }
 }

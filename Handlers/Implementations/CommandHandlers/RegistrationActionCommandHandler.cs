@@ -41,6 +41,8 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
                     registrationRequest.ActionStatus = RegistrationActionStatus.Approved;
                     await _registrationRequestWriteRepository.UpdateAsync(registrationRequest);
                 }
+
+                registrationRequest.Approve(command.ActionComment, "dummy_user_id");
             }
             else if (command.ActionStatus == RegistrationActionStatus.Pending)
             {
@@ -52,7 +54,6 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
 
             }
 
-            registrationRequest.Approve(command.ActionComment, "dummy_user_id");
             await _registrationRequestWriteRepository.UpdateAsync(registrationRequest);
 
             return new CommandResponse();

@@ -12,7 +12,11 @@ public class RegistrationRequest : EntityBase
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public UserType UserType { get; set; }
 
-    public AbstractSignupCommandModel CommandModel { get; set; } = null!;
+    [JsonIgnore]
+    public String CommandJson { get; set; } = null!;
+
+    [BsonIgnore]
+    public AbstractSignupCommandModel? CommandModel { get; set; }
 
     public string CreatorUserId { get; set; } = null!;
 

@@ -1,4 +1,6 @@
 using MongoDB.Driver;
+using Newtonsoft.Json;
+using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
 
@@ -17,10 +19,22 @@ public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
         _mongoWriteRepository = mongoWriteRepository;
     }
 
-    public Task<List<RegistrationRequest>> GetAllAsync()
+    public async Task<List<RegistrationRequest>> GetAllAsync()
     {
         var filter = Builders<RegistrationRequest>.Filter.Empty;
-        return _mongoReadRepository.GetAsync(filter);
+        var results = await _mongoReadRepository.GetAsync(filter);
+
+        foreach (var result in results)
+        {
+            result.CommandModel = null;
+            if (result.UserType == UserType.Employee)
+                result.CommandModel = JsonConvert.DeserializeObject<EmployeeSignupCommand>(result.CommandJson);
+            else if (result.UserType == UserType.Student)
+                result.CommandModel = JsonConvert.DeserializeObject<StudentSignupCommand>(result.CommandJson);
+            else result.CommandModel = null;
+        }
+
+        return results;
     }
 
     public Task<RegistrationRequest?> GetPendingAsync(string registrationRequestId)
