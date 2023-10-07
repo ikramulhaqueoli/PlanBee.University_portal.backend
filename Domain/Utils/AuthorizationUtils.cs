@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
 using PlanBee.University_portal.backend.Domain.Constants;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
 using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
-using PlanBee.University_portal.backend.Domain.Queries;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace PlanBee.University_portal.backend.Domain.Utils

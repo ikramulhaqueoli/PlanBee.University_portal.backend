@@ -46,7 +46,7 @@ public class EmployeeSignupService : IEmployeeSignupService
             ModelDataJson = JsonConvert.SerializeObject(command),
             CreatorUserId = "dummy_creator_user_id",
             CreatorUserRole = "dummy_creator_user_role",
-            ActionStatus = RegistrationActionStatus.None
+            ActionStatus = RegistrationActionStatus.Pending
         };
 
         request.InitiateEntityBase();
