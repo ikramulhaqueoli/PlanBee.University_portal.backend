@@ -9,7 +9,7 @@ public class RegistrationRequest : EntityBase
     [BsonRepresentation(BsonType.String)]
     public UserType UserType { get; set; }
 
-    public string ModelDataJson { get; set; } = null!;
+    public object ModelData { get; set; } = null!;
 
     public string CreatorUserId { get; set; } = null!;
 
