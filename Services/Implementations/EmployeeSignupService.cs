@@ -28,8 +28,8 @@ public class EmployeeSignupService : IEmployeeSignupService
 
     public async Task ApproveSignupRequest(RegistrationRequest registrationRequest)
     {
-        var employeeSignupCommand = registrationRequest.ModelData as EmployeeSignupCommand;
-        if (employeeSignupCommand == null) throw new InvalidOperationException($"Registration request model data is not Employee Signup Command");
+        var employeeJson = registrationRequest.ModelDataJson ?? throw new InvalidOperationException($"{nameof(RegistrationRequest.ModelDataJson)} should not be null.");
+        var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(employeeJson)!;
 
         var baseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
         await SaveNewBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
@@ -43,9 +43,10 @@ public class EmployeeSignupService : IEmployeeSignupService
         var request = new RegistrationRequest
         {
             UserType = UserType.Employee,
-            ModelData = command,
+            ModelDataJson = JsonConvert.SerializeObject(command),
             CreatorUserId = "dummy_creator_user_id",
-            CreatorUserRole = "dummy_creator_user_role"
+            CreatorUserRole = "dummy_creator_user_role",
+            ActionStatus = RegistrationActionStatus.None
         };
 
         request.InitiateEntityBase();
