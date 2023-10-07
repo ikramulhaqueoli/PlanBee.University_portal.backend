@@ -40,4 +40,26 @@ public class EmployeeController : ControllerBase
             ? Ok(response)
             : BadRequest(response);
     }
+
+    [SuperAdmin]
+    [HttpPost("AddDesignation")]
+    public async Task<IActionResult> Create(CreateDesignationCommand command)
+    {
+        var response = await _commandDispatcher.DispatchAsync(command);
+
+        return response.Success
+            ? Ok(response)
+            : BadRequest(response);
+    }
+
+    [SuperAdmin]
+    [HttpGet("SignupFormData")]
+    public async Task<IActionResult> GetAllActive([FromQuery] GetSignupFormDataQuery query)
+    {
+        var response = await _queryDispatcher.DispatchAsync(query);
+
+        return response.Success
+            ? Ok(response)
+            : BadRequest(response);
+    }
 }

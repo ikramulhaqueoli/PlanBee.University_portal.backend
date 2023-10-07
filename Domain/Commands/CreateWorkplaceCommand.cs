@@ -1,14 +1,17 @@
-using PlanBee.University_portal.backend.Domain.Constants;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
+using System.Text.Json.Serialization;
 
 namespace PlanBee.University_portal.backend.Domain.Commands;
 
 public class CreateWorkplaceCommand : AbstractCommand
 {
-    public string WorkplaceType { get; set; } = null!;
+    [BsonRepresentation(BsonType.String)]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public WorkplaceType WorkplaceType { get; set; }
 
     public string WorkplaceTitle { get; set; } = null!;
 
     public string WorkplaceId { get; set; } = null!;
-
-    public IEnumerable<string> SectionNames { get; set; } = new[] { BusinessConstants.MAIN_SECTION };
 }

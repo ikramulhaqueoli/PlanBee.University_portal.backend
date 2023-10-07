@@ -9,6 +9,8 @@ public abstract class EntityBase
     [BsonRepresentation(BsonType.String)]
     public string ItemId { get; set; } = null!;
 
+    public bool IsActive { get; set; }
+
     public bool IsMarkedAsDeleted { get; set; } = false;
 
     public DateTime CreatedOn { get; set; }
@@ -19,6 +21,12 @@ public abstract class EntityBase
     {
         ItemId = (customItemId ?? Guid.NewGuid()).ToString();
         CreatedOn = DateTime.UtcNow;
+        IsActive = true;
+    }
+
+    public void MarkAsInactive()
+    {
+        IsActive = false;
     }
 
     public void Modify()

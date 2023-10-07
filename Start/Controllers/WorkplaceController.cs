@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers;
 using PlanBee.University_portal.backend.Start.Attributes;
 
@@ -10,15 +11,19 @@ namespace PlanBee.University_portal.backend.Start.Controllers;
 public class WorkplaceController : ControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;
+    private readonly IQueryDispatcher _queryDispatcher;
 
-    public WorkplaceController(ICommandDispatcher commandDispatcher)
+    public WorkplaceController(
+        ICommandDispatcher commandDispatcher,
+        IQueryDispatcher queryDispatcher)
     {
         _commandDispatcher = commandDispatcher;
+        _queryDispatcher = queryDispatcher;
     }
 
     [SuperAdmin]
     [HttpPost("Create")]
-    public async Task<IActionResult> Create(CreateWorkplaceCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateWorkplaceCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 
@@ -28,10 +33,10 @@ public class WorkplaceController : ControllerBase
     }
 
     [SuperAdmin]
-    [HttpPost("AddDesignation")]
-    public async Task<IActionResult> Create(CreateDesignationCommand command)
+    [HttpGet("AllActives")]
+    public async Task<IActionResult> GetAllActive([FromQuery] GetSignupFormDataQuery query)
     {
-        var response = await _commandDispatcher.DispatchAsync(command);
+        var response = await _queryDispatcher.DispatchAsync(query);
 
         return response.Success
             ? Ok(response)
