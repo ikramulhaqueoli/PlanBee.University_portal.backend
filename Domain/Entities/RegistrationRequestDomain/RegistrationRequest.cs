@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
 using System.Text.Json.Serialization;
 
@@ -11,11 +12,7 @@ public class RegistrationRequest : EntityBase
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public UserType UserType { get; set; }
 
-    [JsonIgnore]
-    public string ModelDataJson { get; set; } = null!;
-
-    [BsonIgnore]
-    public object? ModelData { get; set; }
+    public AbstractSignupCommandModel CommandModel { get; set; } = null!;
 
     public string CreatorUserId { get; set; } = null!;
 
