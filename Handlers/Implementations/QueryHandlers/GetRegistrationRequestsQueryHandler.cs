@@ -18,7 +18,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
 
         public override async Task<QueryResponse> HandleAsync(GetRegistrationRequestsQuery query)
         {
-            var regustrationRequests = await _registrationRequestReadRepository.GetAllAsync();
+            var regustrationRequests = await _registrationRequestReadRepository.GetAllWithViewAsync();
 
             var queryResponse = new QueryResponse
             {
