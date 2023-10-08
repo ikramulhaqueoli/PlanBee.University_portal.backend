@@ -12,7 +12,7 @@ public class RegistrationRequest : EntityBase
     public UserType UserType { get; set; }
 
     [JsonIgnore]
-    public String CommandJson { get; set; } = null!;
+    public string CommandJson { get; set; } = null!;
 
     public string CreatorUserId { get; set; } = null!;
 

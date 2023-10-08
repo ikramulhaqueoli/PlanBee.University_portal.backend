@@ -1,9 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using PlanBee.University_portal.backend.Domain.Constants;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Models;
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Services.Models;
 
@@ -29,7 +28,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         var timeOut = AppConfigUtil.Config.Jwt.ExpireTimeout;
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = GetClaimsIdentity(baseUser),
+            Subject = baseUser.ToClaimsIdentity(),
             Expires = DateTime.UtcNow.AddMinutes(timeOut),
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(tokenKey),
@@ -41,29 +40,9 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         return new AuthToken { Token = tokenHandler.WriteToken(token) };
     }
 
-    private ClaimsIdentity GetClaimsIdentity(BaseUser baseUser)
+    public AuthTokenUser GetAuthTokenUser()
     {
-        var claims = new List<Claim>
-        {
-            new(BusinessConstants.USER_ID_KEY, baseUser.ItemId.ToString()),
-            new(nameof(baseUser.PersonalEmail), baseUser.PersonalEmail ?? string.Empty),
-            new(nameof(baseUser.UniversityEmail), baseUser.UniversityEmail ?? string.Empty),
-            new(nameof(baseUser.DateOfBirth), baseUser.DateOfBirth.ToString() ?? string.Empty),
-            new(nameof(baseUser.FirstName), baseUser.FirstName),
-            new(nameof(baseUser.LastName), baseUser.LastName),
-            new(nameof(baseUser.Gender), baseUser.Gender.ToString()),
-            new(nameof(baseUser.SurName), baseUser.SurName ?? string.Empty),
-            new(nameof(baseUser.MobilePhone), baseUser.MobilePhone ?? string.Empty),
-            new(nameof(baseUser.UniversityId), baseUser.UniversityId),
-            new(nameof(baseUser.AccountStatus), baseUser.AccountStatus.ToString())
-        };
-
-        var roleClaims = baseUser.UserRoles?
-            .Select(role => new Claim(ClaimTypes.Role, role.ToString()))
-            .ToList() ?? new List<Claim>();
-
-        claims.AddRange(roleClaims);
-
-        return new ClaimsIdentity(claims);
+        //var tokenStr = _authorizationFilterContext.GetAuthTokenString();
+        return AuthorizationUtils.ToAuthTokenUser("");
     }
 }
