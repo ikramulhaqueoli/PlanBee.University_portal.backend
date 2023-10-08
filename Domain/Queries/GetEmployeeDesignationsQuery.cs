@@ -2,5 +2,6 @@
 {
     public class GetEmployeeDesignationsQuery : AbstractQuery
     {
+        public string[]? SpecificDesignationIds { get; set; }
     }
 }

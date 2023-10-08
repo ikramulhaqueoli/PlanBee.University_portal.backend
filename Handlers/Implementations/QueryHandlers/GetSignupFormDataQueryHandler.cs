@@ -24,7 +24,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
         public override async Task<QueryResponse> HandleAsync(GetSignupFormDataQuery query)
         {
             var workplaces = await _workplaceReadRepository.GetActiveAsync();
-            var designations = await _employeeDesignationReadRepository.GetActiveAsync();
+            var designations = await _employeeDesignationReadRepository.GetActivesAsync();
             var response = new QueryResponse
             {
                 QueryData = new

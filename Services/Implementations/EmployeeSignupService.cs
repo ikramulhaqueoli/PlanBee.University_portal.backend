@@ -44,9 +44,8 @@ public class EmployeeSignupService : IEmployeeSignupService
 
         var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
 
-        var approverDesignation = await _employeeDesignationReadRepository.GetDesignationByUserId(approverTokenUser.BaseUserId);
-        if (approverDesignation == null) throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
-
+        var approverDesignation = await _employeeDesignationReadRepository.GetDesignationByUserId(approverTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
+        
         await _universityEmailService.SendSignupVerificationAsync(
             fromTokenUser: approverTokenUser,
             toBaseUser: newBaseUser,
@@ -55,15 +54,17 @@ public class EmployeeSignupService : IEmployeeSignupService
 
     public async Task SignupAsync(EmployeeSignupCommand command)
     {
-        var tokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+        var creatorTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+        var creatorDesignation = await _employeeDesignationReadRepository.GetDesignationByUserId(creatorTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {creatorTokenUser.BaseUserId} not found in the database.");
 
         var request = new RegistrationRequest
         {
             UserType = UserType.Employee,
             CommandJson = JsonConvert.SerializeObject(command),
-            CreatorUserId = tokenUser.BaseUserId,
-            CreatorUserRole = string.Join(",", tokenUser.UserRoles?.ToList() ?? new List<UserRole>()),
-            ActionStatus = RegistrationActionStatus.Pending
+            CreatorUserId = creatorTokenUser.BaseUserId,
+            CreatorUserRoles = creatorTokenUser.UserRoles ?? Array.Empty<UserRole>(),
+            ActionStatus = RegistrationActionStatus.Pending,
+            CreatorDesignationId = creatorDesignation.ItemId
         };
 
         request.InitiateEntityBase();

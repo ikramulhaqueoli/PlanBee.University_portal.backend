@@ -16,7 +16,11 @@ public class RegistrationRequest : EntityBase
 
     public string CreatorUserId { get; set; } = null!;
 
-    public string CreatorUserRole { get; set; } = null!;
+    [BsonRepresentation(BsonType.String)]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public UserRole[] CreatorUserRoles { get; set; } = null!;
+
+    public string CreatorDesignationId { get; set; } = null!;
 
     [BsonRepresentation(BsonType.String)]
     [JsonConverter(typeof(JsonStringEnumConverter))]

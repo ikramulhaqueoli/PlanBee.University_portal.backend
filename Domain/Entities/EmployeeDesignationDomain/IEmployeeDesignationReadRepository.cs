@@ -1,8 +1,12 @@
-﻿namespace PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain
+﻿using MongoDB.Driver;
+
+namespace PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain
 {
     public interface IEmployeeDesignationReadRepository
     {
-        public Task<List<EmployeeDesignation>> GetActiveAsync();
+        Task<EmployeeDesignation?> Get(string itemId);
+
+        Task<List<EmployeeDesignation>> GetActivesAsync(FilterDefinition<EmployeeDesignation>? customeFilter = null);
 
         Task<EmployeeDesignation?> GetDesignationByUserId(string baseUserId);
     }

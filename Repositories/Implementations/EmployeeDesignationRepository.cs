@@ -22,10 +22,18 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             _employeeReadRepository = employeeReadRepository;
         }
 
-        public Task<List<EmployeeDesignation>> GetActiveAsync()
+        public Task<EmployeeDesignation?> Get(string itemId)
+        {
+            var filter = Builders<EmployeeDesignation>.Filter.Eq(nameof(EmployeeDesignation.ItemId), itemId);
+            return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
+        }
+
+        public Task<List<EmployeeDesignation>> GetActivesAsync(FilterDefinition<EmployeeDesignation>? customeFilter)
         {
             var filter = Builders<EmployeeDesignation>.Filter
                 .Eq(nameof(EmployeeDesignation.IsActive), true);
+
+            if (customeFilter != null) filter &= customeFilter;
             return _mongoReadRepository.GetAsync(filter);
         }
 

@@ -43,9 +43,20 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpPost("AddDesignation")]
-    public async Task<IActionResult> Create(CreateDesignationCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateDesignationCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
+
+        return response.Success
+            ? Ok(response)
+            : BadRequest(response);
+    }
+
+    [SuperAdmin]
+    [HttpGet("GetDesignations")]
+    public async Task<IActionResult> GetDesignations([FromQuery] GetEmployeeDesignationsQuery query)
+    {
+        var response = await _queryDispatcher.DispatchAsync(query);
 
         return response.Success
             ? Ok(response)
