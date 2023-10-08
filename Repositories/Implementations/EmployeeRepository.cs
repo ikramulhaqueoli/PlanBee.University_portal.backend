@@ -20,9 +20,16 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             return _mongoReadRepository.GetAsync(filter);
         }
 
-        public Task<Employee> GetAsync(string itemId)
+        public Task<Employee?> GetAsync(string itemId)
         {
-            return _mongoReadRepository.GetFirstOrDefaultAsync<Employee>(itemId);
+            var filter = Builders<Employee>.Filter.Eq(nameof(Employee.ItemId), itemId);
+            return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
+        }
+
+        public Task<Employee?> GetByUserIdAsync(string baseUserId)
+        {
+            var filter = Builders<Employee>.Filter.Eq(nameof(Employee.BaseUserId), baseUserId);
+            return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
         public Task SaveAsync(Employee employee)

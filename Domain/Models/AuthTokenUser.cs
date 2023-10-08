@@ -10,6 +10,8 @@ namespace PlanBee.University_portal.backend.Domain.Models
         public string FirstName { get; set; } = null!;
         
         public string LastName { get; set; } = null!;
+
+        public string DisplayName { get; set; } = null!;
         
         public string MobilePhone { get; set; } = null!;
         

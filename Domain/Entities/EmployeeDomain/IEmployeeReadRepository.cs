@@ -2,8 +2,10 @@
 {
     public interface IEmployeeReadRepository
     {
-        public Task<Employee> GetAsync(string itemId);
+        Task<Employee?> GetAsync(string itemId);
+        
+        Task<Employee?> GetByUserIdAsync(string baseUserId);
 
-        public Task<List<Employee>> GetAllAsync();
+        Task<List<Employee>> GetAllAsync();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Constants;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
@@ -28,7 +29,12 @@ namespace PlanBee.University_portal.backend.Domain.Utils
 
         public static string GetAuthTokenString(this AuthorizationFilterContext context)
         {
-            string authorizationHeader = context.HttpContext.Request.Headers[AUTHORIZATION_STR].FirstOrDefault()!;
+            return context.HttpContext.Request.Headers.GetAuthTokenString();
+        }
+
+        public static string GetAuthTokenString(this IHeaderDictionary headers)
+        {
+            string authorizationHeader = headers[AUTHORIZATION_STR].FirstOrDefault()!;
 
             if (string.IsNullOrWhiteSpace(authorizationHeader))
             {
@@ -73,6 +79,7 @@ namespace PlanBee.University_portal.backend.Domain.Utils
                 new(nameof(AuthTokenUser.BaseUserId), baseUser.ItemId),
                 new(nameof(AuthTokenUser.FirstName), baseUser.FirstName),
                 new(nameof(AuthTokenUser.LastName), baseUser.LastName),
+                new(nameof(AuthTokenUser.DisplayName), baseUser.DisplayName),
                 new(nameof(AuthTokenUser.MobilePhone), baseUser.MobilePhone),
                 new(nameof(AuthTokenUser.UniversityId), baseUser.UniversityId),
                 new(nameof(AuthTokenUser.SurName), baseUser.SurName ?? string.Empty),
@@ -93,8 +100,10 @@ namespace PlanBee.University_portal.backend.Domain.Utils
             return new ClaimsIdentity(claims);
         }
 
-        public static AuthTokenUser ToAuthTokenUser(string authToken)
+        public static AuthTokenUser? ToAuthTokenUser(string? authToken)
         {
+            if (authToken == null) return null;
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenS = tokenHandler.ReadJwtToken(authToken);
 
@@ -114,6 +123,9 @@ namespace PlanBee.University_portal.backend.Domain.Utils
                     case nameof(AuthTokenUser.LastName):
                         authTokenUser.LastName = claim.Value;
                         break;
+                    case nameof(AuthTokenUser.DisplayName):
+                        authTokenUser.DisplayName = claim.Value;
+                        break;
                     case nameof(AuthTokenUser.MobilePhone):
                         authTokenUser.MobilePhone = claim.Value;
                         break;
@@ -122,6 +134,15 @@ namespace PlanBee.University_portal.backend.Domain.Utils
                         break;
                     case nameof(AuthTokenUser.SurName):
                         authTokenUser.SurName = claim.Value;
+                        break;
+                    case nameof(AuthTokenUser.AlternatePhone):
+                        authTokenUser.AlternatePhone = claim.Value;
+                        break;
+                    case nameof(AuthTokenUser.PersonalEmail):
+                        authTokenUser.PersonalEmail = claim.Value;
+                        break;
+                    case nameof(AuthTokenUser.UniversityEmail):
+                        authTokenUser.UniversityEmail = claim.Value;
                         break;
                     case nameof(AuthTokenUser.Gender):
                         if (Enum.TryParse(claim.Value, out Gender gender)) authTokenUser.Gender = gender;

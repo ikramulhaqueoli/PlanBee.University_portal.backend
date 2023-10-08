@@ -1,9 +1,11 @@
 ﻿using PlanBee.University_portal.backend.Domain.Constants;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UniTemplateDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UserVerificationDomain;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
 using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
+using PlanBee.University_portal.backend.Domain.Models;
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Infrastructure;
 
@@ -17,6 +19,8 @@ namespace PlanBee.University_portal.backend.Services.Implementations
         private readonly IUniTemplateReadRepository _uniTemplateReadRepository;
         private readonly IUserVerificationWriteRepository _userVerificationWriteRepository;
         private readonly IUserVerificationReadRepository _userVerificationReadRepository;
+        private readonly IJwtAuthenticationService _jwtAuthenticationService;
+        private readonly IEmployeeReadRepository _employeeReadRepository;
 
         public UniversityEmailService(
             IBaseUserReadRepository userReadRepository,
@@ -24,7 +28,9 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             IBaseUserWriteRepository userWriteRepository,
             IUniTemplateReadRepository uniTemplateReadRepository,
             IUserVerificationWriteRepository userVerificationWriteRepository,
-            IUserVerificationReadRepository userVerificationReadRepository)
+            IUserVerificationReadRepository userVerificationReadRepository,
+            IJwtAuthenticationService jwtAuthenticationService,
+            IEmployeeReadRepository employeeReadRepository)
         {
             _userReadRepository = userReadRepository;
             _emailSender = emailSender;
@@ -32,35 +38,42 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             _uniTemplateReadRepository = uniTemplateReadRepository;
             _userVerificationWriteRepository = userVerificationWriteRepository;
             _userVerificationReadRepository = userVerificationReadRepository;
+            _jwtAuthenticationService = jwtAuthenticationService;
+            _employeeReadRepository = employeeReadRepository;
         }
 
-        public async Task SendSignupVerificationAsync(string baseUserId)
+        public async Task SendSignupVerificationAsync(
+            AuthTokenUser fromTokenUser,
+            BaseUser toBaseUser,
+            string senderDesignation)
         {
-            var baseUser = await _userReadRepository.GetAsync(baseUserId);
-            if (baseUser == null) throw new ArgumentNullException(nameof(baseUser));
-
             var template = await _uniTemplateReadRepository.GetByKeyAsync(UniTemplateKeys.SignupVerificationMail);
             if (template == null) throw new ItemNotFoundException($"{nameof(UniTemplate)} with key {UniTemplateKeys.SignupVerificationMail} not found in the database.");
 
-            var verificationCode = await CreateNewUserVerificationCodeAsync(baseUserId, UserVerificationType.Signup);
+            var verificationCode = await CreateNewUserVerificationCodeAsync(toBaseUser.ItemId, UserVerificationType.Signup);
             var verificationLink = UserVerificationUtils.GetVerificationLink(verificationCode);
 
-            var placeHolderDictionary = GetSignupVerificationPlaceHolders(baseUser, verificationLink);
+            var placeHolderDictionary = GetSignupVerificationPlaceHolders(
+                fromTokenUser,
+                toBaseUser,
+                verificationLink,
+                senderDesignation);
+
             template.ResolveTemplate(placeHolderDictionary);
 
             var subject = template.Subject!;
             var body = template.Body;
 
             var success = await _emailSender.SendEmailAsync(
-                baseUser.DisplayName,
-                baseUser.PersonalEmail,
+                toBaseUser.DisplayName,
+                toBaseUser.PersonalEmail,
                 subject,
                 body);
 
-            if (success) baseUser.SetAsVerificationSent();
-            else baseUser.SetAsVerificationSendFail();
+            if (success) toBaseUser.SetAsVerificationSent();
+            else toBaseUser.SetAsVerificationSendFail();
 
-            await _userWriteRepository.UpdateAsync(baseUser);
+            await _userWriteRepository.UpdateAsync(toBaseUser);
         }
 
         private async Task<string> CreateNewUserVerificationCodeAsync(
@@ -77,16 +90,21 @@ namespace PlanBee.University_portal.backend.Services.Implementations
         }
 
         private Dictionary<string, string> GetSignupVerificationPlaceHolders(
-            BaseUser baseUser,
+            AuthTokenUser fromTokenUser,
+            BaseUser toBaseUser,
+            string senderDesignation,
             string verificationLink)
-            => new()
+        {
+
+            return new()
             {
-                {"receiverDisplayName", baseUser.DisplayName},
+                {"receiverDisplayName", toBaseUser.DisplayName},
                 {"verificationLink", verificationLink},
                 {"universityHelpEmail", AppConfigUtil.Config.Institute.HelpEmail},
                 {"universityHelpPhone", AppConfigUtil.Config.Institute.HelpPhone},
-                {"senderName", "dummy sender"},
-                {"senderPosition", "dummy position"},
+                {"senderName", fromTokenUser.DisplayName},
+                {"senderPosition", senderDesignation},
             };
+        }
     }
 }

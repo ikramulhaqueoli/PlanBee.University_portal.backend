@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Models;
@@ -11,11 +12,14 @@ namespace PlanBee.University_portal.backend.Services.Implementations;
 public class JwtAuthenticationService : IJwtAuthenticationService
 {
     private readonly IBaseUserReadRepository _baseUserReadRepository;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public JwtAuthenticationService(
-        IBaseUserReadRepository baseUserReadRepository)
+        IBaseUserReadRepository baseUserReadRepository,
+        IHttpContextAccessor httpContextAccessor)
     {
         _baseUserReadRepository = baseUserReadRepository;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<AuthToken?> GetAuthTokenAsync(string universityId, string password)
@@ -42,7 +46,13 @@ public class JwtAuthenticationService : IJwtAuthenticationService
 
     public AuthTokenUser GetAuthTokenUser()
     {
-        //var tokenStr = _authorizationFilterContext.GetAuthTokenString();
-        return AuthorizationUtils.ToAuthTokenUser("");
+        var tokenStr = _httpContextAccessor.HttpContext?.Request.Headers.GetAuthTokenString();
+        var tokenUser = AuthorizationUtils.ToAuthTokenUser(tokenStr);
+        if (tokenUser == null)
+        {
+            throw new InvalidOperationException("No valid user found from the Authorization token.");
+        }
+
+        return tokenUser;
     }
 }

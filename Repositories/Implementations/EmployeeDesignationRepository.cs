@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain;
+using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations
 {
@@ -9,13 +10,16 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
     {
         private readonly IMongoWriteRepository _mongoWriteRepository;
         private readonly IMongoReadRepository _mongoReadRepository;
+        private readonly IEmployeeReadRepository _employeeReadRepository;
 
         public EmployeeDesignationRepository(
             IMongoWriteRepository mongoWriteRepository,
-            IMongoReadRepository mongoReadRepository)
+            IMongoReadRepository mongoReadRepository,
+            IEmployeeReadRepository employeeReadRepository)
         {
             _mongoWriteRepository = mongoWriteRepository;
             _mongoReadRepository = mongoReadRepository;
+            _employeeReadRepository = employeeReadRepository;
         }
 
         public Task<List<EmployeeDesignation>> GetActiveAsync()
@@ -23,6 +27,15 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             var filter = Builders<EmployeeDesignation>.Filter
                 .Eq(nameof(EmployeeDesignation.IsActive), true);
             return _mongoReadRepository.GetAsync(filter);
+        }
+
+        public async Task<EmployeeDesignation?> GetDesignationByUserId(string baseUserId)
+        {
+            var employee = await _employeeReadRepository.GetByUserIdAsync(baseUserId);
+            if (employee == null) return null;
+
+            var filter = Builders<EmployeeDesignation>.Filter.Eq(nameof(EmployeeDesignation.ItemId), employee.DesignationId);
+            return await _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
         public Task SaveAsync(EmployeeDesignation designation)

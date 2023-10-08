@@ -1,9 +1,11 @@
 using Newtonsoft.Json;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;
 
@@ -13,38 +15,54 @@ public class EmployeeSignupService : IEmployeeSignupService
     private readonly IBaseUserWriteRepository _baseUserWriteRepository;
     private readonly IEmployeeWriteRepository _employeeWriteRepository;
     private readonly IUniversityEmailService _universityEmailService;
+    private readonly IJwtAuthenticationService _jwtAuthenticationService;
+    private readonly IEmployeeDesignationReadRepository _employeeDesignationReadRepository;
 
     public EmployeeSignupService(
         IRegistrationRequestWriteRepository registrationRequestWriteRepository,
         IBaseUserWriteRepository baseUserWriteRepository,
         IEmployeeWriteRepository employeeWriteRepository,
-        IUniversityEmailService universityEmailService)
+        IUniversityEmailService universityEmailService,
+        IJwtAuthenticationService jwtAuthenticationService,
+        IEmployeeDesignationReadRepository employeeDesignationReadRepository)
     {
         _registrationRequestWriteRepository = registrationRequestWriteRepository;
         _baseUserWriteRepository = baseUserWriteRepository;
         _employeeWriteRepository = employeeWriteRepository;
         _universityEmailService = universityEmailService;
+        _jwtAuthenticationService = jwtAuthenticationService;
+        _employeeDesignationReadRepository = employeeDesignationReadRepository;
     }
 
     public async Task ApproveSignupRequest(RegistrationRequest registrationRequest)
     {
         var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(registrationRequest.CommandJson)!;
 
-        var baseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
-        await SaveNewBaseUserAsync(baseUserIdGuid, employeeSignupCommand);
-        await CreateSaveEmployeeAsync(baseUserIdGuid, employeeSignupCommand);
+        var newBaseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
+        var newBaseUser = await SaveGetNewBaseUserAsync(newBaseUserIdGuid, employeeSignupCommand);
+        await CreateSaveEmployeeAsync(newBaseUserIdGuid, employeeSignupCommand);
 
-        await _universityEmailService.SendSignupVerificationAsync(baseUserIdGuid.ToString());
+        var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+
+        var approverDesignation = await _employeeDesignationReadRepository.GetDesignationByUserId(approverTokenUser.BaseUserId);
+        if (approverDesignation == null) throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
+
+        await _universityEmailService.SendSignupVerificationAsync(
+            fromTokenUser: approverTokenUser,
+            toBaseUser: newBaseUser,
+            senderDesignation: approverDesignation.Title);
     }
 
     public async Task SignupAsync(EmployeeSignupCommand command)
     {
+        var tokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+
         var request = new RegistrationRequest
         {
             UserType = UserType.Employee,
             CommandJson = JsonConvert.SerializeObject(command),
-            CreatorUserId = "dummy_creator_user_id",
-            CreatorUserRole = "dummy_creator_user_role",
+            CreatorUserId = tokenUser.BaseUserId,
+            CreatorUserRole = string.Join(",", tokenUser.UserRoles?.ToList() ?? new List<UserRole>()),
             ActionStatus = RegistrationActionStatus.Pending
         };
 
@@ -52,7 +70,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         await _registrationRequestWriteRepository.SaveAsync(request);
     }
 
-    private Task SaveNewBaseUserAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
+    private async Task<BaseUser> SaveGetNewBaseUserAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
     {
         var baseUser = new BaseUser
         {
@@ -71,7 +89,7 @@ public class EmployeeSignupService : IEmployeeSignupService
             AlternatePhone = employeeSignupCommand.AlternatePhone,
             PersonalEmail = employeeSignupCommand.PersonalEmail,
             UniversityEmail = employeeSignupCommand.UniversityEmail,
-            Gender = MapGender(employeeSignupCommand.Gender),
+            Gender = Enum.TryParse<Gender>(employeeSignupCommand.Gender, out var gender) ? gender : Gender.Unspecified,
             AccountStatus = AccountStatus.Deactive,
             UserType = UserType.Employee,
         };
@@ -80,14 +98,9 @@ public class EmployeeSignupService : IEmployeeSignupService
         baseUser.AddRole(UserRole.GeneralEmployee, UserRole.Anonymous);
         baseUser.AddRole(employeeSignupCommand.AdditionalUserRoles);
 
-        return _baseUserWriteRepository.SaveAsync(baseUser);
-    }
+        await _baseUserWriteRepository.SaveAsync(baseUser);
 
-    private static Gender MapGender(string gender)
-    {
-        if (string.Equals(gender, "Male", StringComparison.OrdinalIgnoreCase)) return Gender.Male;
-        else if (string.Equals(gender, "Female", StringComparison.OrdinalIgnoreCase)) return Gender.Female;
-        else return Gender.Other;
+        return baseUser;
     }
 
     private Task CreateSaveEmployeeAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)

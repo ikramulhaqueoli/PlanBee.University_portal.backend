@@ -13,21 +13,26 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
         private readonly IRegistrationRequestReadRepository _registrationRequestReadRepository;
         private readonly IRegistrationRequestWriteRepository _registrationRequestWriteRepository;
         private readonly IEmployeeSignupService _employeeSignupService;
+        private readonly IJwtAuthenticationService _jwtAuthenticationService;
 
 
         public RegistrationActionCommandHandler(
             ILogger<RegistrationActionCommandHandler> logger,
             IRegistrationRequestWriteRepository registrationRequestWriteRepository,
             IEmployeeSignupService employeeSignupService,
-            IRegistrationRequestReadRepository registrationRequestReadRepository) : base(logger)
+            IRegistrationRequestReadRepository registrationRequestReadRepository,
+            IJwtAuthenticationService jwtAuthenticationService) : base(logger)
         {
             _registrationRequestWriteRepository = registrationRequestWriteRepository;
             _employeeSignupService = employeeSignupService;
             _registrationRequestReadRepository = registrationRequestReadRepository;
+            _jwtAuthenticationService = jwtAuthenticationService;
         }
 
         public override async Task<CommandResponse> HandleAsync(RegistrationActionCommand command)
         {
+            var tokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+
             var registrationRequest = await _registrationRequestReadRepository.GetPendingAsync(command.RegistrationRequestId);
             if (registrationRequest == null)
             {
@@ -43,7 +48,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
                     await _registrationRequestWriteRepository.UpdateAsync(registrationRequest);
                 }
 
-                registrationRequest.Approve(command.ActionComment, "dummy_user_id");
+                registrationRequest.Approve(command.ActionComment, tokenUser.BaseUserId);
             }
             else if (command.ActionStatus == RegistrationActionStatus.Pending)
             {

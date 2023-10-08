@@ -3,5 +3,7 @@
     public interface IEmployeeDesignationReadRepository
     {
         public Task<List<EmployeeDesignation>> GetActiveAsync();
+
+        Task<EmployeeDesignation?> GetDesignationByUserId(string baseUserId);
     }
 }

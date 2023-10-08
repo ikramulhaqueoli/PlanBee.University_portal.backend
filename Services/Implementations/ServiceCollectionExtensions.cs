@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Models;
@@ -18,6 +19,8 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<IJwtAuthenticationService, JwtAuthenticationService>();
         services.ConfigureAuthentication(appConfig);
+
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
     }
 
     private static void ConfigureAuthentication(
