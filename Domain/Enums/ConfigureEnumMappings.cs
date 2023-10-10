@@ -9,15 +9,16 @@ namespace PlanBee.University_portal.backend.Domain.Enums
     {
         public static void ConfigureEnumMappings(this SwaggerGenOptions options)
         {
-            options.MapType<UserRole>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<RegistrationActionStatus>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<AccountStatus>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<DesignationType>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<Gender>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<UserType>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<UserVerificationMedia>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<UserVerificationType>(() => new OpenApiSchema { Type = "string" });
-            options.MapType<WorkplaceType>(() => new OpenApiSchema { Type = "string" });
+            var schema = new OpenApiSchema { Type = "string" };
+            options.MapType<UserRole>(() => schema);
+            options.MapType<RegistrationActionStatus>(() => schema);
+            options.MapType<AccountStatus>(() => schema);
+            options.MapType<DesignationType>(() => schema);
+            options.MapType<Gender>(() => schema);
+            options.MapType<UserType>(() => schema);
+            options.MapType<UserVerificationMedia>(() => schema);
+            options.MapType<UserVerificationType>(() => schema);
+            options.MapType<WorkplaceType>(() => schema);
         }
     }
 }
