@@ -1,3 +1,5 @@
+using PlanBee.University_portal.backend.Domain.Enums;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Handlers;
 using PlanBee.University_portal.backend.Infrastructure;
@@ -13,9 +15,13 @@ builder.Services.AddRepositories(appConfig);
 builder.Services.AddInsfrastructure();
 builder.Services.AddServices(appConfig);
 builder.Services.AddHandlers();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new EnumToStringArrayConverter<UserRole>());
+    });
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => options.ConfigureEnumMappings());
 
 builder.Services.AddCors(options =>
 {

@@ -6,7 +6,7 @@ namespace PlanBee.University_portal.backend.Domain.Commands
     {
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
-        public string SurName { get; set; } = null!;
+        public string? SurName { get; set; }
         public string FatherName { get; set; } = null!;
         public string MotherName { get; set; } = null!;
         public string MobilePhone { get; set; } = null!;
@@ -16,7 +16,7 @@ namespace PlanBee.University_portal.backend.Domain.Commands
         public string? AlternatePhone { get; set; }
         public string PersonalEmail { get; set; } = null!;
         public string Gender { get; set; } = null!;
-        public UserRole[]? AdditionalUserRoles { get; set; } = null!;
+        public UserRole[]? AdditionalUserRoles { get; set; }
         public string UniversityId { get; set; } = null!;
     }
 }

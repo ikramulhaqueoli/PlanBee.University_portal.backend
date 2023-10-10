@@ -1,4 +1,6 @@
-﻿using PlanBee.University_portal.backend.Domain.Enums.Business;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 using System.Text.Json.Serialization;
 
 namespace PlanBee.University_portal.backend.Domain.Models
@@ -21,8 +23,8 @@ namespace PlanBee.University_portal.backend.Domain.Models
         
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Gender Gender { get; set; }
-        
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+
+        [JsonConverter(typeof(EnumToStringArrayConverter<UserRole>))]
         public UserRole[]? UserRoles { get; set; }
         
         public string? AlternatePhone { get; set; }

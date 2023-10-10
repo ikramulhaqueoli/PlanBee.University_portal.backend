@@ -33,9 +33,9 @@ public class BaseUser : EntityBase
     public Gender Gender { get; set; }
     
     public string? PasswordHash { get; set; }
-    
+
     [BsonRepresentation(BsonType.String)]
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonConverter(typeof(EnumToStringArrayConverter<UserRole>))]
     public UserRole[]? UserRoles { get; set; }
     
     public string PermanentAddress { get; set; } = null!;
