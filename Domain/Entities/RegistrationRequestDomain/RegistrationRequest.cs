@@ -34,6 +34,18 @@ public class RegistrationRequest : EntityBase
         ActionStatus = RegistrationActionStatus.Approved;
     }
 
+    public void KeepPending(string actionComment, string reviewerUserId)
+    {
+        AddReviewLog(actionComment, reviewerUserId);
+        ActionStatus = RegistrationActionStatus.Pending;
+    }
+
+    public void Reject(string actionComment, string reviewerUserId)
+    {
+        AddReviewLog(actionComment, reviewerUserId);
+        ActionStatus = RegistrationActionStatus.Rejected;
+    }
+
     private void AddReviewLog(string actionComment, string reviewerUserId)
     {
         var reviewLog = new ReviewLog

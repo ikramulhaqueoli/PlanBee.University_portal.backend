@@ -31,7 +31,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
                 {
                     AcademicWorkplaces = workplaces.Where(workplace => workplace.WorkplaceType == Domain.Enums.Business.WorkplaceType.Academic),
                     NonAcademicWorkplaces = workplaces.Where(workplace => workplace.WorkplaceType == Domain.Enums.Business.WorkplaceType.NonAcademic),
-                    AcademicDesignations = designations.Where(workplace => workplace.DesignationType == Domain.Enums.Business.DesignationType.NonAcademic),
+                    AcademicDesignations = designations.Where(workplace => workplace.DesignationType == Domain.Enums.Business.DesignationType.Academic),
                     NonAcademicDesignations = designations.Where(workplace => workplace.DesignationType == Domain.Enums.Business.DesignationType.NonAcademic),
                 }
             };

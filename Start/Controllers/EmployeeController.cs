@@ -43,7 +43,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpPost("AddDesignation")]
-    public async Task<IActionResult> Create([FromBody] CreateDesignationCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateEmployeeDesignationCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 

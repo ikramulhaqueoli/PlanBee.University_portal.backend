@@ -21,7 +21,7 @@ public class CreateWorkplaceCommandHandler : AbstractCommandHandler<CreateWorkpl
     {
         var workplace = new Workplace
         {
-            WorkplaceId = command.WorkplaceId,
+            WorkplaceAcronym = command.WorkplaceAcronym,
             WorkplaceTitle = command.WorkplaceTitle,
             WorkplaceType = command.WorkplaceType
         };

@@ -41,28 +41,29 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
 
             if (command.ActionStatus == RegistrationActionStatus.Approved)
             {
-                if (registrationRequest.UserType == UserType.Employee)
-                {
-                    await _employeeSignupService.ApproveSignupRequest(registrationRequest);
-                    registrationRequest.ActionStatus = RegistrationActionStatus.Approved;
-                    await _registrationRequestWriteRepository.UpdateAsync(registrationRequest);
-                }
-
+                await ApproveRequestAsync(registrationRequest);
                 registrationRequest.Approve(command.ActionComment, tokenUser.BaseUserId);
             }
             else if (command.ActionStatus == RegistrationActionStatus.Pending)
             {
-
+                registrationRequest.KeepPending(command.ActionComment, tokenUser.BaseUserId);
             }
-
             else if (command.ActionStatus == RegistrationActionStatus.Rejected)
             {
-
+                registrationRequest.Reject(command.ActionComment, tokenUser.BaseUserId);
             }
 
             await _registrationRequestWriteRepository.UpdateAsync(registrationRequest);
 
             return new CommandResponse();
+        }
+
+        private async Task ApproveRequestAsync(RegistrationRequest registrationRequest)
+        {
+            if (registrationRequest.UserType == UserType.Employee)
+            {
+                await _employeeSignupService.ApproveSignupRequest(registrationRequest);
+            }
         }
     }
 }

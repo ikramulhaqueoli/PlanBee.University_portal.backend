@@ -13,5 +13,5 @@ public class CreateWorkplaceCommand : AbstractCommand
 
     public string WorkplaceTitle { get; set; } = null!;
 
-    public string WorkplaceId { get; set; } = null!;
+    public string WorkplaceAcronym { get; set; } = null!;
 }
