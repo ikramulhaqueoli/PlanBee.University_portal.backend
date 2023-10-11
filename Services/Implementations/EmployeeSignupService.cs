@@ -52,7 +52,7 @@ public class EmployeeSignupService : IEmployeeSignupService
 
         var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
 
-        var approverDesignation = await _employeeDesignationReadRepository.GetDesignationByUserId(approverTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
+        var approverDesignation = await _employeeDesignationReadRepository.GetDesignationByUserIdAsync(approverTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
         
         await _universityEmailService.SendSignupVerificationAsync(
             fromTokenUser: approverTokenUser,
@@ -63,7 +63,10 @@ public class EmployeeSignupService : IEmployeeSignupService
     public async Task SignupAsync(EmployeeSignupCommand command)
     {
         var creatorTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
-        var creatorDesignation = await _employeeDesignationReadRepository.GetDesignationByUserId(creatorTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {creatorTokenUser.BaseUserId} not found in the database.");
+        var creatorDesignation = await _employeeDesignationReadRepository.GetDesignationByUserIdAsync(creatorTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {creatorTokenUser.BaseUserId} not found in the database.");
+        var newEmployeeDesignation = await _employeeDesignationReadRepository.GetAsync(command.DesignationId) ?? throw new ItemNotFoundException($"EmployeeDesignation with Id {command.DesignationId} not found in the database.");
+        command.DesignationTitle ??= newEmployeeDesignation.Title;
+        command.DesignationType ??= newEmployeeDesignation.DesignationType;
 
         var request = new RegistrationRequest
         {

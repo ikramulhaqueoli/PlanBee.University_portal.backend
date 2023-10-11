@@ -12,12 +12,15 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
     public class GetEmployeesQueryHandler : AbstractQueryHandler<GetEmployeesQuery>
     {
         private readonly IMongoReadRepository _mongoReadRepository;
+        private readonly IEmployeeDesignationReadRepository _employeeDesignationReadRepository;
 
         public GetEmployeesQueryHandler(
             ILogger<GetAuthTokenQueryHandler> logger,
-            IMongoReadRepository mongoReadRepository) : base(logger)
+            IMongoReadRepository mongoReadRepository,
+            IEmployeeDesignationReadRepository employeeDesignationReadRepository) : base(logger)
         {
             _mongoReadRepository = mongoReadRepository;
+            _employeeDesignationReadRepository = employeeDesignationReadRepository;
         }
 
         public override async Task<QueryResponse> HandleAsync(GetEmployeesQuery query)
@@ -38,13 +41,19 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
             var employees = await _mongoReadRepository.GetAsync(employeeFilter);
             var baseUsers = await _mongoReadRepository.GetAsync(userFilter);
 
+            var designationIds = employees.Select(employee => employee.DesignationId).ToList();
+            var designations = await _employeeDesignationReadRepository.GetManyAsync(designationIds);
+
             var queryResponse = new QueryResponse
             {
                 QueryData = employees.Select(employee =>
                 new
                 {
                     Employee = employee,
-                    User = baseUsers.FirstOrDefault(user => user.ItemId == employee.BaseUserId)
+                    User = baseUsers.FirstOrDefault(
+                        user => user.ItemId == employee.BaseUserId),
+                    Designation = designations.FirstOrDefault(
+                        designation => designation.ItemId == employee.DesignationId)
                 })
             };
 

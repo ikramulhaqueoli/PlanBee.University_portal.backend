@@ -20,15 +20,8 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
 
         public override async Task<QueryResponse> HandleAsync(GetEmployeeDesignationsQuery query)
         {
-            var filter = Builders<EmployeeDesignation>.Filter.Empty;
-            if (query.SpecificDesignationIds?.Any() == true)
-            {
-                filter &= Builders<EmployeeDesignation>.Filter.In(
-                    nameof(EmployeeDesignation.ItemId),
-                    query.SpecificDesignationIds);
-            }
-
-            var results = await _employeeDesignationReadRepository.GetActivesAsync(filter);
+            var results = await _employeeDesignationReadRepository
+                .GetManyAsync(query.SpecificDesignationIds?.ToList());
             return new QueryResponse
             {
                 QueryData = results

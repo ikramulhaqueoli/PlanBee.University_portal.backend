@@ -22,22 +22,33 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             _employeeReadRepository = employeeReadRepository;
         }
 
-        public Task<EmployeeDesignation?> Get(string itemId)
+        public Task<EmployeeDesignation?> GetAsync(string itemId)
         {
             var filter = Builders<EmployeeDesignation>.Filter.Eq(nameof(EmployeeDesignation.ItemId), itemId);
             return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
-        public Task<List<EmployeeDesignation>> GetActivesAsync(FilterDefinition<EmployeeDesignation>? customeFilter)
+        public Task<List<EmployeeDesignation>> GetManyAsync(
+            List<string> specificItemIds = null,
+            bool activeOnly = false)
         {
-            var filter = Builders<EmployeeDesignation>.Filter
-                .Eq(nameof(EmployeeDesignation.IsActive), true);
+            var filter = Builders<EmployeeDesignation>.Filter.Empty;
+            if (activeOnly)
+            {
+                filter &= Builders<EmployeeDesignation>.Filter
+                    .Eq(nameof(EmployeeDesignation.IsActive), true);
+            }
+            
+            if (specificItemIds?.Any() == true)
+            {
+                filter &= Builders<EmployeeDesignation>.Filter
+                    .In(nameof(EmployeeDesignation.ItemId), specificItemIds);
+            }
 
-            if (customeFilter != null) filter &= customeFilter;
             return _mongoReadRepository.GetAsync(filter);
         }
 
-        public async Task<EmployeeDesignation?> GetDesignationByUserId(string baseUserId)
+        public async Task<EmployeeDesignation?> GetDesignationByUserIdAsync(string baseUserId)
         {
             var employee = await _employeeReadRepository.GetByUserIdAsync(baseUserId);
             if (employee == null) return null;
