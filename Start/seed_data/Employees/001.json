@@ -4,8 +4,8 @@
   "CreatedOn": "2023-09-30T20:38:35.381+0000",
   "LastModifiedOn": "0001-01-01T00:00:00.000+0000",
   "JoiningDate": "2023-09-30T20:37:36.321+0000",
-  "WorkplaceId": "string",
-  "DesignationId": "string",
+  "WorkplaceId": "aa70a8fe-c201-405d-8e6b-d757386e568f",
+  "DesignationId": "f4f34f3f-e8a7-4427-9161-ab2bcf2e0853",
   "BaseUserId": "82465e35-94e3-4be7-81a4-47a675062f48",
   "EducationalQualifications": [
     {
@@ -18,7 +18,7 @@
   ],
   "WorkExperiences": [
     {
-      "InstituteName": "string",
+      "InstituteName": "Softbee Corporation",
       "StartDate": "2023-09-30T20:37:36.321+0000",
       "EndDate": "2023-09-30T20:37:36.321+0000"
     }

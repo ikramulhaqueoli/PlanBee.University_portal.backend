@@ -23,7 +23,9 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
             var filter = Builders<EmployeeDesignation>.Filter.Empty;
             if (query.SpecificDesignationIds?.Any() == true)
             {
-                filter &= Builders<EmployeeDesignation>.Filter.Where(designation => query.SpecificDesignationIds.Contains(designation.ItemId));
+                filter &= filter &= Builders<EmployeeDesignation>.Filter.In(
+                    nameof(EmployeeDesignation.ItemId),
+                    query.SpecificDesignationIds);
             }
 
             var results = await _employeeDesignationReadRepository.GetActivesAsync(filter);

@@ -1,7 +1,7 @@
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Responses;
 
-namespace PlanBee.University_portal.backend.Handlers.Implementations.Validators;
+namespace PlanBee.University_portal.backend.Handlers.Implementations.Validators.CommandValidators;
 
 public class EmployeeSignupCommandValidator : BaseCommandValidator<EmployeeSignupCommand>
 {

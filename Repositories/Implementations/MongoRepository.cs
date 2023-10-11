@@ -28,6 +28,15 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             return results.ToList();
         }
 
+        public Task<long> GetCountAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
+        {
+            var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), false);
+            var finalFilter = excludeMarkedAsDeleted
+                ? filter & filterExcludeMarkedAsDeleted
+                : filter;
+            return _mongoDbCollectionProvider.getCollection<T>().CountDocumentsAsync(finalFilter);
+        }
+
         public async Task<T?> GetFirstOrDefaultAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
         {
             var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), false);

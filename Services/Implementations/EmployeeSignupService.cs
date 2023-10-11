@@ -17,6 +17,7 @@ public class EmployeeSignupService : IEmployeeSignupService
     private readonly IUniversityEmailService _universityEmailService;
     private readonly IJwtAuthenticationService _jwtAuthenticationService;
     private readonly IEmployeeDesignationReadRepository _employeeDesignationReadRepository;
+    private readonly IBaseUserReadRepository _baseUserReadRepository;
 
     public EmployeeSignupService(
         IRegistrationRequestWriteRepository registrationRequestWriteRepository,
@@ -24,7 +25,8 @@ public class EmployeeSignupService : IEmployeeSignupService
         IEmployeeWriteRepository employeeWriteRepository,
         IUniversityEmailService universityEmailService,
         IJwtAuthenticationService jwtAuthenticationService,
-        IEmployeeDesignationReadRepository employeeDesignationReadRepository)
+        IEmployeeDesignationReadRepository employeeDesignationReadRepository,
+        IBaseUserReadRepository baseUserReadRepository)
     {
         _registrationRequestWriteRepository = registrationRequestWriteRepository;
         _baseUserWriteRepository = baseUserWriteRepository;
@@ -32,6 +34,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         _universityEmailService = universityEmailService;
         _jwtAuthenticationService = jwtAuthenticationService;
         _employeeDesignationReadRepository = employeeDesignationReadRepository;
+        _baseUserReadRepository = baseUserReadRepository;
     }
 
     public async Task ApproveSignupRequest(RegistrationRequest registrationRequest)
@@ -39,6 +42,11 @@ public class EmployeeSignupService : IEmployeeSignupService
         var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(registrationRequest.CommandJson)!;
 
         var newBaseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
+        if (await _baseUserReadRepository.UserExistsAsync(newBaseUserIdGuid))
+        {
+            throw new InvalidOperationException($"BaseUser with ID: {newBaseUserIdGuid} already exists in the database.");
+        }
+
         var newBaseUser = await SaveGetNewBaseUserAsync(newBaseUserIdGuid, employeeSignupCommand);
         await CreateSaveEmployeeAsync(newBaseUserIdGuid, employeeSignupCommand);
 

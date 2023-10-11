@@ -1,0 +1,10 @@
+{
+  "_id": "aa70a8fe-c201-405d-8e6b-d757386e568f",
+  "IsActive": true,
+  "IsMarkedAsDeleted": false,
+  "CreatedOn": "2023-10-10T18:07:16.521+0000",
+  "LastModifiedOn": "0001-01-01T00:00:00.000+0000",
+  "WorkplaceType": "NonAcademic",
+  "WorkplaceTitle": "Academic Section",
+  "WorkplaceAcronym": "AS"
+}

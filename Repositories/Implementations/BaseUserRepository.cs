@@ -43,4 +43,11 @@ public class BaseUserRepository :
     {
         return _mongoWriteRepository.UpdateAsync(user);
     }
+
+    public async Task<bool> UserExistsAsync(Guid baseUserId)
+    {
+        var filter = Builders<BaseUser>.Filter.Eq(nameof(BaseUser.ItemId), baseUserId);
+        var count = await _mongoReadRepository.GetCountAsync(filter);
+        return count > 0;
+    }
 }
