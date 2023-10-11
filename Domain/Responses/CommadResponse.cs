@@ -13,8 +13,8 @@ public class CommandResponse : AbstractResponse
         ? HttpStatusCode.OK
         : HttpStatusCode.BadRequest;
 
-    public void SetCommandError(ResponseErrorType errorType, string message)
+    public void SetCommandError(Exception exception)
     {
-        CommandError = new ResponseError(errorType, message);
+        CommandError = new ResponseError(exception);
     }
 }

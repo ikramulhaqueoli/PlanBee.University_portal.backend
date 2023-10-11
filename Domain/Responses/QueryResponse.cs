@@ -15,8 +15,8 @@ public class QueryResponse : AbstractResponse
         ? HttpStatusCode.OK
         : HttpStatusCode.BadRequest;
 
-    public void SetQueryError(ResponseErrorType errorType, string message)
+    public void SetQueryError(Exception exception)
     {
-        QueryError = new ResponseError(errorType, message);
+        QueryError = new ResponseError(exception);
     }
 }

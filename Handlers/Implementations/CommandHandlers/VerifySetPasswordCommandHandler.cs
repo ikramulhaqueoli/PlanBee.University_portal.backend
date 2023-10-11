@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using PlanBee.University_portal.backend.Domain.Commands;
-using PlanBee.University_portal.backend.Domain.Enums.System;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Responses;
 using PlanBee.University_portal.backend.Services;
 
@@ -22,13 +22,12 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
         {
             var verified = await _userVerificationService.VerifyFromEmailAsync(command.VerificationCode, command.NewPassword);
 
-            var response = new CommandResponse();
             if (verified is false)
             {
-                response.SetCommandError(ResponseErrorType.BusinessException, "Invalid Verification Attempt.");
+                throw new GeneralBusinessException("Invalid Verification Attempt.");
             }
 
-            return response;
+            return new CommandResponse();
         }
     }
 }

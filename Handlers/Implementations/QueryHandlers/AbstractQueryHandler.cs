@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using PlanBee.University_portal.backend.Domain.Enums.System;
 using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Domain.Responses;
@@ -33,9 +32,7 @@ public abstract class AbstractQueryHandler<TQuery> : IQueryHandler<TQuery>
         catch (AbstractBusinessException exception)
         {
             response = new QueryResponse();
-            response.SetQueryError(
-                ResponseErrorType.BusinessException,
-                $"Business Error: {exception.Message}");
+            response.SetQueryError(exception);
 
             _logger.LogError(
                 exception,
@@ -46,9 +43,7 @@ public abstract class AbstractQueryHandler<TQuery> : IQueryHandler<TQuery>
         catch (Exception exception)
         {
             response = new QueryResponse();
-            response.SetQueryError(
-                ResponseErrorType.SystemException,
-                "Something went wrong. Unhandled exception thrown.");
+            response.SetQueryError(exception);
 
             _logger.LogError(
                 exception,

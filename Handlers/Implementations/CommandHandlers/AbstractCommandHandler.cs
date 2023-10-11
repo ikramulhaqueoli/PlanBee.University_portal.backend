@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Logging;
 using PlanBee.University_portal.backend.Domain.Commands;
-using PlanBee.University_portal.backend.Domain.Enums.System;
 using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Responses;
 
@@ -33,9 +32,7 @@ public abstract class AbstractCommandHandler<TCommand> : ICommandHandler<TComman
         catch (AbstractBusinessException exception)
         {
             response = new CommandResponse();
-            response.SetCommandError(
-                ResponseErrorType.BusinessException,
-                $"Business Error: {exception.Message}");
+            response.SetCommandError(exception);
 
             _logger.LogError(
                 exception,
@@ -46,9 +43,7 @@ public abstract class AbstractCommandHandler<TCommand> : ICommandHandler<TComman
         catch (Exception exception)
         {
             response = new CommandResponse();
-            response.SetCommandError(
-                ResponseErrorType.SystemException,
-                "Something went wrong. Unhandled exception thrown.");
+            response.SetCommandError(exception);
 
             _logger.LogError(
                 exception,

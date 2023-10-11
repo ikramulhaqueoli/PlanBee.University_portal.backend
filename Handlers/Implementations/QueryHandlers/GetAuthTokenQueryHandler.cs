@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using PlanBee.University_portal.backend.Domain.Enums.System;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Domain.Responses;
 using PlanBee.University_portal.backend.Services;
@@ -24,19 +24,14 @@ public class GetAuthTokenQueryHandler
             query.UniversityId,
             query.Password);
 
-        var response = new QueryResponse();
-        switch (token)
+        var response = new QueryResponse
         {
-            case null:
-                response.SetQueryError(
-                    ResponseErrorType.BusinessException,
-                    "Invalid University ID or Password");
-                break;
-            default:
-                response.QueryData = new { Token = token };
-                break;
-        }
-
+            QueryData = token switch
+            {
+                null => throw new GeneralBusinessException("Invalid University ID or Password"),
+                _ => new { Token = token },
+            }
+        };
         return response;
     }
 }
