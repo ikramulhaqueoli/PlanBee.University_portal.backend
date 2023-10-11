@@ -57,6 +57,7 @@ public class BaseUser : EntityBase
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public UserType UserType { get; set; }
 
+    [BsonIgnore]
     public string DisplayName => $"{FirstName} {LastName}";
 
     public void InitiateUserWithEntityBase(Guid? customUserId = null)
