@@ -6,5 +6,7 @@ namespace PlanBee.University_portal.backend.Handlers;
 public interface IQueryValidator<in TQuery>
     where TQuery : AbstractQuery
 {
-    ValidationResponse Validate(TQuery command);
+    QueryResponse TryValidatePrimary(TQuery query);
+
+    void ValidatePrimary(TQuery query);
 }

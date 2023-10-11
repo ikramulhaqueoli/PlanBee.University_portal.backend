@@ -6,5 +6,7 @@ namespace PlanBee.University_portal.backend.Handlers;
 public interface ICommandValidator<in TCommand>
     where TCommand : AbstractCommand
 {
-    ValidationResponse Validate(TCommand command);
+    CommandResponse TryValidatePrimary(TCommand command);
+
+    void ValidatePrimary(TCommand command);
 }

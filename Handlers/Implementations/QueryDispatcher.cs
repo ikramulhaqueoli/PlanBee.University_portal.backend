@@ -17,9 +17,11 @@ public class QueryDispatcher : IQueryDispatcher
         where TQuery : AbstractQuery
     {
         var validator = _service.GetService<IQueryValidator<TQuery>>();
-        var response = validator!.Validate(query);
-
-        if (response.Success is false) return response;
+        var validationResponse = validator!.TryValidatePrimary(query);
+        if (validationResponse.Success is false)
+        {
+            return validationResponse;
+        }
 
         var handler = _service.GetService<IQueryHandler<TQuery>>();
         return await handler!.TryHandleAsync(query);

@@ -5,6 +5,7 @@ using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers.Implementations;
 using PlanBee.University_portal.backend.Handlers.Implementations.Validators.CommandValidators;
 using PlanBee.University_portal.backend.Handlers.Implementations.Validators.QueryValidators;
+using System.Data;
 
 namespace PlanBee.University_portal.backend.Handlers;
 
@@ -24,7 +25,7 @@ public static class ServiceCollectionExtensions
 
     private static void AddCommandHandlers(this IServiceCollection services)
     {
-        var handlerTypes = typeof(BaseCommandValidator<>).Assembly.GetTypes().Where(type =>
+        var handlerTypes = typeof(AbstractCommandValidator<>).Assembly.GetTypes().Where(type =>
             type.IsAbstract is false &&
             type.Name.EndsWith("CommandHandler")).ToList();
 
@@ -45,7 +46,7 @@ public static class ServiceCollectionExtensions
 
     private static void AddQueryHandlers(this IServiceCollection services)
     {
-        var handlerTypes = typeof(BaseQueryValidator<>).Assembly.GetTypes().Where(type =>
+        var handlerTypes = typeof(AbstractQueryValidator<>).Assembly.GetTypes().Where(type =>
             type.IsAbstract is false &&
             type.Name.EndsWith("QueryHandler")).ToList();
 
@@ -66,7 +67,7 @@ public static class ServiceCollectionExtensions
 
     private static void AddCommandValidators(this IServiceCollection services)
     {
-        var validatorTypes = typeof(BaseCommandValidator<>).Assembly.GetTypes().Where(type =>
+        var validatorTypes = typeof(AbstractCommandValidator<>).Assembly.GetTypes().Where(type =>
             type.IsAbstract is false &&
             type.Name.EndsWith("CommandValidator")).ToList();
 
@@ -77,7 +78,7 @@ public static class ServiceCollectionExtensions
         foreach (var commandType in commandTypes)
         {
             var validator = validatorTypes.FirstOrDefault(type => type.Name.StartsWith(commandType.Name)) ??
-                            typeof(BaseCommandValidator<>).MakeGenericType(commandType);
+                            typeof(CommonCommandValidator<>).MakeGenericType(commandType);
 
             services.AddSingleton(
                 typeof(ICommandValidator<>).MakeGenericType(commandType),
@@ -87,7 +88,7 @@ public static class ServiceCollectionExtensions
 
     private static void AddQueryValidators(this IServiceCollection services)
     {
-        var validatorTypes = typeof(BaseQueryValidator<>).Assembly.GetTypes().Where(type =>
+        var validatorTypes = typeof(AbstractQueryValidator<>).Assembly.GetTypes().Where(type =>
             type.IsAbstract is false &&
             type.Name.EndsWith("QueryValidator")).ToList();
 
@@ -98,7 +99,7 @@ public static class ServiceCollectionExtensions
         foreach (var queryType in queryTypes)
         {
             var validator = validatorTypes.FirstOrDefault(type => type.Name.StartsWith(queryType.Name)) ??
-                            typeof(BaseQueryValidator<>).MakeGenericType(queryType);
+                            typeof(CommonQueryValidator<>).MakeGenericType(queryType);
 
             services.AddSingleton(
                 typeof(IQueryValidator<>).MakeGenericType(queryType),
