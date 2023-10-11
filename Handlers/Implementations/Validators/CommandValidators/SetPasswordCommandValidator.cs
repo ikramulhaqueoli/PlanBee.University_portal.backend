@@ -16,7 +16,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.Validators.
 
             if (Regex.IsMatch(command.NewPassword, BusinessConstants.STRONG_PASSWORD_REGEX) is false)
             {
-                throw new InvalidRequestArgumentException("Password must consist of 12 characters and contain atleast one capital, small, numeric.");
+                throw new InvalidRequestArgumentException("Password must consist of 10 characters and contain atleast one capital, small, numeric.");
             }
 
             if (command.NewPassword != command.ConfirmPassword)

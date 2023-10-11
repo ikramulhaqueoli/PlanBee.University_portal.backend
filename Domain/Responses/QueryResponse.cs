@@ -1,5 +1,4 @@
 using System.Net;
-using PlanBee.University_portal.backend.Domain.Enums.System;
 
 namespace PlanBee.University_portal.backend.Domain.Responses;
 
@@ -15,8 +14,9 @@ public class QueryResponse : AbstractResponse
         ? HttpStatusCode.OK
         : HttpStatusCode.BadRequest;
 
-    public void SetQueryError(Exception exception)
+    public void SetQueryError<TException>(TException exception)
+        where TException : Exception
     {
-        QueryError = new ResponseError(exception);
+        QueryError = ResponseError.GetError(exception);
     }
 }

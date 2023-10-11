@@ -7,23 +7,25 @@ public class ResponseError
 {
     private const string UNHANDLED_EXCEPTION_MESSAGE = "Something went wrong. Unhandled exception thrown.";
 
-    public ResponseError(AbstractException exception)
+    public static ResponseError GetError<TException>(TException exception) where TException : Exception
     {
-        ErrorType = exception.ErrorType.ToString();
-        ErrorName = exception.GetType().Name;
-        Message = exception.Message;
+        return exception is AbstractException
+            ? new ResponseError
+            {
+                ErrorType = (exception as AbstractException)!.ErrorType.ToString(),
+                ErrorName = exception.GetType().Name,
+                Message = exception.Message
+            }
+            : new ResponseError
+            {
+                ErrorType = ResponseErrorType.UnhandledException.ToString(),
+                Message = UNHANDLED_EXCEPTION_MESSAGE
+            };
     }
 
-    public ResponseError(Exception exception)
-    {
-        ErrorType = ResponseErrorType.UnhandledException.ToString();
-        ErrorName = exception.GetType().Name;
-        Message = UNHANDLED_EXCEPTION_MESSAGE;
-    }
+    public string ErrorType { get; private set; } = null!;
 
-    public string ErrorType { get; }
+    public string? ErrorName { get; private set; }
 
-    public string ErrorName { get; }
-
-    public string Message { get; }
+    public string Message { get; private set; } = null!;
 }
