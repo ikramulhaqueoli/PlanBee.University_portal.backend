@@ -65,7 +65,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             var body = template.Body;
 
             var success = await _emailSender.SendEmailAsync(
-                toBaseUser.DisplayName,
+                toBaseUser.GetDisplayName(),
                 toBaseUser.PersonalEmail,
                 subject,
                 body);
@@ -98,7 +98,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
             return new()
             {
-                {"receiverDisplayName", toBaseUser.DisplayName},
+                {"receiverDisplayName", toBaseUser.GetDisplayName()},
                 {"verificationLink", verificationLink},
                 {"universityHelpEmail", AppConfigUtil.Config.Institute.HelpEmail},
                 {"universityHelpPhone", AppConfigUtil.Config.Institute.HelpPhone},

@@ -79,7 +79,7 @@ namespace PlanBee.University_portal.backend.Domain.Utils
                 new(nameof(AuthTokenUser.BaseUserId), baseUser.ItemId),
                 new(nameof(AuthTokenUser.FirstName), baseUser.FirstName),
                 new(nameof(AuthTokenUser.LastName), baseUser.LastName),
-                new(nameof(AuthTokenUser.DisplayName), baseUser.DisplayName),
+                new(nameof(AuthTokenUser.DisplayName), baseUser.GetDisplayName()),
                 new(nameof(AuthTokenUser.MobilePhone), baseUser.MobilePhone),
                 new(nameof(AuthTokenUser.UniversityId), baseUser.UniversityId),
                 new(nameof(AuthTokenUser.SurName), baseUser.SurName ?? string.Empty),
