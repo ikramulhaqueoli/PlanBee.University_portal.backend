@@ -20,7 +20,7 @@ public class UserVerificationController : ControllerBase
     }
 
     [HttpGet(template: "CodeValidity")]
-    public async Task<IActionResult> All([FromQuery] VerificationCodeValidityQuery query)
+    public async Task<IActionResult> AllAsync([FromQuery] VerificationCodeValidityQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 
@@ -29,8 +29,8 @@ public class UserVerificationController : ControllerBase
             : BadRequest(response);
     }
 
-    [HttpPost(template: "VerifySetPassword")]
-    public async Task<IActionResult> SetPasswordOnVerified([FromBody] VerifySetPasswordCommand command)
+    [HttpPost(template: "SetPassword")]
+    public async Task<IActionResult> SetPasswordOnVerifiedAsync([FromBody] SetPasswordCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 

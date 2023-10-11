@@ -6,19 +6,19 @@ using PlanBee.University_portal.backend.Services;
 
 namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHandlers
 {
-    public class VerifySetPasswordCommandHandler : AbstractCommandHandler<VerifySetPasswordCommand>
+    public class SetPasswordCommandHandler : AbstractCommandHandler<SetPasswordCommand>
     {
         private readonly IUserVerificationService _userVerificationService;
 
-        public VerifySetPasswordCommandHandler(
-            ILogger<VerifySetPasswordCommandHandler> logger, 
+        public SetPasswordCommandHandler(
+            ILogger<SetPasswordCommandHandler> logger, 
             IUserVerificationService userVerificationService) 
             : base(logger)
         {
             _userVerificationService = userVerificationService;
         }
 
-        public override async Task<CommandResponse> HandleAsync(VerifySetPasswordCommand command)
+        public override async Task<CommandResponse> HandleAsync(SetPasswordCommand command)
         {
             var verified = await _userVerificationService.VerifyFromEmailAsync(command.VerificationCode, command.NewPassword);
 

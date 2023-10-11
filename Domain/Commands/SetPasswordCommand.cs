@@ -1,6 +1,6 @@
 ﻿namespace PlanBee.University_portal.backend.Domain.Commands
 {
-    public class VerifySetPasswordCommand : AbstractCommand
+    public class SetPasswordCommand : AbstractCommand
     {
         public string VerificationCode { get; set; } = null!;
 
