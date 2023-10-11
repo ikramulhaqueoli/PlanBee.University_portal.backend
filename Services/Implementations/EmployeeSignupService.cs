@@ -44,7 +44,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         var newBaseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
         if (await _baseUserReadRepository.UserExistsAsync(newBaseUserIdGuid))
         {
-            throw new InvalidOperationException($"BaseUser with ID: {newBaseUserIdGuid} already exists in the database.");
+            throw new ItemAlreadyExistsException($"BaseUser with ID: {newBaseUserIdGuid} already exists in the database.");
         }
 
         var newBaseUser = await SaveGetNewBaseUserAsync(newBaseUserIdGuid, employeeSignupCommand);

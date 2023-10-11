@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Models;
 using PlanBee.University_portal.backend.Domain.Utils;
 using PlanBee.University_portal.backend.Services.Models;
@@ -48,11 +49,8 @@ public class JwtAuthenticationService : IJwtAuthenticationService
     {
         var tokenStr = _httpContextAccessor.HttpContext?.Request.Headers.GetAuthTokenString();
         var tokenUser = AuthorizationUtils.ToAuthTokenUser(tokenStr);
-        if (tokenUser == null)
-        {
-            throw new InvalidOperationException("No valid user found from the Authorization token.");
-        }
-
-        return tokenUser;
+        return tokenUser == null 
+            ? throw new ItemAlreadyExistsException("No valid user found from the Authorization token.")
+            : tokenUser;
     }
 }
