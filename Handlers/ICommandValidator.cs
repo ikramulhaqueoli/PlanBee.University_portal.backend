@@ -9,4 +9,8 @@ public interface ICommandValidator<in TCommand>
     CommandResponse TryValidatePrimary(TCommand command);
 
     void ValidatePrimary(TCommand command);
+
+    Task<CommandResponse> TryValidateBusinessAsync(TCommand command);
+
+    Task ValidateBusinessAsync(TCommand command);
 }

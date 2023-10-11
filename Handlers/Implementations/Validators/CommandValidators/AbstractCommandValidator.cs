@@ -7,6 +7,27 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.Validators.
 public abstract class AbstractCommandValidator<TCommand>
     : ICommandValidator<TCommand> where TCommand : AbstractCommand
 {
+    public async Task<CommandResponse> TryValidateBusinessAsync(TCommand command)
+    {
+        CommandResponse response = new();
+
+        try
+        {
+            await ValidateBusinessAsync(command);
+            return response;
+        }
+        catch (InvalidRequestArgumentException exception)
+        {
+            response.SetCommandError(exception);
+        }
+        catch (Exception exception)
+        {
+            response.SetCommandError(exception);
+        }
+
+        return response;
+    }
+
     public CommandResponse TryValidatePrimary(TCommand command)
     {
         CommandResponse response = new();
@@ -32,6 +53,8 @@ public abstract class AbstractCommandValidator<TCommand>
 
         return response;
     }
+
+    public virtual Task ValidateBusinessAsync(TCommand command) { return Task.CompletedTask; }
 
     public abstract void ValidatePrimary(TCommand command);
 }

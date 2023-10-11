@@ -17,10 +17,16 @@ public class CommandDispatcher : ICommandDispatcher
         where TCommand : AbstractCommand
     {
         var validator = _service.GetService<ICommandValidator<TCommand>>();
-        var validationResponse = validator!.TryValidatePrimary(command);
-        if (validationResponse.Success is false)
+        var primaryValidationResponse = validator!.TryValidatePrimary(command);
+        if (primaryValidationResponse.Success is false)
         {
-            return validationResponse;
+            return primaryValidationResponse;
+        }
+
+        var businessValidationResponse = await validator!.TryValidateBusinessAsync(command);
+        if (businessValidationResponse.Success is false)
+        {
+            return businessValidationResponse;
         }
 
         var handler = _service.GetService<ICommandHandler<TCommand>>();

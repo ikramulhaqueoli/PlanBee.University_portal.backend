@@ -9,15 +9,18 @@ namespace PlanBee.University_portal.backend.Services.Implementations
         private readonly IUserVerificationReadRepository _userVerificationReadRepository;
         private readonly IBaseUserReadRepository _baseUserReadRepository;
         private readonly IBaseUserWriteRepository _baseUserWriteRepository;
+        private readonly IUserVerificationWriteRepository _userVerificationWriteRepository;
 
         public UserVerificationService(
             IUserVerificationReadRepository userVerificationReadRepository,
             IBaseUserReadRepository baseUserReadRepository,
-            IBaseUserWriteRepository baseUserWriteRepository)
+            IBaseUserWriteRepository baseUserWriteRepository,
+            IUserVerificationWriteRepository userVerificationWriteRepository)
         {
             _userVerificationReadRepository = userVerificationReadRepository;
             _baseUserReadRepository = baseUserReadRepository;
             _baseUserWriteRepository = baseUserWriteRepository;
+            _userVerificationWriteRepository = userVerificationWriteRepository;
         }
 
         public async Task<bool> VerifyFromEmailAsync(string verificationCode, string password)
@@ -38,6 +41,10 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             }
 
             await _baseUserWriteRepository.UpdateAsync(baseUser);
+
+            await _userVerificationWriteRepository.DeleteAllAsync(
+                verification.BaseUserId,
+                verification.VerificationType);
 
             return true;
         }

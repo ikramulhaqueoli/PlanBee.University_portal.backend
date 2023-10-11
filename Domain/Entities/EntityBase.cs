@@ -21,9 +21,9 @@ public abstract class EntityBase
     [JsonIgnore]
     public DateTime LastModifiedOn { get; set; }
 
-    public void InitiateEntityBase(Guid? customItemId = null)
+    public void InitiateEntityBase(string? customItemId = null)
     {
-        ItemId = (customItemId ?? Guid.NewGuid()).ToString();
+        ItemId = customItemId ?? Guid.NewGuid().ToString();
         CreatedOn = DateTime.UtcNow;
         IsActive = true;
     }

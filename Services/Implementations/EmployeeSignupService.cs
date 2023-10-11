@@ -41,14 +41,8 @@ public class EmployeeSignupService : IEmployeeSignupService
     {
         var employeeSignupCommand = JsonConvert.DeserializeObject<EmployeeSignupCommand>(registrationRequest.CommandJson)!;
 
-        var newBaseUserIdGuid = Guid.Parse(registrationRequest.ItemId);
-        if (await _baseUserReadRepository.UserExistsAsync(newBaseUserIdGuid))
-        {
-            throw new ItemAlreadyExistsException($"BaseUser with ID: {newBaseUserIdGuid} already exists in the database.");
-        }
-
-        var newBaseUser = await SaveGetNewBaseUserAsync(newBaseUserIdGuid, employeeSignupCommand);
-        await CreateSaveEmployeeAsync(newBaseUserIdGuid, employeeSignupCommand);
+        var newBaseUser = await SaveGetNewBaseUserAsync(employeeSignupCommand);
+        await CreateSaveEmployeeAsync(newBaseUser.ItemId, employeeSignupCommand);
 
         var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
 
@@ -82,7 +76,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         await _registrationRequestWriteRepository.SaveAsync(request);
     }
 
-    private async Task<BaseUser> SaveGetNewBaseUserAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
+    private async Task<BaseUser> SaveGetNewBaseUserAsync(EmployeeSignupCommand employeeSignupCommand)
     {
         var baseUser = new BaseUser
         {
@@ -106,7 +100,7 @@ public class EmployeeSignupService : IEmployeeSignupService
             UserType = UserType.Employee,
         };
 
-        baseUser.InitiateUserWithEntityBase(baseUserIdGuid);
+        baseUser.InitiateUserWithEntityBase();
         baseUser.AddRole(UserRole.GeneralEmployee, UserRole.Anonymous);
         baseUser.AddRole(employeeSignupCommand.AdditionalUserRoles);
 
@@ -115,14 +109,14 @@ public class EmployeeSignupService : IEmployeeSignupService
         return baseUser;
     }
 
-    private Task CreateSaveEmployeeAsync(Guid baseUserIdGuid, EmployeeSignupCommand employeeSignupCommand)
+    private Task CreateSaveEmployeeAsync(string baseUserId, EmployeeSignupCommand employeeSignupCommand)
     {
         var employee = new Employee
         {
             JoiningDate = employeeSignupCommand.JoiningDate,
             WorkplaceId = employeeSignupCommand.WorkplaceId,
             DesignationId = employeeSignupCommand.DesignationId,
-            BaseUserId = baseUserIdGuid.ToString(),
+            BaseUserId = baseUserId,
             EducationalQualifications = employeeSignupCommand.EducationalQualifications,
             WorkExperiences = employeeSignupCommand.WorkExperiences
         };

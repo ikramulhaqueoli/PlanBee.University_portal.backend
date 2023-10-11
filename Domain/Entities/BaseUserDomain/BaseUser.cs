@@ -59,7 +59,7 @@ public class BaseUser : EntityBase
 
     public string GetDisplayName() => $"{FirstName} {LastName}";
 
-    public void InitiateUserWithEntityBase(Guid? customUserId = null)
+    public void InitiateUserWithEntityBase(string? customUserId = null)
     {
         InitiateEntityBase(customUserId);
         UserRoles ??= new[] { UserRole.Anonymous };
