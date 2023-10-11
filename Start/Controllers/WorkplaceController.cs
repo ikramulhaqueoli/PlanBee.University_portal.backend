@@ -33,8 +33,8 @@ public class WorkplaceController : ControllerBase
     }
 
     [SuperAdmin]
-    [HttpGet("AllActives")]
-    public async Task<IActionResult> GetAllActive([FromQuery] GetSignupFormDataQuery query)
+    [HttpGet("Get")]
+    public async Task<IActionResult> GetWorkplacesAsync([FromQuery] GetWorkplacesQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

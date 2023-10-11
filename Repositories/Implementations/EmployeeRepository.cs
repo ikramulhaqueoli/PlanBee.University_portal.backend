@@ -14,12 +14,6 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             _mongoWriteRepository = mongoWriteRepository;
         }
 
-        public Task<List<Employee>> GetAllAsync()
-        {
-            var filter = Builders<Employee>.Filter.Empty;
-            return _mongoReadRepository.GetAsync(filter);
-        }
-
         public Task<Employee?> GetAsync(string itemId)
         {
             var filter = Builders<Employee>.Filter.Eq(nameof(Employee.ItemId), itemId);

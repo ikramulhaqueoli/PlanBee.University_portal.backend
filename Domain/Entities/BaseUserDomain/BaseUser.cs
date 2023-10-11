@@ -31,7 +31,8 @@ public class BaseUser : EntityBase
     [BsonRepresentation(BsonType.String)]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public Gender Gender { get; set; }
-    
+
+    [JsonIgnore]
     public string? PasswordHash { get; set; }
 
     [BsonRepresentation(BsonType.String)]
