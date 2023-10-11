@@ -20,7 +20,7 @@ public class UserVerificationController : ControllerBase
     }
 
     [HttpGet(template: "CodeValidity")]
-    public async Task<IActionResult> AllAsync([FromQuery] VerificationCodeValidityQuery query)
+    public async Task<IActionResult> CodeValidityAsync([FromQuery] VerificationCodeValidityQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

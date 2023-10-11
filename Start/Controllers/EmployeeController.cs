@@ -31,8 +31,8 @@ public class EmployeeController : ControllerBase
     }
 
     [SuperAdmin]
-    [HttpGet(template: "All")]
-    public async Task<IActionResult> AllAsync([FromQuery] GetEmployeesQuery query)
+    [HttpGet(template: "Get")]
+    public async Task<IActionResult> GetManyAsync([FromQuery] GetEmployeesQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 
@@ -43,7 +43,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpPost("AddDesignation")]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateEmployeeDesignationCommand command)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateDesignationCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 
@@ -54,7 +54,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpGet("GetDesignations")]
-    public async Task<IActionResult> GetDesignationsAsync([FromQuery] GetEmployeeDesignationsQuery query)
+    public async Task<IActionResult> GetDesignationsAsync([FromQuery] GetDesignationsQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

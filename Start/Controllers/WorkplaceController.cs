@@ -23,7 +23,7 @@ public class WorkplaceController : ControllerBase
 
     [SuperAdmin]
     [HttpPost("Create")]
-    public async Task<IActionResult> Create([FromBody] CreateWorkplaceCommand command)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateWorkplaceCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 

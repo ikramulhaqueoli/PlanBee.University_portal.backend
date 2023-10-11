@@ -1,18 +1,18 @@
 ﻿using MongoDB.Driver;
-using PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain;
+using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations
 {
-    public class EmployeeDesignationRepository :
-        IEmployeeDesignationReadRepository,
-        IEmployeeDesignationWriteRepository
+    public class DesignationRepository :
+        IDesignationReadRepository,
+        IDesignationWriteRepository
     {
         private readonly IMongoWriteRepository _mongoWriteRepository;
         private readonly IMongoReadRepository _mongoReadRepository;
         private readonly IEmployeeReadRepository _employeeReadRepository;
 
-        public EmployeeDesignationRepository(
+        public DesignationRepository(
             IMongoWriteRepository mongoWriteRepository,
             IMongoReadRepository mongoReadRepository,
             IEmployeeReadRepository employeeReadRepository)
@@ -22,42 +22,42 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             _employeeReadRepository = employeeReadRepository;
         }
 
-        public Task<EmployeeDesignation?> GetAsync(string itemId)
+        public Task<Designation?> GetAsync(string itemId)
         {
-            var filter = Builders<EmployeeDesignation>.Filter.Eq(nameof(EmployeeDesignation.ItemId), itemId);
+            var filter = Builders<Designation>.Filter.Eq(nameof(Designation.ItemId), itemId);
             return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
-        public Task<List<EmployeeDesignation>> GetManyAsync(
-            List<string> specificItemIds = null,
+        public Task<List<Designation>> GetManyAsync(
+            List<string>? specificItemIds = null,
             bool activeOnly = false)
         {
-            var filter = Builders<EmployeeDesignation>.Filter.Empty;
+            var filter = Builders<Designation>.Filter.Empty;
             if (activeOnly)
             {
-                filter &= Builders<EmployeeDesignation>.Filter
-                    .Eq(nameof(EmployeeDesignation.IsActive), true);
+                filter &= Builders<Designation>.Filter
+                    .Eq(nameof(Designation.IsActive), true);
             }
             
-            if (specificItemIds?.Any() == true)
+            if (specificItemIds != null)
             {
-                filter &= Builders<EmployeeDesignation>.Filter
-                    .In(nameof(EmployeeDesignation.ItemId), specificItemIds);
+                filter &= Builders<Designation>.Filter
+                    .In(nameof(Designation.ItemId), specificItemIds);
             }
 
             return _mongoReadRepository.GetAsync(filter);
         }
 
-        public async Task<EmployeeDesignation?> GetDesignationByUserIdAsync(string baseUserId)
+        public async Task<Designation?> GetDesignationByUserIdAsync(string baseUserId)
         {
             var employee = await _employeeReadRepository.GetByUserIdAsync(baseUserId);
             if (employee == null) return null;
 
-            var filter = Builders<EmployeeDesignation>.Filter.Eq(nameof(EmployeeDesignation.ItemId), employee.DesignationId);
+            var filter = Builders<Designation>.Filter.Eq(nameof(Designation.ItemId), employee.DesignationId);
             return await _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
-        public Task SaveAsync(EmployeeDesignation designation)
+        public Task SaveAsync(Designation designation)
         {
             return _mongoWriteRepository.SaveAsync(designation);
         }

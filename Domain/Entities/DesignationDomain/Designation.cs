@@ -3,9 +3,9 @@ using MongoDB.Bson;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
 using System.Text.Json.Serialization;
 
-namespace PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain
+namespace PlanBee.University_portal.backend.Domain.Entities.DesignationDomain
 {
-    public class EmployeeDesignation : EntityBase
+    public class Designation : EntityBase
     {
         public string Title { get; set; } = null!;
 

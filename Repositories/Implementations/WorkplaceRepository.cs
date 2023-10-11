@@ -17,10 +17,23 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             _mongoWriteRepository = mongoWriteRepository;
         }
 
-        public Task<List<Workplace>> GetActiveAsync()
+        public Task<List<Workplace>> GetManyAsync(
+            List<string>? specificItemIds = null,
+            bool isActiveOnly = false)
         {
-            var filter = Builders<Workplace>.Filter.Eq(nameof(Workplace.IsActive), true);
-            return _mongoReadRepository.GetAsync<Workplace>(filter);
+            var filter = Builders<Workplace>.Filter.Empty;
+
+            if (specificItemIds != null)
+            {
+                filter &= Builders<Workplace>.Filter.In(nameof(Workplace.ItemId), specificItemIds);
+            }
+
+            if (isActiveOnly)
+            {
+                filter &= Builders<Workplace>.Filter.Eq(nameof(Workplace.IsActive), true);
+            }
+                
+            return _mongoReadRepository.GetAsync(filter);
         }
 
         public Task SaveAsync(Workplace workplace)

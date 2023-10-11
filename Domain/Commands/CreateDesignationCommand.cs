@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PlanBee.University_portal.backend.Domain.Commands
 {
-    public class CreateEmployeeDesignationCommand : AbstractCommand
+    public class CreateDesignationCommand : AbstractCommand
     {
         public string Title { get; set; } = null!;
 

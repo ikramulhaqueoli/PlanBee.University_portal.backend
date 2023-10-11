@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain;
+using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.WorkplaceDomain;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Domain.Responses;
@@ -9,22 +9,22 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
     public class GetSignupFormDataQueryHandler : AbstractQueryHandler<GetSignupFormDataQuery>
     {
         private readonly IWorkplaceReadRepository _workplaceReadRepository;
-        private readonly IEmployeeDesignationReadRepository _employeeDesignationReadRepository;
+        private readonly IDesignationReadRepository _designationReadRepository;
 
         public GetSignupFormDataQueryHandler(
             ILogger<GetSignupFormDataQueryHandler> logger,
             IWorkplaceReadRepository workplaceReadRepository,
-            IEmployeeDesignationReadRepository employeeDesignationReadRepository)
+            IDesignationReadRepository designationReadRepository)
             : base(logger)
         {
             _workplaceReadRepository = workplaceReadRepository;
-            _employeeDesignationReadRepository = employeeDesignationReadRepository;
+            _designationReadRepository = designationReadRepository;
         }
 
         public override async Task<QueryResponse> HandleAsync(GetSignupFormDataQuery query)
         {
-            var workplaces = await _workplaceReadRepository.GetActiveAsync();
-            var designations = await _employeeDesignationReadRepository.GetManyAsync(activeOnly: true);
+            var workplaces = await _workplaceReadRepository.GetManyAsync();
+            var designations = await _designationReadRepository.GetManyAsync(activeOnly: true);
             var response = new QueryResponse
             {
                 QueryData = new

@@ -18,9 +18,16 @@ public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
         _mongoWriteRepository = mongoWriteRepository;
     }
 
-    public async Task<List<object>> GetAllWithViewAsync()
+    public async Task<List<object>> GetWithViewsAsync(string[]? specificItemIds)
     {
         var filter = Builders<RegistrationRequest>.Filter.Empty;
+
+        if (specificItemIds != null)
+        {
+            filter &= Builders<RegistrationRequest>.Filter
+                .In(nameof(RegistrationRequest.ItemId), specificItemIds);
+        }
+
         var results = await _mongoReadRepository.GetAsync(filter);
 
         return results.Select(result => new

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
-using PlanBee.University_portal.backend.Domain.Entities.EmployeeDesignationDomain;
+using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
 using PlanBee.University_portal.backend.Domain.Enums.Business;
@@ -16,7 +16,7 @@ public class EmployeeSignupService : IEmployeeSignupService
     private readonly IEmployeeWriteRepository _employeeWriteRepository;
     private readonly IUniversityEmailService _universityEmailService;
     private readonly IJwtAuthenticationService _jwtAuthenticationService;
-    private readonly IEmployeeDesignationReadRepository _employeeDesignationReadRepository;
+    private readonly IDesignationReadRepository _designationReadRepository;
     private readonly IBaseUserReadRepository _baseUserReadRepository;
 
     public EmployeeSignupService(
@@ -25,7 +25,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         IEmployeeWriteRepository employeeWriteRepository,
         IUniversityEmailService universityEmailService,
         IJwtAuthenticationService jwtAuthenticationService,
-        IEmployeeDesignationReadRepository employeeDesignationReadRepository,
+        IDesignationReadRepository designationReadRepository,
         IBaseUserReadRepository baseUserReadRepository)
     {
         _registrationRequestWriteRepository = registrationRequestWriteRepository;
@@ -33,7 +33,7 @@ public class EmployeeSignupService : IEmployeeSignupService
         _employeeWriteRepository = employeeWriteRepository;
         _universityEmailService = universityEmailService;
         _jwtAuthenticationService = jwtAuthenticationService;
-        _employeeDesignationReadRepository = employeeDesignationReadRepository;
+        _designationReadRepository = designationReadRepository;
         _baseUserReadRepository = baseUserReadRepository;
     }
 
@@ -52,7 +52,7 @@ public class EmployeeSignupService : IEmployeeSignupService
 
         var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
 
-        var approverDesignation = await _employeeDesignationReadRepository.GetDesignationByUserIdAsync(approverTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
+        var approverDesignation = await _designationReadRepository.GetDesignationByUserIdAsync(approverTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"Designation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
         
         await _universityEmailService.SendSignupVerificationAsync(
             fromTokenUser: approverTokenUser,
@@ -63,10 +63,10 @@ public class EmployeeSignupService : IEmployeeSignupService
     public async Task SignupAsync(EmployeeSignupCommand command)
     {
         var creatorTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
-        var creatorDesignation = await _employeeDesignationReadRepository.GetDesignationByUserIdAsync(creatorTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"EmployeeDesignation for BaseUserId {creatorTokenUser.BaseUserId} not found in the database.");
-        var newEmployeeDesignation = await _employeeDesignationReadRepository.GetAsync(command.DesignationId) ?? throw new ItemNotFoundException($"EmployeeDesignation with Id {command.DesignationId} not found in the database.");
-        command.DesignationTitle ??= newEmployeeDesignation.Title;
-        command.DesignationType ??= newEmployeeDesignation.DesignationType;
+        var creatorDesignation = await _designationReadRepository.GetDesignationByUserIdAsync(creatorTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"Designation for BaseUserId {creatorTokenUser.BaseUserId} not found in the database.");
+        var newEmpDesignation = await _designationReadRepository.GetAsync(command.DesignationId) ?? throw new ItemNotFoundException($"Designation with Id {command.DesignationId} not found in the database.");
+        command.DesignationTitle ??= newEmpDesignation.Title;
+        command.DesignationType ??= newEmpDesignation.DesignationType;
 
         var request = new RegistrationRequest
         {

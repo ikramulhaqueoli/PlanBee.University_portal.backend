@@ -14,7 +14,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.Validators.
                 throw new InvalidRequestArgumentException("New Password must not be empty.");
             }
 
-            if (Regex.IsMatch(command.NewPassword, BusinessConstants.STRONG_PASSWORD_REGEX) is false)
+            if (Regex.IsMatch(command.NewPassword, RegexConstants.PASSWORD_REGEX) is false)
             {
                 throw new InvalidRequestArgumentException("Password must consist of 10 characters and contain atleast one capital, small, numeric.");
             }

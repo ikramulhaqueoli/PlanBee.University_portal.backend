@@ -24,10 +24,14 @@ public class BaseUserRepository :
         return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
     }
 
-    public async Task<BaseUser?> GetByCredentialsAsync(string universityId, string passwordHash)
+    public async Task<BaseUser?> GetByCredentialsAsync(
+        string emailOrUniversityId,
+        string passwordHash)
     {
         var filter = Builders<BaseUser>.Filter.Where(user =>
-            user.UniversityId == universityId &&
+            (user.UniversityId == emailOrUniversityId || 
+             user.PersonalEmail == emailOrUniversityId || 
+             user.UniversityEmail == emailOrUniversityId) &&
             user.PasswordHash == passwordHash
         );
 

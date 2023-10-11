@@ -2,6 +2,6 @@
 {
     public class GetWorkplacesQuery : AbstractQuery
     {
-        public string[]? SpecificWorkplaceIds { get; set; }
+        public string[]? SpecificItemIds { get; set; }
     }
 }

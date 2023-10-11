@@ -23,7 +23,7 @@ public class RegistrationRequestController : ControllerBase
 
     [SuperAdmin]
     [HttpPost(template: "Approve")]
-    public async Task<IActionResult> Approve([FromBody] RegistrationActionCommand command)
+    public async Task<IActionResult> ApproveAsync([FromBody] RegistrationActionCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 
@@ -33,8 +33,8 @@ public class RegistrationRequestController : ControllerBase
     }
 
     [SuperAdmin]
-    [HttpGet(template: "All")]
-    public async Task<IActionResult> GetAll([FromQuery] GetRegistrationRequestsQuery query)
+    [HttpGet(template: "Get")]
+    public async Task<IActionResult> GetManyAsync([FromQuery] GetRegistrationRequestsQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

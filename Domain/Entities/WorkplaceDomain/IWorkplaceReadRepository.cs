@@ -2,6 +2,8 @@
 {
     public interface IWorkplaceReadRepository
     {
-        Task<List<Workplace>> GetActiveAsync();
+        Task<List<Workplace>> GetManyAsync(
+            List<string>? specificItemIds = null,
+            bool isActiveOnly = false);
     }
 }

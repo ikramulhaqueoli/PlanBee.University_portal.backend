@@ -21,11 +21,11 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
         public override async Task<QueryResponse> HandleAsync(GetWorkplacesQuery query)
         {
             var filter = Builders<Workplace>.Filter.Empty;
-            if (query.SpecificWorkplaceIds?.Any() == true)
+            if (query.SpecificItemIds != null)
             {
                 filter &= Builders<Workplace>.Filter.In(
                     nameof(Workplace.ItemId),
-                query.SpecificWorkplaceIds);
+                query.SpecificItemIds);
             }
 
             var results = await _mongoReadRepository.GetAsync(filter);

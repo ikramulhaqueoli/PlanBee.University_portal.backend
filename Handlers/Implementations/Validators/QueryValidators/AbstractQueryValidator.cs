@@ -13,6 +13,11 @@ public abstract class AbstractQueryValidator<TQuery>
 
         try
         {
+            if (query == null)
+            {
+                throw new InvalidRequestArgumentException("Request Argument can not be null.");
+            }
+
             ValidatePrimary(query);
             return response;
         }

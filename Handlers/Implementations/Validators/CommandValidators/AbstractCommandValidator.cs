@@ -13,6 +13,11 @@ public abstract class AbstractCommandValidator<TCommand>
 
         try
         {
+            if (command == null)
+            {
+                throw new InvalidRequestArgumentException("Request Argument can not be null.");
+            }
+
             ValidatePrimary(command);
             return response;
         }

@@ -4,7 +4,9 @@ public interface IBaseUserReadRepository
 {
     Task<BaseUser?> GetAsync(string baseUserId);
 
-    Task<BaseUser?> GetByCredentialsAsync(string universityId, string passwordHash);
+    Task<BaseUser?> GetByCredentialsAsync(
+        string emailOrUniversityId,
+        string passwordHash);
 
     Task<bool> UserExistsAsync(Guid baseUserId);
 }

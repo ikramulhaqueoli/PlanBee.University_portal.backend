@@ -20,7 +20,7 @@ public class HealthCheckController : ControllerBase
     }
 
     [HttpGet("test")]
-    public async Task<ActionResult<string>> Test()
+    public async Task<ActionResult<string>> TestAsync()
     {
         return Ok("test success");
     }

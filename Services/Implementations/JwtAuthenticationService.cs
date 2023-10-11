@@ -23,10 +23,13 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<AuthToken?> GetAuthTokenAsync(string universityId, string password)
+    public async Task<AuthToken?> GetAuthTokenAsync(
+        string emailOrUniversityId,
+        string password)
     {
         var passwordHash = password.Md5Hash();
-        var baseUser = await _baseUserReadRepository.GetByCredentialsAsync(universityId, passwordHash);
+        var baseUser = await _baseUserReadRepository
+            .GetByCredentialsAsync(emailOrUniversityId, passwordHash);
         if (baseUser == null) return null;
 
         var tokenKey = Encoding.UTF8.GetBytes(AppConfigUtil.Config.Jwt.Key!);
