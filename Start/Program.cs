@@ -22,7 +22,6 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddSwaggerGen(options => options.ConfigureEnumMappings());
-builder.Services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
 builder.Services.AddCors(options =>
 {
