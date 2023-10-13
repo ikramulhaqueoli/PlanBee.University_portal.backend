@@ -11,8 +11,10 @@ public static class ServiceCollectionExtensions
 {
     public static void AddServices(this IServiceCollection services, AppConfig appConfig)
     {
-        services.AddTransient<IEmployeeSignupService, EmployeeSignupService>();
-        services.AddTransient<IStudentSignupService, StudentSignupService>();
+        services.AddTransient<IUserSignupService, UserSignupService>();
+
+        services.AddTransient<ISpecificSignupService, EmployeeSignupService>();
+        services.AddTransient<ISpecificSignupService, StudentSignupService>();
 
         services.AddTransient<IUniversityEmailService, UniversityEmailService>();
         services.AddTransient<IUserVerificationService, UserVerificationService>();

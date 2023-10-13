@@ -11,8 +11,8 @@ namespace PlanBee.University_portal.backend.Domain.Entities.WorkplaceDomain
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public WorkplaceType WorkplaceType { get; set; }
 
-        public string WorkplaceTitle { get; set; } = null!;
+        public string Title { get; set; } = null!;
 
-        public string WorkplaceAcronym { get; set; } = null!;
+        public string TitleAcronym { get; set; } = null!;
     }
 }

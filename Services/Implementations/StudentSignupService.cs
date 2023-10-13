@@ -1,18 +1,33 @@
 ﻿using PlanBee.University_portal.backend.Domain.Commands;
-using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
+using PlanBee.University_portal.backend.Domain.Entities.StudentDomain;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
 
 namespace PlanBee.University_portal.backend.Services.Implementations
 {
-    internal class StudentSignupService : IStudentSignupService
+    public class StudentSignupService : ISpecificSignupService
     {
-        public Task ApproveSignupRequest(RegistrationRequest registrationRequest)
+        private readonly IStudentWriteRepository _studentWriteRepository;
+
+        public StudentSignupService(
+            IStudentWriteRepository studentWriteRepository)
         {
-            throw new NotImplementedException();
+            _studentWriteRepository = studentWriteRepository;
         }
 
-        public Task SignupAsync(StudentSignupCommand command)
+        public UserType UserType => UserType.Student;
+
+        public Task CreateAsync(string baseUserId, AbstractSignupRequestCommand signupRequestCommand)
         {
-            throw new NotImplementedException();
+            var studentSignupRequestCommand = (StudentSignupRequestCommand)signupRequestCommand;
+            var student = new Student
+            {
+                AdmissionDate = studentSignupRequestCommand.AdmissionDate,
+                DepartmentId = studentSignupRequestCommand.DepartmentId,
+                RecidenceStatus = studentSignupRequestCommand.RecidenceStatus
+            };
+
+            student.InitiateEntityBase();
+            return _studentWriteRepository.SaveAsync(student);
         }
     }
 }

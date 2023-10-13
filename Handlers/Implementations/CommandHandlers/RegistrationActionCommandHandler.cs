@@ -12,19 +12,18 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
     {
         private readonly IRegistrationRequestReadRepository _registrationRequestReadRepository;
         private readonly IRegistrationRequestWriteRepository _registrationRequestWriteRepository;
-        private readonly IEmployeeSignupService _employeeSignupService;
+        private readonly IUserSignupService _userSignupService;
         private readonly IJwtAuthenticationService _jwtAuthenticationService;
-
 
         public RegistrationActionCommandHandler(
             ILogger<RegistrationActionCommandHandler> logger,
             IRegistrationRequestWriteRepository registrationRequestWriteRepository,
-            IEmployeeSignupService employeeSignupService,
+            IUserSignupService userSignupService,
             IRegistrationRequestReadRepository registrationRequestReadRepository,
             IJwtAuthenticationService jwtAuthenticationService) : base(logger)
         {
             _registrationRequestWriteRepository = registrationRequestWriteRepository;
-            _employeeSignupService = employeeSignupService;
+            _userSignupService = userSignupService;
             _registrationRequestReadRepository = registrationRequestReadRepository;
             _jwtAuthenticationService = jwtAuthenticationService;
         }
@@ -60,10 +59,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
 
         private async Task ApproveRequestAsync(RegistrationRequest registrationRequest)
         {
-            if (registrationRequest.UserType == UserType.Employee)
-            {
-                await _employeeSignupService.ApproveSignupRequest(registrationRequest);
-            }
+            await _userSignupService.ApproveSignupRequest(registrationRequest);
         }
     }
 }

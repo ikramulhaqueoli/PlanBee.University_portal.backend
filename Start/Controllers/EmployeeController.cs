@@ -21,7 +21,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpPost(template: "Create")]
-    public async Task<IActionResult> Create([FromBody] EmployeeSignupCommand command)
+    public async Task<IActionResult> Create([FromBody] EmployeeSignupRequestCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 

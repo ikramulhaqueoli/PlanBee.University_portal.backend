@@ -1,9 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+using PlanBee.University_portal.backend.Domain.Entities.DepartmentDomain;
 using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.RegistrationRequestDomain;
+using PlanBee.University_portal.backend.Domain.Entities.StudentDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UniTemplateDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UserVerificationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.WorkplaceDomain;
@@ -49,5 +51,11 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<IUserVerificationReadRepository, UserVerificationRepository>();
         services.AddTransient<IUserVerificationWriteRepository, UserVerificationRepository>();
+
+        services.AddTransient<IStudentReadRepository, StudentRepository>();
+        services.AddTransient<IStudentWriteRepository, StudentRepository>();
+
+        services.AddTransient<IDepartmentReadRepository, DepartmentRepository>();
+        services.AddTransient<IDepartmentWriteRepository, DepartmentRepository>();
     }
 }

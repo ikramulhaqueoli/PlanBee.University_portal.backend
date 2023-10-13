@@ -1,25 +1,36 @@
 using Microsoft.Extensions.Logging;
 using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
+using PlanBee.University_portal.backend.Domain.Enums.Business;
+using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Responses;
 using PlanBee.University_portal.backend.Services;
 
 namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHandlers;
 
-public class EmployeeSignupCommandHandler : AbstractCommandHandler<EmployeeSignupCommand>
+public class EmployeeSignupCommandHandler : AbstractCommandHandler<EmployeeSignupRequestCommand>
 {
-    private readonly IEmployeeSignupService _employeeSignupService;
+    private readonly IUserSignupService _userSignupService;
+    private readonly IDesignationReadRepository _designationReadRepository;
 
     public EmployeeSignupCommandHandler(
         ILogger<EmployeeSignupCommandHandler> logger,
-        IEmployeeSignupService employeeSignupService)
+        IUserSignupService userSignupService,
+        IDesignationReadRepository designationReadRepository)
         : base(logger)
     {
-        _employeeSignupService = employeeSignupService;
+        _userSignupService = userSignupService;
+        _designationReadRepository = designationReadRepository;
     }
 
-    public override async Task<CommandResponse> HandleAsync(EmployeeSignupCommand command)
+    public override async Task<CommandResponse> HandleAsync(EmployeeSignupRequestCommand command)
     {
-        await _employeeSignupService.SignupAsync(command);
+        var newEmpDesignation = await _designationReadRepository.GetAsync(command.DesignationId)
+            ?? throw new ItemNotFoundException($"Designation with Id {command.DesignationId} not found in the database.");
+        command.DesignationTitle ??= newEmpDesignation.Title;
+        command.DesignationType ??= newEmpDesignation.DesignationType;
+
+        await _userSignupService.RequestSignupAsync(command, UserType.Employee);
 
         return new CommandResponse();
     }
