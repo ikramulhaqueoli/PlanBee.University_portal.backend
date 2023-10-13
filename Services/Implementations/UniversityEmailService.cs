@@ -47,9 +47,9 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             BaseUser toBaseUser,
             string senderDesignation)
         {
-            var template = await _uniTemplateReadRepository.GetByKeyAsync(UniTemplateKeys.SignupVerificationMail);
-            if (template == null) throw new ItemNotFoundException($"{nameof(UniTemplate)} with key {UniTemplateKeys.SignupVerificationMail} not found in the database.");
+            var templateKey = GetSignupVerifyTemplateKey(toBaseUser);
 
+            var template = await _uniTemplateReadRepository.GetByKeyAsync(templateKey) ?? throw new ItemNotFoundException($"{nameof(UniTemplate)} with key {templateKey} not found in the database.");
             var verificationCode = await CreateNewUserVerificationCodeAsync(toBaseUser.ItemId, UserVerificationType.Signup);
             var verificationLink = UserVerificationUtils.GetVerificationLink(verificationCode);
 
@@ -106,5 +106,13 @@ namespace PlanBee.University_portal.backend.Services.Implementations
                 {"senderPosition", senderDesignation},
             };
         }
+
+        private string GetSignupVerifyTemplateKey(BaseUser toBaseUser)
+            => toBaseUser.UserType switch
+            {
+                UserType.Employee => UniTemplateKeys.SignupVerifyMailTeacher,
+                UserType.Student => UniTemplateKeys.SignupVerifyMailStudent,
+                _ => throw new GeneralBusinessException($"Signup Verification Tempate for UserType: {toBaseUser.UserType} not registered in the system.")
+            };
     }
 }
