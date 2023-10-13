@@ -8,13 +8,13 @@ using PlanBee.University_portal.backend.Services;
 
 namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHandlers;
 
-public class EmployeeSignupCommandHandler : AbstractCommandHandler<EmployeeSignupRequestCommand>
+public class EmployeeSignupRequestCommandHandler : AbstractCommandHandler<EmployeeSignupRequestCommand>
 {
     private readonly IUserSignupService _userSignupService;
     private readonly IDesignationReadRepository _designationReadRepository;
 
-    public EmployeeSignupCommandHandler(
-        ILogger<EmployeeSignupCommandHandler> logger,
+    public EmployeeSignupRequestCommandHandler(
+        ILogger<EmployeeSignupRequestCommandHandler> logger,
         IUserSignupService userSignupService,
         IDesignationReadRepository designationReadRepository)
         : base(logger)
