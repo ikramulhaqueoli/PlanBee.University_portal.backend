@@ -22,7 +22,6 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddSwaggerGen(options => options.ConfigureEnumMappings());
-builder.Services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
 builder.Services.AddCors(options =>
 {
@@ -33,6 +32,8 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod();
     });
 });
+
+builder.Services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
 
 var app = builder.Build();
@@ -45,13 +46,13 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
     app.Services.GetRequiredService<ISeedDataManager>().SaveToDbAsync().Wait();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.UseCors();
+
+app.UseHttpsRedirection();
 
 app.Run();
