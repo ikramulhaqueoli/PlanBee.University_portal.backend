@@ -5,6 +5,6 @@
   "CreatedOn": "2023-10-10T18:07:16.521+0000",
   "LastModifiedOn": "0001-01-01T00:00:00.000+0000",
   "WorkplaceType": "NonAcademic",
-  "WorkplaceTitle": "Academic Section",
-  "WorkplaceAcronym": "AS"
+  "Title": "Academic Section",
+  "TitleAcronym": "AS"
 }
