@@ -1,6 +1,4 @@
-﻿using PlanBee.University_portal.backend.Domain.Entities.DepartmentDomain;
-
-namespace PlanBee.University_portal.backend.Domain.Entities.WorkplaceDomain
+﻿namespace PlanBee.University_portal.backend.Domain.Entities.DepartmentDomain
 {
     public interface IDepartmentWriteRepository
     {

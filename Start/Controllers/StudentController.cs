@@ -8,12 +8,14 @@ namespace PlanBee.University_portal.backend.Start.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-public class EmployeeController : ControllerBase
+public class StudentController : ControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;
     private readonly IQueryDispatcher _queryDispatcher;
 
-    public EmployeeController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
+    public StudentController(
+        ICommandDispatcher commandDispatcher,
+        IQueryDispatcher queryDispatcher)
     {
         _commandDispatcher = commandDispatcher;
         _queryDispatcher = queryDispatcher;
@@ -21,7 +23,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpPost(template: "Create")]
-    public async Task<IActionResult> Create([FromBody] EmployeeSignupRequestCommand command)
+    public async Task<IActionResult> Create([FromBody] StudentSignupRequestCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 
@@ -32,7 +34,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpGet(template: "Get")]
-    public async Task<IActionResult> GetManyAsync([FromQuery] GetEmployeesQuery query)
+    public async Task<IActionResult> GetManyAsync([FromQuery] GetStudentQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 
@@ -42,19 +44,8 @@ public class EmployeeController : ControllerBase
     }
 
     [SuperAdmin]
-    [HttpPost("AddDesignation")]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateDesignationCommand command)
-    {
-        var response = await _commandDispatcher.DispatchAsync(command);
-
-        return response.Success
-            ? Ok(response)
-            : BadRequest(response);
-    }
-
-    [SuperAdmin]
-    [HttpGet("GetDesignations")]
-    public async Task<IActionResult> GetDesignationsAsync([FromQuery] GetDesignationsQuery query)
+    [HttpGet("SignupFormData")]
+    public async Task<IActionResult> GetSignupFormDataAsync([FromQuery] GetSignupFormDataQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 
