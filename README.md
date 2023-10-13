@@ -34,9 +34,9 @@ sudo systemctl enable docker
 sudo docker run -d --name mongo-container --restart always -p 27017:27017 --pull always mongo
 
 # 4. Download and run softbee-university-backend in softbee-container (docker)
-sudo docker run -d --name softbee-container --link mongo-container --restart always -p 10110:80 -p 10111:443 --pull always ikramulhaqueoli/university-backend:latest
+sudo docker rm -f softbee-container && sudo docker run -d --name softbee-container --link mongo-container --restart always -p 10110:80 -p 10111:443 --pull always ikramulhaqueoli/university-backend:latest
 ```
-## Ping backend healthcheck endpoint: 
+## Ping backend healthcheck endpoint:
 ```curl
 http://<server_public_ip>:10110/healthcheck
 ```
