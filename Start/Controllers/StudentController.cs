@@ -34,7 +34,7 @@ public class StudentController : ControllerBase
 
     [SuperAdmin]
     [HttpGet(template: "Get")]
-    public async Task<IActionResult> GetManyAsync([FromBody] GetStudentQuery query)
+    public async Task<IActionResult> GetManyAsync([FromQuery] GetStudentQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

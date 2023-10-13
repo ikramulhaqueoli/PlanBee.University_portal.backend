@@ -34,7 +34,7 @@ public class WorkplaceController : ControllerBase
 
     [SuperAdmin]
     [HttpGet("Get")]
-    public async Task<IActionResult> GetWorkplacesAsync([FromBody] GetWorkplacesQuery query)
+    public async Task<IActionResult> GetWorkplacesAsync([FromQuery] GetWorkplacesQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 
