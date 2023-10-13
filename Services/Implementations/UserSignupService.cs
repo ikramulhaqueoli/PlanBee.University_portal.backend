@@ -119,13 +119,10 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             };
 
             baseUser.InitiateUserWithEntityBase();
-            baseUser.AddRole(
-                userSpecificRole, 
-                UserRole.Anonymous);
+            baseUser.AddRole(userSpecificRole, UserRole.Anonymous);
             baseUser.AddRole(signupRequestCommand.AdditionalUserRoles);
 
             await _baseUserWriteRepository.SaveAsync(baseUser);
-
             return baseUser;
         }
 
