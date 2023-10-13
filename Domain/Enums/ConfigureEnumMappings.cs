@@ -19,6 +19,7 @@ namespace PlanBee.University_portal.backend.Domain.Enums
             options.MapType<UserVerificationMedia>(() => schema);
             options.MapType<UserVerificationType>(() => schema);
             options.MapType<WorkplaceType>(() => schema);
+            options.MapType<RecidenceStatus>(() => schema);
         }
     }
 }
