@@ -23,7 +23,8 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             {
                 AdmissionDate = studentSignupRequestCommand.AdmissionDate,
                 DepartmentId = studentSignupRequestCommand.DepartmentId,
-                RecidenceStatus = studentSignupRequestCommand.RecidenceStatus
+                RecidenceStatus = studentSignupRequestCommand.RecidenceStatus,
+                BaseUserId = baseUserId
             };
 
             student.InitiateEntityBase();

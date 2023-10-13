@@ -6,7 +6,7 @@ namespace PlanBee.University_portal.backend.Services
 {
     public interface IUserSignupService
     {
-        Task ApproveSignupRequest(RegistrationRequest registrationRequest);
+        Task ApproveSignupRequestAsync(RegistrationRequest registrationRequest);
 
         Task RequestSignupAsync(
             AbstractSignupRequestCommand command,

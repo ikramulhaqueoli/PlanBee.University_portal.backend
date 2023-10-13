@@ -59,7 +59,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.CommandHand
 
         private async Task ApproveRequestAsync(RegistrationRequest registrationRequest)
         {
-            await _userSignupService.ApproveSignupRequest(registrationRequest);
+            await _userSignupService.ApproveSignupRequestAsync(registrationRequest);
         }
     }
 }

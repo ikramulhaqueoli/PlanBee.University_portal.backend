@@ -34,7 +34,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             _registrationRequestWriteRepository = registrationRequestWriteRepository;
         }
 
-        public async Task ApproveSignupRequest(RegistrationRequest registrationRequest)
+        public async Task ApproveSignupRequestAsync(RegistrationRequest registrationRequest)
         {
             AbstractSignupRequestCommand? signupRequestCommand = null;
 
@@ -45,11 +45,11 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             else throw new InvalidRequestArgumentException("Registration Request contains unknown UserType.");
 
             var newBaseUser = await SaveGetNewBaseUserAsync(signupRequestCommand);
-            
-            var specificSignupService = _specificSignupServices
-                .FirstOrDefault(service => service.UserType == registrationRequest.UserType)
-                ?? throw new SpecificSignupServiceNotFoundException(registrationRequest.UserType);
-            await specificSignupService.CreateAsync(newBaseUser.ItemId, signupRequestCommand);
+
+            await SaveSpecificUserTypeEntityAsync(
+                signupRequestCommand,
+                newBaseUser.ItemId,
+                registrationRequest.UserType);
 
             var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
 
@@ -115,5 +115,15 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
             return baseUser;
         }
+
+        private Task SaveSpecificUserTypeEntityAsync(
+            AbstractSignupRequestCommand signupRequestCommand,
+            string baseUserId,
+            UserType userType)
+            => (
+                _specificSignupServices
+                .FirstOrDefault(service => service.UserType == userType)
+                    ?? throw new SpecificSignupServiceNotFoundException(userType)
+            ).CreateAsync(baseUserId, signupRequestCommand);
     }
 }
