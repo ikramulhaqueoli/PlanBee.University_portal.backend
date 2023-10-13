@@ -5,7 +5,9 @@ using System.Text.Json;
 
 namespace PlanBee.University_portal.backend.Repositories.Implementations;
 
-public class RegistrationRequestRepository : IRegistrationRequestWriteRepository, IRegistrationRequestReadRepository
+public class RegistrationRequestRepository :
+    IRegistrationRequestWriteRepository,
+    IRegistrationRequestReadRepository
 {
     private readonly IMongoReadRepository _mongoReadRepository;
     private readonly IMongoWriteRepository _mongoWriteRepository;
@@ -18,9 +20,11 @@ public class RegistrationRequestRepository : IRegistrationRequestWriteRepository
         _mongoWriteRepository = mongoWriteRepository;
     }
 
-    public async Task<List<object>> GetWithViewsAsync(string[]? specificItemIds)
+    public async Task<List<object>> GetWithViewsAsync(
+        string[]? specificItemIds,
+        UserType userType)
     {
-        var filter = Builders<RegistrationRequest>.Filter.Empty;
+        var filter = Builders<RegistrationRequest>.Filter.Eq(nameof(RegistrationRequest.UserType), userType);
 
         if (specificItemIds != null)
         {
