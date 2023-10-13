@@ -33,8 +33,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddHttpsRedirection(options => options.HttpsPort = 443);
-
 
 var app = builder.Build();
 
