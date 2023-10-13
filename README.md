@@ -51,3 +51,8 @@ sudo systemctl start docker
 # Check Docker Run Status
 sudo systemctl status docker
 ```
+## Port Information:
+```
+MongoDB Port: 10120
+University Backend Port: 10110(http), 10111(https)
+```
