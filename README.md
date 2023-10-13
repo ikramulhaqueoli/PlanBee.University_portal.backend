@@ -31,10 +31,10 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo systemctl enable docker
 
 # 3. Download and run mongo-db in mongo-container (docker)
-sudo docker run -d --name mongo-container --restart always -p 10120:27017 mongo
+sudo docker run -d --name mongo-container --restart always -p 27017:27017 --pull always mongo
 
 # 4. Download and run softbee-university-backend in softbee-container (docker)
-sudo docker run -d --name softbee-container --link mongo-container --restart always -p 10110:80 ikramulhaqueoli/university-backend:latest
+sudo docker run -d --name softbee-container --link mongo-container --restart always -p 10110:80 -p 10111:443 --pull always ikramulhaqueoli/university-backend:latest
 ```
 ## Ping backend healthcheck endpoint: 
 ```curl

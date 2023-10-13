@@ -2,6 +2,7 @@
 ENV ASPNETCORE_ENVIRONMENT=Staging
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
 COPY ["Start/Start.csproj", "./"]
