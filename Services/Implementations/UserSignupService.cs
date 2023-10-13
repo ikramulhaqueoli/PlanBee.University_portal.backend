@@ -44,7 +44,9 @@ namespace PlanBee.University_portal.backend.Services.Implementations
                 signupRequestCommand = JsonConvert.DeserializeObject<StudentSignupRequestCommand>(registrationRequest.CommandJson)!;
             else throw new InvalidRequestArgumentException("Registration Request contains unknown UserType.");
 
-            var newBaseUser = await SaveGetNewBaseUserAsync(signupRequestCommand);
+            var newBaseUser = await SaveGetNewBaseUserAsync(
+                signupRequestCommand,
+                registrationRequest.UserType);
 
             await SaveSpecificUserTypeEntityAsync(
                 signupRequestCommand,
@@ -83,7 +85,9 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             await _registrationRequestWriteRepository.SaveAsync(request);
         }
 
-        private async Task<BaseUser> SaveGetNewBaseUserAsync(AbstractSignupRequestCommand signupRequestCommand)
+        private async Task<BaseUser> SaveGetNewBaseUserAsync(
+            AbstractSignupRequestCommand signupRequestCommand,
+            UserType userType)
         {
             var baseUser = new BaseUser
             {
@@ -104,11 +108,20 @@ namespace PlanBee.University_portal.backend.Services.Implementations
                 UniversityEmail = signupRequestCommand.UniversityEmail,
                 Gender = Enum.TryParse<Gender>(signupRequestCommand.Gender, out var gender) ? gender : Gender.Unspecified,
                 AccountStatus = AccountStatus.Deactive,
-                UserType = UserType.Employee,
+                UserType = userType,
+            };
+
+            var userSpecificRole = userType switch
+            {
+                UserType.Employee => UserRole.GeneralEmployee,
+                UserType.Student => UserRole.Student,
+                _ => UserRole.None
             };
 
             baseUser.InitiateUserWithEntityBase();
-            baseUser.AddRole(UserRole.GeneralEmployee, UserRole.Anonymous);
+            baseUser.AddRole(
+                userSpecificRole, 
+                UserRole.Anonymous);
             baseUser.AddRole(signupRequestCommand.AdditionalUserRoles);
 
             await _baseUserWriteRepository.SaveAsync(baseUser);
