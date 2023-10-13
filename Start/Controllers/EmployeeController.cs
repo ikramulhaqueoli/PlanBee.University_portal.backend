@@ -32,7 +32,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpGet(template: "Get")]
-    public async Task<IActionResult> GetManyAsync([FromQuery] GetEmployeesQuery query)
+    public async Task<IActionResult> GetManyAsync([FromBody] GetEmployeesQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 
@@ -54,7 +54,7 @@ public class EmployeeController : ControllerBase
 
     [SuperAdmin]
     [HttpGet("GetDesignations")]
-    public async Task<IActionResult> GetDesignationsAsync([FromQuery] GetDesignationsQuery query)
+    public async Task<IActionResult> GetDesignationsAsync([FromBody] GetDesignationsQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

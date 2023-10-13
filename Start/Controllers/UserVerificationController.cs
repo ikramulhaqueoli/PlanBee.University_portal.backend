@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers;
-using PlanBee.University_portal.backend.Start.Attributes;
 
 namespace PlanBee.University_portal.backend.Start.Controllers;
 

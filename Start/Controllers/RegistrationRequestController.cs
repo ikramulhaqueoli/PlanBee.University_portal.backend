@@ -34,7 +34,7 @@ public class RegistrationRequestController : ControllerBase
 
     [SuperAdmin]
     [HttpGet(template: "Get")]
-    public async Task<IActionResult> GetManyAsync([FromQuery] GetRegistrationRequestsQuery query)
+    public async Task<IActionResult> GetManyAsync([FromBody] GetRegistrationRequestsQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
 

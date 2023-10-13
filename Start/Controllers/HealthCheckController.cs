@@ -6,14 +6,14 @@ namespace PlanBee.University_portal.backend.Start.Controllers;
 [ApiController]
 public class HealthCheckController : ControllerBase
 {
-    [HttpGet("healthcheck")]
+    [HttpGet("health")]
     public ActionResult<string> Get()
     {
         return Ok("Healthy");
     }
 
     [Anonymous]
-    [HttpGet("healthcheck/anonymous")]
+    [HttpGet("health/anonymous")]
     public ActionResult<string> Authorize()
     {
         return Ok("Authorized");
