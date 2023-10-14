@@ -1,5 +1,4 @@
-﻿using PlanBee.University_portal.backend.Domain.Constants;
-using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
+﻿using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UniTemplateDomain;
 using PlanBee.University_portal.backend.Domain.Entities.UserVerificationDomain;
@@ -56,8 +55,8 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             var placeHolderDictionary = GetSignupVerificationPlaceHolders(
                 fromTokenUser,
                 toBaseUser,
-                verificationLink,
-                senderDesignation);
+                senderDesignation,
+                verificationLink);
 
             template.ResolveTemplate(placeHolderDictionary);
 
