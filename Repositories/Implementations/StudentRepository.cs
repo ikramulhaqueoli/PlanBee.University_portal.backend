@@ -21,6 +21,12 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
+        public Task<List<Student>> GetByDepartmentId(string departmentId)
+        {
+            var filter = Builders<Student>.Filter.Eq(nameof(Student.DepartmentId), departmentId);
+            return _mongoReadRepository.GetManyAsync(filter);
+        }
+
         public Task<Student?> GetByUserIdAsync(string baseUserId)
         {
             var filter = Builders<Student>.Filter.Eq(nameof(Student.BaseUserId), baseUserId);

@@ -1,6 +1,6 @@
-namespace PlanBee.University_portal.backend.Services.Models;
+namespace PlanBee.University_portal.backend.Domain.Models;
 
-public class AuthToken
+public class AuthTokenResponse
 {
     public string Token { get; set; } = null!;
 

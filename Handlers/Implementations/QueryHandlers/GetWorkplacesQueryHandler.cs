@@ -28,7 +28,7 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
                 query.SpecificItemIds);
             }
 
-            var results = await _mongoReadRepository.GetAsync(filter);
+            var results = await _mongoReadRepository.GetManyAsync(filter);
             return new QueryResponse
             {
                 QueryData = results

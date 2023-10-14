@@ -22,6 +22,12 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
         }
 
+        public Task<Department?> GetByWorkplaceIdAsync(string workplaceId)
+        {
+            var filter = Builders<Department>.Filter.Eq(nameof(Department.WorkplaceId), workplaceId);
+            return _mongoReadRepository.GetFirstOrDefaultAsync(filter);
+        }
+
         public Task<List<Department>> GetManyAsync(
             List<string>? specificItemIds = null,
             bool isActiveOnly = false)
@@ -38,7 +44,7 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
                 filter &= Builders<Department>.Filter.Eq(nameof(Department.IsActive), true);
             }
 
-            return _mongoReadRepository.GetAsync(filter);
+            return _mongoReadRepository.GetManyAsync(filter);
         }
 
         public Task SaveAsync(Department department)

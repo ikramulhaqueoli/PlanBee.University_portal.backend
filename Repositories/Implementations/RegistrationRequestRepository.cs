@@ -32,7 +32,7 @@ public class RegistrationRequestRepository :
                 .In(nameof(RegistrationRequest.ItemId), specificItemIds);
         }
 
-        var results = await _mongoReadRepository.GetAsync(filter);
+        var results = await _mongoReadRepository.GetManyAsync(filter);
 
         return results.Select(result => new
         {

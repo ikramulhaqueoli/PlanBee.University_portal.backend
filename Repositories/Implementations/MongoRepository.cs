@@ -18,7 +18,7 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
             return _mongoDbCollectionProvider.getCollection<T>().DeleteManyAsync(filter);
         }
 
-        public async Task<List<T>> GetAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
+        public async Task<List<T>> GetManyAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase
         {
             var filterExcludeMarkedAsDeleted = Builders<T>.Filter.Eq(nameof(EntityBase.IsMarkedAsDeleted), false);
             var finalFilter = excludeMarkedAsDeleted

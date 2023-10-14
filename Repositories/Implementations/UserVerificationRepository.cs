@@ -30,7 +30,7 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
         public async Task<UserVerification?> GetByVerificationCodeAsync(string verificationCode)
         {
             var filter = Builders<UserVerification>.Filter.Eq(nameof(UserVerification.VerificationCode), verificationCode);
-            var results = await _mongoReadRepository.GetAsync(filter);
+            var results = await _mongoReadRepository.GetManyAsync(filter);
 
             return results?.OrderBy(r => r.CreatedOn).LastOrDefault();
         }

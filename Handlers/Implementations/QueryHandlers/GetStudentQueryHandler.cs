@@ -43,8 +43,8 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
                     query.SpecificBaseUserIds);
             }
 
-            var students = await _mongoReadRepository.GetAsync(studentFilter);
-            var baseUsers = await _mongoReadRepository.GetAsync(userFilter);
+            var students = await _mongoReadRepository.GetManyAsync(studentFilter);
+            var baseUsers = await _mongoReadRepository.GetManyAsync(userFilter);
 
             var designationIds = students.Select(student => student.DepartmentId).ToList();
             var designations = await _designationReadRepository.GetManyAsync(designationIds);

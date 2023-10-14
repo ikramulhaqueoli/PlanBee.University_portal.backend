@@ -15,35 +15,34 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
         private readonly IMongoReadRepository _mongoReadRepository;
         private readonly IDesignationReadRepository _designationReadRepository;
         private readonly IWorkplaceReadRepository _workplaceReadRepository;
+        private readonly IBaseUserReadRepository _baseUserReadRepository;
 
         public GetEmployeesQueryHandler(
             ILogger<GetAuthTokenQueryHandler> logger,
             IMongoReadRepository mongoReadRepository,
             IDesignationReadRepository designationReadRepository,
-            IWorkplaceReadRepository workplaceReadRepository) : base(logger)
+            IWorkplaceReadRepository workplaceReadRepository,
+            IBaseUserReadRepository baseUserReadRepository) : base(logger)
         {
             _mongoReadRepository = mongoReadRepository;
             _designationReadRepository = designationReadRepository;
             _workplaceReadRepository = workplaceReadRepository;
+            _baseUserReadRepository = baseUserReadRepository;
         }
 
         public override async Task<QueryResponse> HandleAsync(GetEmployeesQuery query)
         {
             var employeeFilter = Builders<Employee>.Filter.Empty;
-            var userFilter = Builders<BaseUser>.Filter.Empty;
             if (query.SpecificBaseUserIds != null)
             {
                 employeeFilter &= Builders<Employee>.Filter.In(
                     nameof(Employee.BaseUserId),
                     query.SpecificBaseUserIds);
-
-                userFilter &= Builders<BaseUser>.Filter.In(
-                    nameof(BaseUser.ItemId),
-                    query.SpecificBaseUserIds);
             }
 
-            var employees = await _mongoReadRepository.GetAsync(employeeFilter);
-            var baseUsers = await _mongoReadRepository.GetAsync(userFilter);
+            var employees = await _mongoReadRepository.GetManyAsync(employeeFilter);
+            var fetchedBaseUserIds = employees.Select(employee => employee.BaseUserId).ToList();
+            var baseUsers = await _baseUserReadRepository.GetManyAsync(fetchedBaseUserIds);
 
             var designationIds = employees.Select(employee => employee.DesignationId).ToList();
             var designations = await _designationReadRepository.GetManyAsync(designationIds);

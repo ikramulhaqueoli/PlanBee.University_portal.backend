@@ -5,7 +5,7 @@ namespace PlanBee.University_portal.backend.Repositories
 {
     public interface IMongoReadRepository
     {
-        public Task<List<T>> GetAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase;
+        public Task<List<T>> GetManyAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase;
 
         public Task<T?> GetFirstOrDefaultAsync<T>(FilterDefinition<T> filter, bool excludeMarkedAsDeleted = true) where T : EntityBase;
 

@@ -33,7 +33,7 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
                 filter &= Builders<Workplace>.Filter.Eq(nameof(Workplace.IsActive), true);
             }
                 
-            return _mongoReadRepository.GetAsync(filter);
+            return _mongoReadRepository.GetManyAsync(filter);
         }
 
         public Task SaveAsync(Workplace workplace)

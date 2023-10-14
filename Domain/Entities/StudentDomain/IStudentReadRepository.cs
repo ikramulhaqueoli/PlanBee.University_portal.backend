@@ -5,5 +5,7 @@
         Task<Student?> GetAsync(string itemId);
 
         Task<Student?> GetByUserIdAsync(string baseUserId);
+
+        Task<List<Student>> GetByDepartmentId(string departmentId);
     }
 }

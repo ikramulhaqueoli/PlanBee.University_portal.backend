@@ -45,7 +45,7 @@ namespace PlanBee.University_portal.backend.Repositories.Implementations
                     .In(nameof(Designation.ItemId), specificItemIds);
             }
 
-            return _mongoReadRepository.GetAsync(filter);
+            return _mongoReadRepository.GetManyAsync(filter);
         }
 
         public async Task<Designation?> GetDesignationByUserIdAsync(string baseUserId)

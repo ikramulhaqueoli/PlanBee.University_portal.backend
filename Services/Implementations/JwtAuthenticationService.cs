@@ -6,7 +6,6 @@ using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Exceptions.BusinessExceptions;
 using PlanBee.University_portal.backend.Domain.Models;
 using PlanBee.University_portal.backend.Domain.Utils;
-using PlanBee.University_portal.backend.Services.Models;
 
 namespace PlanBee.University_portal.backend.Services.Implementations;
 
@@ -23,7 +22,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<AuthToken?> GetAuthTokenAsync(
+    public async Task<AuthTokenResponse?> GetAuthTokenAsync(
         string emailOrUniversityId,
         string password)
     {
@@ -45,7 +44,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return new AuthToken { Token = tokenHandler.WriteToken(token) };
+        return new AuthTokenResponse { Token = tokenHandler.WriteToken(token) };
     }
 
     public AuthTokenUser GetAuthTokenUser()

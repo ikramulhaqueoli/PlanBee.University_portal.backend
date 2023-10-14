@@ -38,6 +38,12 @@ public class BaseUserRepository :
         return await _mongoReadRepository.GetFirstOrDefaultAsync(filter);
     }
 
+    public async Task<List<BaseUser>> GetManyAsync(List<string> baseUserIds)
+    {
+        var userFilter = Builders<BaseUser>.Filter.In(nameof(BaseUser.ItemId), baseUserIds);
+        return await _mongoReadRepository.GetManyAsync(userFilter);
+    }
+
     public Task SaveAsync(BaseUser user)
     {
         return _mongoWriteRepository.SaveAsync(user);

@@ -43,6 +43,17 @@ public class StudentController : ControllerBase
             : BadRequest(response);
     }
 
+    [FacultyMember]
+    [HttpGet(template: "GetDepartmental")]
+    public async Task<IActionResult> GetDepartmentalAsync([FromQuery] GetDepartmentalStudentsQuery query)
+    {
+        var response = await _queryDispatcher.DispatchAsync(query);
+
+        return response.Success
+            ? Ok(response)
+            : BadRequest(response);
+    }
+
     [SuperAdmin]
     [HttpGet("SignupFormData")]
     public async Task<IActionResult> GetSignupFormDataAsync([FromQuery] GetSignupFormDataQuery query)
