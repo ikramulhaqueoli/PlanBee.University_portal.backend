@@ -36,8 +36,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
         public async Task ApproveSignupRequestAsync(RegistrationRequest registrationRequest)
         {
-            AbstractSignupRequestCommand? signupRequestCommand = null;
-
+            AbstractSignupRequestCommand? signupRequestCommand;
             if (registrationRequest.UserType == UserType.Employee)
                 signupRequestCommand = JsonConvert.DeserializeObject<EmployeeSignupRequestCommand>(registrationRequest.CommandJson)!;
             else if (registrationRequest.UserType == UserType.Student)
