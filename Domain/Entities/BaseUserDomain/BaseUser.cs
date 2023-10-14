@@ -103,4 +103,13 @@ public class BaseUser : EntityBase
         if (roles != null) existingRoles.AddRange(roles);
         UserRoles = existingRoles.Distinct().ToArray();
     }
+
+    public void RemoveRole(params UserRole[]? roles)
+    {
+        UserRoles ??= Array.Empty<UserRole>();
+        var existingRoles = UserRoles.ToList();
+        UserRoles = existingRoles
+            .Except(roles ?? Array.Empty<UserRole>())
+            .Distinct().ToArray();
+    }
 }

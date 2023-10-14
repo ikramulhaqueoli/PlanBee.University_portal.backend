@@ -8,12 +8,12 @@ namespace PlanBee.University_portal.backend.Start.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-public class RegistrationRequestController : ControllerBase
+public class RegistrationController : ControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;
     private readonly IQueryDispatcher _queryDispatcher;
 
-    public RegistrationRequestController(
+    public RegistrationController(
         ICommandDispatcher commandDispatcher,
         IQueryDispatcher queryDispatcher)
     {
@@ -33,7 +33,7 @@ public class RegistrationRequestController : ControllerBase
     }
 
     [SuperAdmin]
-    [HttpGet(template: "Get")]
+    [HttpGet(template: "GetRequests")]
     public async Task<IActionResult> GetManyAsync([FromQuery] GetRegistrationRequestsQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
@@ -48,6 +48,17 @@ public class RegistrationRequestController : ControllerBase
     public async Task<IActionResult> GetSignupFormDataAsync([FromQuery] GetSignupFormDataQuery query)
     {
         var response = await _queryDispatcher.DispatchAsync(query);
+
+        return response.Success
+            ? Ok(response)
+            : BadRequest(response);
+    }
+
+    [SuperAdmin]
+    [HttpGet("ModifyUserRoles")]
+    public async Task<IActionResult> ModifyUserRolesAsync([FromBody] ModifyUserRoleCommand command)
+    {
+        var response = await _commandDispatcher.DispatchAsync(command);
 
         return response.Success
             ? Ok(response)
