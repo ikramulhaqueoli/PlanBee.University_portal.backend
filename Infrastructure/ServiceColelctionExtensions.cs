@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Infrastructure;
+using Infrastructure.Implementations;
+using Microsoft.Extensions.DependencyInjection;
 using PlanBee.University_portal.backend.Infrastructure.Implementations;
 
 namespace PlanBee.University_portal.backend.Infrastructure
@@ -9,6 +11,7 @@ namespace PlanBee.University_portal.backend.Infrastructure
         {
             services.AddTransient<ISeedDataManager, SeedDataManager>();
             services.AddTransient<IEmailSender, GmailEmailSender>();
+            services.AddTransient<IGraphQlService, GraphQlService>();
         }
     }
 }

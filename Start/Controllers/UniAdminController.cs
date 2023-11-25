@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanBee.University_portal.backend.Domain.Commands;
+using PlanBee.University_portal.backend.Domain.Commands.Administrative;
 using PlanBee.University_portal.backend.Domain.Queries;
 using PlanBee.University_portal.backend.Handlers;
 using PlanBee.University_portal.backend.Start.Attributes;
@@ -21,7 +22,7 @@ public class UniAdminController : ControllerBase
 
     [SuperAdmin]
     [HttpPost(template: "Session/Create")]
-    public async Task<IActionResult> Create([FromBody] EmployeeSignupRequestCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateAcademicSessionCommand command)
     {
         var response = await _commandDispatcher.DispatchAsync(command);
 
