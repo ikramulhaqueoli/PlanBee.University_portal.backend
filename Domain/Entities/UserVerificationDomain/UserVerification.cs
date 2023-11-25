@@ -34,9 +34,9 @@ namespace PlanBee.University_portal.backend.Domain.Entities.UserVerificationDoma
             VerificationCode = ItemId.Replace("-", "");
         }
 
-        public void Initiate(UserVerificationType verificationType, string baseUserId)
+        public void Initiate(UserVerificationType verificationType, string baseUserId, string creatorUserId)
         {
-            InitiateEntityBase();
+            InitiateEntityBase(creatorUserId);
             BaseUserId = baseUserId;
             VerificationType = verificationType;
             VerificationMedia = UserVerificationMedia.Email;

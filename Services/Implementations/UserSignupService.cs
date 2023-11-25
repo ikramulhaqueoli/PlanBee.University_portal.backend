@@ -43,16 +43,18 @@ namespace PlanBee.University_portal.backend.Services.Implementations
                 signupRequestCommand = JsonConvert.DeserializeObject<StudentSignupRequestCommand>(registrationRequest.CommandJson)!;
             else throw new InvalidRequestArgumentException("Registration Request contains unknown UserType.");
 
+            var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+
             var newBaseUser = await SaveGetNewBaseUserAsync(
                 signupRequestCommand,
-                registrationRequest.UserType);
+                registrationRequest.UserType,
+                approverTokenUser.BaseUserId);
 
             await SaveSpecificUserTypeEntityAsync(
                 signupRequestCommand,
                 newBaseUser.ItemId,
-                registrationRequest.UserType);
-
-            var approverTokenUser = _jwtAuthenticationService.GetAuthTokenUser();
+                registrationRequest.UserType,
+                approverTokenUser.BaseUserId);
 
             var approverDesignation = await _designationReadRepository.GetDesignationByUserIdAsync(approverTokenUser.BaseUserId) ?? throw new ItemNotFoundException($"Designation for BaseUserId {approverTokenUser.BaseUserId} not found in the database.");
 
@@ -80,13 +82,14 @@ namespace PlanBee.University_portal.backend.Services.Implementations
                 CreatorDesignationId = creatorDesignation.ItemId
             };
 
-            request.InitiateEntityBase();
+            request.InitiateEntityBase(creatorTokenUser.BaseUserId);
             await _registrationRequestWriteRepository.SaveAsync(request);
         }
 
         private async Task<BaseUser> SaveGetNewBaseUserAsync(
             AbstractSignupRequestCommand signupRequestCommand,
-            UserType userType)
+            UserType userType,
+            string creatorBaseUserId)
         {
             var baseUser = new BaseUser
             {
@@ -128,11 +131,12 @@ namespace PlanBee.University_portal.backend.Services.Implementations
         private Task SaveSpecificUserTypeEntityAsync(
             AbstractSignupRequestCommand signupRequestCommand,
             string baseUserId,
-            UserType userType)
+            UserType userType,
+            string creatorBaseUserId)
             => (
                 _specificSignupServices
                 .FirstOrDefault(service => service.UserType == userType)
                     ?? throw new SpecificSignupServiceNotFoundException(userType)
-            ).CreateAsync(baseUserId, signupRequestCommand);
+            ).CreateAsync(baseUserId, signupRequestCommand, creatorBaseUserId);
     }
 }

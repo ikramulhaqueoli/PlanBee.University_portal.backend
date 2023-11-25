@@ -46,10 +46,12 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             BaseUser toBaseUser,
             string senderDesignation)
         {
-            var template = await _uniTemplateReadRepository.GetByKeyAsync(UniTemplateKeys.SignupVerificationMail);
-            if (template == null) throw new ItemNotFoundException($"{nameof(UniTemplate)} with key {UniTemplateKeys.SignupVerificationMail} not found in the database.");
-
-            var verificationCode = await CreateNewUserVerificationCodeAsync(toBaseUser.ItemId, UserVerificationType.Signup);
+            var template = await _uniTemplateReadRepository.GetByKeyAsync(UniTemplateKeys.SignupVerificationMail) 
+                ?? throw new ItemNotFoundException($"{nameof(UniTemplate)} with key {UniTemplateKeys.SignupVerificationMail} not found in the database.");
+            var verificationCode = await CreateNewUserVerificationCodeAsync(
+                toBaseUser.ItemId,
+                UserVerificationType.Signup,
+                fromTokenUser.BaseUserId);
             var verificationLink = UserVerificationUtils.GetVerificationLink(verificationCode);
 
             var placeHolderDictionary = GetSignupVerificationPlaceHolders(
@@ -77,12 +79,13 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
         private async Task<string> CreateNewUserVerificationCodeAsync(
             string baseUserId,
-            UserVerificationType verificationType)
+            UserVerificationType verificationType,
+            string creatorBaseUserId)
         {
             await _userVerificationWriteRepository.DeleteAllAsync(baseUserId, verificationType);
 
             var verification = new UserVerification();
-            verification.Initiate(verificationType, baseUserId);
+            verification.Initiate(verificationType, baseUserId, creatorBaseUserId);
 
             await _userVerificationWriteRepository.SaveAsync(verification);
             return verification.VerificationCode;

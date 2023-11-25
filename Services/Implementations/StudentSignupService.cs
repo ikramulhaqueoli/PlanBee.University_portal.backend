@@ -16,7 +16,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
 
         public UserType UserType => UserType.Student;
 
-        public Task CreateAsync(string baseUserId, AbstractSignupRequestCommand signupRequestCommand)
+        public Task CreateAsync(string baseUserId, AbstractSignupRequestCommand signupRequestCommand, string creatorBaseUserId)
         {
             var studentSignupRequestCommand = (StudentSignupRequestCommand)signupRequestCommand;
             var student = new Student
@@ -27,7 +27,7 @@ namespace PlanBee.University_portal.backend.Services.Implementations
                 BaseUserId = baseUserId
             };
 
-            student.InitiateEntityBase();
+            student.InitiateEntityBase(creatorBaseUserId);
             return _studentWriteRepository.SaveAsync(student);
         }
     }

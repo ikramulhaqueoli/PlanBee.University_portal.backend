@@ -21,11 +21,14 @@ public abstract class EntityBase
     [JsonIgnore]
     public DateTime LastModifiedOn { get; set; }
 
-    public void InitiateEntityBase(string? customItemId = null)
+    public string CreatorUserBaseId { get; set; } = null!;
+
+    public void InitiateEntityBase(string creatorUserBaseId, string? customItemId = null)
     {
         ItemId = customItemId ?? Guid.NewGuid().ToString();
         CreatedOn = DateTime.UtcNow;
         IsActive = true;
+        CreatorUserBaseId = creatorUserBaseId;
     }
 
     public void MarkAsInactive()

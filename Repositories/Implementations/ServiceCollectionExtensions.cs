@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
+using PlanBee.University_portal.backend.Domain.Entities.AcademicSessionDomain;
 using PlanBee.University_portal.backend.Domain.Entities.BaseUserDomain;
 using PlanBee.University_portal.backend.Domain.Entities.DepartmentDomain;
 using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
@@ -57,5 +58,8 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<IDepartmentReadRepository, DepartmentRepository>();
         services.AddTransient<IDepartmentWriteRepository, DepartmentRepository>();
+
+        services.AddTransient<IAcademicSessionReadRepository, AcademicSessionReadRepository>();
+        services.AddTransient<IAcademicSessionWriteRepository, AcademicSessionWriteRepository>();
     }
 }

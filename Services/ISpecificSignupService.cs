@@ -7,7 +7,8 @@ public interface ISpecificSignupService
 {
     Task CreateAsync(
         string baseUserId,
-        AbstractSignupRequestCommand signupRequestCommand);
+        AbstractSignupRequestCommand signupRequestCommand,
+        string creatorBaseUserId);
 
     UserType UserType { get; }
 }

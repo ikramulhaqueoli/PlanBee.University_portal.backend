@@ -1,6 +1,4 @@
-﻿using PlanBee.University_portal.backend.Domain.Entities.EmployeeDomain;
-
-namespace PlanBee.University_portal.backend.Domain.Entities.StudentDomain
+﻿namespace PlanBee.University_portal.backend.Domain.Entities.StudentDomain
 {
     public interface IStudentWriteRepository
     {

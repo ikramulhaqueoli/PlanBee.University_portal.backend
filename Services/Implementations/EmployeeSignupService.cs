@@ -18,7 +18,8 @@ public class EmployeeSignupService : ISpecificSignupService
 
     public Task CreateAsync(
         string baseUserId,
-        AbstractSignupRequestCommand signupRequestCommand)
+        AbstractSignupRequestCommand signupRequestCommand,
+        string creatorBaseUserId)
     {
         var employeeSignupRequestCommand = (EmployeeSignupRequestCommand)signupRequestCommand;
         var employee = new Employee
@@ -30,7 +31,7 @@ public class EmployeeSignupService : ISpecificSignupService
             EducationalQualifications = signupRequestCommand.EducationalQualifications,
             WorkExperiences = employeeSignupRequestCommand.WorkExperiences
         };
-        employee.InitiateEntityBase();
+        employee.InitiateEntityBase(creatorBaseUserId);
 
         return _employeeWriteRepository.SaveAsync(employee);
     }
