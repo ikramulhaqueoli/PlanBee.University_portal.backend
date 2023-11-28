@@ -53,15 +53,4 @@ public class StudentController : ControllerBase
             ? Ok(response)
             : BadRequest(response);
     }
-
-    [SuperAdmin]
-    [HttpGet("SignupFormData")]
-    public async Task<IActionResult> GetSignupFormDataAsync([FromQuery] GetSignupFormDataQuery query)
-    {
-        var response = await _queryDispatcher.DispatchAsync(query);
-
-        return response.Success
-            ? Ok(response)
-            : BadRequest(response);
-    }
 }
