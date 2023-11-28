@@ -23,6 +23,8 @@ namespace PlanBee.University_portal.backend.Services.Implementations
             {
                 AdmissionDate = studentSignupRequestCommand.AdmissionDate,
                 DepartmentId = studentSignupRequestCommand.DepartmentId,
+                HallName = studentSignupRequestCommand.HallName,
+                Session = studentSignupRequestCommand.Session,
                 RecidenceStatus = studentSignupRequestCommand.RecidenceStatus,
                 BaseUserId = baseUserId
             };

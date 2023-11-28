@@ -15,6 +15,10 @@ namespace PlanBee.University_portal.backend.Domain.Entities.StudentDomain
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public RecidenceStatus RecidenceStatus { get; set; }
 
+        public string? HallName { get; set; }
+
+        public string Session { get; set; } = null!;
+
         public string BaseUserId { get; set; } = null!;
     }
 }

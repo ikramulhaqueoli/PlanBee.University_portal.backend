@@ -9,6 +9,10 @@ public class StudentSignupRequestCommand : AbstractSignupRequestCommand
 
     public string DepartmentId { get; set; } = null!;
 
+    public string Session { get; set; } = null!;
+
+    public string? HallName { get; set; }
+
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public RecidenceStatus RecidenceStatus { get; set; }
 }

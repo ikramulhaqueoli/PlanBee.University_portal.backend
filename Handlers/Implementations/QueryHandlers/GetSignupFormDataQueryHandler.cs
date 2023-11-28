@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using PlanBee.University_portal.backend.Domain.Entities.AcademicSessionDomain;
 using PlanBee.University_portal.backend.Domain.Entities.DepartmentDomain;
 using PlanBee.University_portal.backend.Domain.Entities.DesignationDomain;
 using PlanBee.University_portal.backend.Domain.Entities.WorkplaceDomain;
@@ -15,17 +16,20 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
         private readonly IWorkplaceReadRepository _workplaceReadRepository;
         private readonly IDesignationReadRepository _designationReadRepository;
         private readonly IDepartmentReadRepository _departmentReadRepository;
+        private readonly IAcademicSessionReadRepository _academicSessionReadRepository;
 
         public GetSignupFormDataQueryHandler(
             ILogger<GetSignupFormDataQueryHandler> logger,
             IWorkplaceReadRepository workplaceReadRepository,
             IDesignationReadRepository designationReadRepository,
-            IDepartmentReadRepository departmentReadRepository)
+            IDepartmentReadRepository departmentReadRepository,
+            IAcademicSessionReadRepository academicSessionReadRepository)
             : base(logger)
         {
             _workplaceReadRepository = workplaceReadRepository;
             _designationReadRepository = designationReadRepository;
             _departmentReadRepository = departmentReadRepository;
+            _academicSessionReadRepository = academicSessionReadRepository;
         }
 
         public override async Task<QueryResponse> HandleAsync(GetSignupFormDataQuery query)
@@ -53,10 +57,10 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
             {
                 QueryData = new
                 {
-                    AcademicWorkplaces = workplaces.Where(workplace => workplace.WorkplaceType == Domain.Enums.Business.WorkplaceType.Academic),
-                    NonAcademicWorkplaces = workplaces.Where(workplace => workplace.WorkplaceType == Domain.Enums.Business.WorkplaceType.NonAcademic),
-                    AcademicDesignations = designations.Where(workplace => workplace.DesignationType == Domain.Enums.Business.DesignationType.Academic),
-                    NonAcademicDesignations = designations.Where(workplace => workplace.DesignationType == Domain.Enums.Business.DesignationType.NonAcademic),
+                    AcademicWorkplaces = workplaces.Where(workplace => workplace.WorkplaceType == WorkplaceType.Academic),
+                    NonAcademicWorkplaces = workplaces.Where(workplace => workplace.WorkplaceType == WorkplaceType.NonAcademic),
+                    AcademicDesignations = designations.Where(workplace => workplace.DesignationType == DesignationType.Academic),
+                    NonAcademicDesignations = designations.Where(workplace => workplace.DesignationType == DesignationType.NonAcademic),
                 }
             };
 
@@ -66,11 +70,13 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
         private async Task<QueryResponse> GetResponseForStudentAsync()
         {
             var departments = await _departmentReadRepository.GetManyAsync();
+            var sessions = await _academicSessionReadRepository.GetAllAsync();
 
             var workplaceIds = departments.Select(department => department.WorkplaceId).ToList();
             var workplaces = await _workplaceReadRepository.GetManyAsync(workplaceIds);
 
-            var queryData = departments.Select(department => {
+            var departmentData = departments.Select(department => 
+            {
                 var workplace = workplaces.FirstOrDefault(
                     workplace => workplace.ItemId == department.WorkplaceId);
 
@@ -83,15 +89,22 @@ namespace PlanBee.University_portal.backend.Handlers.Implementations.QueryHandle
                 };
             });
 
-            var response = new QueryResponse
+            var sessionData = sessions.Select(session =>
+            {
+                return new
+                {
+                    Session = session.Title
+                };
+            });
+
+            return new QueryResponse
             {
                 QueryData = new
                 {
-                    Departments = departments
+                    Departments = departmentData,
+                    Sessions = sessionData,
                 }
             };
-
-            return response;
         }
     }
 }

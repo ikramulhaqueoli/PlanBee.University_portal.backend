@@ -2,10 +2,6 @@
 {
     public class AcademicSession : EntityBase
     {
-        public int YearOne { get; set; }
-
-        public int YearTwo { get; set; }
-
-        public int? YearlySemester { get; set; }
+        public string Title { get; set; } = null!;
     }
 }

@@ -2,6 +2,8 @@
 {
     public interface IAcademicSessionReadRepository
     {
-        Task<List<AcademicSession>> GetAllAsync(bool activeOnly);
+        Task<List<AcademicSession>> GetAllAsync(bool activeOnly = true);
+
+        Task<bool> SessionExistsAsync(string title);
     }
 }
